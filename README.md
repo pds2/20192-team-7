@@ -89,3 +89,130 @@ Verificar opções de ação do jogador
 Mostrar mão atual do jogador
 Verificar resultado da partida
 Entregar prêmio
+
+
+Classe | Carta
+-------|--------
+Responsabilidades | Colaborações
+Atributos: | Naipe
+Naipe | Símbolo
+Símbolo
+
+
+Classe | Baralho
+-------|--------
+Responsabilidades | Colaborações
+Atributos: | Cartas
+Cartas 
+Métodos:
+Embaralhar
+Distribuir cartas
+
+
+Classe | Mesa
+-------|--------
+Responsabilidades | Colaborações
+Atributos: | Pote
+Cartas | Carta
+Pote | Baralho
+Métodos: 
+Adicionar cartas à mesa
+
+Classe | Pote
+-------|--------
+Responsabilidades | Colaborações
+Atributos: | Jogador
+Valor total | Mesa
+Valor aposta atual
+Valor aposta anterior
+Métodos:
+Alterar valor aposta atual
+Substituir aposta anterior
+Alterar valor total
+
+
+Classe | Jogador
+-------|--------
+Responsabilidades | Colaborações
+Atributos: | Mão
+Mão | Pote
+Fichas | Baralho
+Métodos: | OrdemSequencia
+Pagar a aposta | EstadoJogo
+Aumentar a aposta
+Desistir da partida
+Passar a vez
+Analisar mão
+
+Classe | Humano
+-------|--------
+Responsabilidades | Colaborações
+Atributos: | Mão
+Mão | Pote
+Fichas | Baralho
+Métodos: | OrdemSequencia
+Pagar a aposta | EstadoJogo
+Aumentar a aposta | Jogador (Herança)
+Desistir da partida
+Passar a vez
+Analisar mão
+Começar partida
+Finalizar jogo
+
+
+Classe | Mão
+-------|--------
+Responsabilidades | Colaborações
+Atributos: | Cartas
+Cartas (Coleção de cartas) | Jogador
+"" | Bot
+"" | Naipe
+"" | Símbolo
+
+
+Enum: Naipe
+-------
+Ouros = 1
+Paus = 2
+Copas = 3
+Espadas = 4
+
+
+Enum: Símbolo
+-------
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+J
+Q
+K
+A
+
+
+Enum: OrdemSequencia
+---------------
+HighCard = 1
+Pair = 2
+TwoPair = 3
+ThreeOfAKind = 4
+Straight = 5
+Flush = 6
+FullHouse = 7
+FourOfAKind = 8
+StraightFlush = 9
+RoyalFlush = 10
+
+
+Enum: EstadoJogo
+--------------
+PreFlop = 1
+Flop = 2
+Turn = 3
+River = 4

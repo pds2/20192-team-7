@@ -74,22 +74,80 @@ Classe | Dealer
 -------|--------
 Responsabilidades | Colaborações
 Atributos: | Baralho
-Momento do jogo | Jogador
-Número de jogadores | Mão
-Métodos: | Mesa
-Iniciar partida | Pote
-Distribuir fichas | Bot
+Momento do jogo | Mesa
+Número de jogadores | Pote
+""| EtapaJogo
+Métodos:
+Iniciar partida
+Distribuir fichas
 Incluir jogadores
 Iniciar pré-flop
 Iniciar flop
 Iniciar turn
 Iniciar river
-Calcular apostas
-Verificar opções de ação do jogador
 Mostrar mão atual do jogador
 Verificar resultado da partida
 Entregar prêmio
 
+Classe | EtapaJogo
+-------|--------
+Responsabilidades | Colaborações
+Atributos:| Baralho
+Momento do jogo | Jogador
+Número de jogadores | Mão
+ | Mesa
+Métodos: | Pote
+Validar Apostas
+Distribuir Cartas
+Verificar Opções de Ação Do Jogador
+
+Classe | PreFlop
+-------|--------
+Responsabilidades | Colaborações
+Atributos:| Baralho
+Momento do jogo | Jogador
+Número de jogadores | Mão
+ | Mesa
+Métodos: | Pote
+Validar Apostas | Bot
+Distribuir Cartas | EtapaJogo (Herança por polimorfismo)
+Verificar Opções de Ação Do Jogador
+
+Classe | Flop
+-------|--------
+Responsabilidades | Colaborações
+Atributos:| Baralho
+Momento do jogo | Jogador
+Número de jogadores | Mão
+ | Mesa
+Métodos: | Pote
+Validar Apostas | Bot
+Distribuir Cartas | EtapaJogo (Herança por polimorfismo)
+Verificar Opções de Ação Do Jogador
+
+Classe | Turn
+-------|--------
+Responsabilidades | Colaborações
+Atributos:| Baralho
+Momento do jogo | Jogador
+Número de jogadores | Mão
+ | Mesa
+Métodos: | Pote
+Validar Apostas | Bot
+Distribuir Cartas | EtapaJogo (Herança por polimorfismo)
+Verificar Opções de Ação Do Jogador
+
+Classe | River
+-------|--------
+Responsabilidades | Colaborações
+Atributos:| Baralho
+Momento do jogo | Jogador
+Número de jogadores | Mão
+ | Mesa
+Métodos: | Pote
+Validar Apostas | Bot
+Distribuir Cartas | EtapaJogo (Herança por polimorfismo)
+Verificar Opções de Ação Do Jogador
 
 Classe | Carta
 -------|--------
@@ -104,7 +162,7 @@ Classe | Baralho
 Responsabilidades | Colaborações
 Atributos: | Cartas
 Cartas 
-Métodos:
+Métodos: 
 Embaralhar
 Distribuir cartas
 
@@ -144,28 +202,38 @@ Desistir da partida
 Passar a vez
 Analisar mão
 
-Classe | Humano
+Classe | Jogador
 -------|--------
 Responsabilidades | Colaborações
 Atributos: | Mão
 Mão | Pote
 Fichas | Baralho
 Métodos: | OrdemSequencia
-Pagar a aposta | EstadoJogo
+Pagar a aposta | EtapaJogo
 Aumentar a aposta | Jogador (Herança)
 Desistir da partida
 Passar a vez
 Analisar mão
-Começar partida
-Finalizar jogo
 
+Classe | JogadorHumano
+-------|--------
+Responsabilidades | Colaborações
+Atributos: | Jogador(Herança)
+Mão | Mão
+Fichas | Pote
+ |Baralho
+Métodos: | OrdemSequencia
+Pagar a aposta | EtapaJogo
+Começar Partida
+Finalizar Jogo
+Pagar a aposta
+Aumentar a aposta
 
 Classe | Mão
 -------|--------
 Responsabilidades | Colaborações
 Atributos: | Cartas
 Cartas (Coleção de cartas) | Jogador
-"" | Bot
 "" | Naipe
 "" | Símbolo
 
@@ -209,10 +277,3 @@ FourOfAKind = 8;
 StraightFlush = 9;
 RoyalFlush = 10;
 
-
-Enum: EstadoJogo
---------------
-PreFlop = 1;
-Flop = 2;
-Turn = 3;
-River = 4;

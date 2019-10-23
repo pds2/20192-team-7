@@ -6,7 +6,8 @@ class Mesa{
 		Carta* cartasMesa = new Carta[5];
 		Pote* pote = new Pote;
 	public:
-		addCartas(Carta);
+		Mesa();
+		void addCartas(Carta);
 };
 
 #endif

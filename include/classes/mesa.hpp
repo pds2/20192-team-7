@@ -1,13 +1,14 @@
+#include <vector>
 #ifndef MESA
 #define MESA
 
 class Mesa{
 	private:
-		Carta* cartasMesa = new Carta[5];
+		std::vector<Carta> cartasMesa;
 		Pote* pote = new Pote;
 	public:
 		Mesa();
-		void addCartas(Carta);
+		void addCartas(std::vector<Carta> cartasMesa);
 };
 
 #endif

@@ -1,9 +1,13 @@
 #include <classes/mesa.hpp>
-#include <vector>
 
-//TODO: Definir corretamente os parâmetros do construtor do Pote
+using namespace poker;
+
 Mesa::Mesa(){
     this->pote = Pote();
+}
+
+Mesa::Mesa(Pote pote){
+    this->pote = pote;
 }
 
 void Mesa::addCartas(std::vector<Carta> cartasMesa){
@@ -13,28 +17,29 @@ void Mesa::addCartas(std::vector<Carta> cartasMesa){
         //Exceção de excesso de cartas
 }
 
+
 //TODO: Setters e Getters de Pote
 
-int Mesa::getPoteAnterior(){
+int Mesa::getPoteApostaAnterior(){
     return(0);
 }
 
-int Mesa::getPoteAtual(){
+int Mesa::getPoteApostaAtual(){
     return(0);
 }
 
-int Mesa::getPoteTotal(){
+int Mesa::getPoteApostaTotal(){
     return(0);
 }
 
-int Mesa::setPoteAnterior(){
+int Mesa::setPoteApostaAnterior(){
     return;
 }
 
-int Mesa::setPoteAtual(){
+int Mesa::setPoteApostaAtual(){
     return;
 }
 
-int Mesa::setPoteTotal(){
+int Mesa::setPoteApostaTotal(){
     return;
 }

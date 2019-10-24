@@ -1,20 +1,22 @@
 #ifndef CARTA
 #define CARTA
 
-class Carta{
-	private:
-		int naipe;
-		int simbolo;
+namespace poker{
 
-	public:
 
-		void Carta(int naip, int sim){
-			this->naipe = naipe;
-			this->simbolo = simbolo;
-		}
+	class Carta{
+		private:
+			int naipe;
+			int simbolo;
 
-		int getNaipe();
-		int getSimbolo();
+		public:
+
+			void Carta(int naip, int sim);
+
+			int getNaipe();
+
+			int getSimbolo();
+	}
 }
 
 #endif

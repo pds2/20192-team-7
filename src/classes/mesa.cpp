@@ -13,33 +13,44 @@ Mesa::Mesa(Pote pote){
 void Mesa::addCartas(std::vector<Carta> cartasMesa){
     if (cartasMesa.size() <= 5)
         this->cartasMesa = cartasMesa;
-    else
-        //Exceção de excesso de cartas
 }
 
-
-//TODO: Setters e Getters de Pote
-
-int Mesa::getPoteApostaAnterior(){
-    return(0);
+std::vector<Carta> getCartasMesa(){
+    return (this->cartasMesa);
 }
 
-int Mesa::getPoteApostaAtual(){
-    return(0);
+void Mesa::setPoteApostaTotal(int valorTotal){
+    this->pote.setValorTotal(valorTotal);
+}
+
+void Mesa::setPoteApostaAtual(int valorAtual){
+    this->pote.setValorApostaAtual(valorAtual);
+}
+
+void Mesa::setPoteApostaAnterior(int valorAnterior){
+    this->pote.setValorApostaAnterior(valorAnterior);
 }
 
 int Mesa::getPoteApostaTotal(){
-    return(0);
+    return(this->pote.getValorTotal());
 }
 
-int Mesa::setPoteApostaAnterior(){
-    return;
+int Mesa::getPoteApostaAtual(){
+    return(this->pote.getValorApostaAtual());
 }
 
-int Mesa::setPoteApostaAtual(){
-    return;
+int Mesa::getPoteApostaAnterior(){
+    return(this->pote.getValorApostaAnterior());
 }
 
-int Mesa::setPoteApostaTotal(){
-    return;
+void Mesa::poteAlterarApostaTotal(int novoValorTotal){
+    this->pote.alterarValorTotal(novoValorTotal)
+}
+
+void Mesa::poteAlterarApostaAtual(int novoValorAtual){
+    this->pote.alterarValorAposta(novoValorAtual)
+}
+
+void Mesa::poteAlterarApostaAnterior(int novoValorAnterior){
+    this->pote.substituirApostaAnterior(novoValorAnterior)
 }

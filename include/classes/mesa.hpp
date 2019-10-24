@@ -5,20 +5,33 @@
 #ifndef MESA_H
 #define MESA_H
 
-class Mesa{
-	private:
-		std::vector<Carta> cartasMesa;
-		Pote pote;
+namespace poker{
 
-	public:
-		Mesa();
-		void addCartas(std::vector<Carta> cartasMesa);
-		int getPoteTotal();
-		int getPoteAtual();
-		int getPoteAnterior();
-		int setPoteTotal();
-		int setPoteAtual();
-		int setPoteAnterior();
-};
+	class Mesa{
+		private:
+			std::vector<Carta> cartasMesa;
+			Pote pote;
 
+		public:
+			Mesa();
+			Mesa(Pote pote);
+
+			void addCartas(std::vector<Carta> cartasMesa);
+			std::vector<Carta> getCartasMesa();
+
+			void setPoteApostaTotal(int valorTotal);
+			void setPoteApostaAtual(int valorAtual);
+			void setPoteApostaAnterior(int valorAnterior);
+
+			int getPoteTotal();
+			int getPoteApostaAtual();
+			int getPoteApostaAnterior();
+
+			void poteAlterarApostaTotal(int novoValorTotal);
+			void poteAlterarApostaAtual(int novoValorAtual);
+			void poteAlterarApostaAnterior(int novoValorAnterior);
+
+	};
+
+}
 #endif

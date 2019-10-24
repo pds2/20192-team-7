@@ -16,8 +16,7 @@ class Mao{
 		// talvez nao seja a coisa mais pratica do mundo
 		// mas eu achei melhor 2 gets diferentes pra cada carta
 
-		Carta getCartaUm();
-		Carta getCartaDois();
+		Carta* geteCartas();
 }
 
 #endif

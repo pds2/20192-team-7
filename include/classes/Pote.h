@@ -1,37 +1,38 @@
 #ifndef POTE_H
 #define POTE_H
 
+namespace poker{
+    
+    class Pote{
+    	private:
+            int valorTotal;
+            int valorApostaAtual;
+            int valorApostaAnterior;
 
-class Pote{
-	private:
-        int valorTotal;
-        int valorApostaAtual;
-        int valorApostaAnterior;
+        public:
 
-    public:
+            Pote();
 
-        Pote();
+            Pote(int valorTotal,int valorApostaAtual, int valorApostaAnterior);
 
-        Pote(int valorTotal,int valorApostaAtual, int valorApostaAnterior);
+            void setValorTotal(int valorTotal);
 
-        void setValorTotal(int valorTotal);
+            void setValorApostaAtual(int valorApostaAtual);
+    
+            void setValorApostaAnterior(int valorApostaAnterior);
 
-        void setValorApostaAtual(int valorApostaAtual);
+            int getValorTotal();
 
-        void setValorApostaAnterior(int valorApostaAnterior);
+            int getValorApostaAtual();
 
-        int getValorTotal();
+            int getValorApostaAnterior();
 
-        int getValorApostaAtual();
+            void alterarValorAposta(int novoValorAposta);
 
-        int getValorApostaAnterior();
+            void substituirApostaAnterior(int novoValorApostaAnterior);
 
-        void alterarValorAposta(int novoValorAposta);
-
-        void substituirApostaAnterior(int novoValorApostaAnterior);
-
-        void alterarValorTotal(int novoValorTotal);
+            void alterarValorTotal(int novoValorTotal);
+        }
 }
-
 
 #endif

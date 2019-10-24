@@ -9,10 +9,10 @@ all: main
 
 poker:
 	@mkdir build/poker/
-	$(CC) $(CFLAGS) -c #src/magic/carta.cpp -o build/magic/carta.o
+	$(CC) $(CFLAGS) -c #src/classes/Pote.cpp -o build/classes/Pote.o
 
 main: poker
-	$(CC) $(CFLAGS) #build/magic/carta.o build/uno/carta.o src/main.cpp -o main
+	$(CC) $(CFLAGS) #build/classes/Pote.o src/main.cpp -o main
 
 
 clean:

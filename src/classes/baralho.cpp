@@ -20,7 +20,7 @@ Baralho::distribuirCartas (int numeroCartas){
 	if (numeroCartas <= cartas.size()){
 		for(int i = 0; i < numeroCartas; i++){
 			int numeroGerado = rand() % cartas.size();
-			cartaRetirada = cartas.at(numeroGerado);
+			cartas.erase(cartas.at(numeroGerado));
 			cartas.resize(cartas.size() - 1);
 		}
 	} 

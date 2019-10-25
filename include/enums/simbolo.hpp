@@ -1,9 +1,11 @@
+#ifndef SIMBOLO
+#define SIMBOLO
+
 enum Simbolo{
-	A,
 	DOIS,
 	TRES,
 	QUATRO,
-	CINCO
+	CINCO,
 	SEIS,
 	SETE,
 	OITO,
@@ -11,5 +13,8 @@ enum Simbolo{
 	DEZ,
 	J,
 	Q,
-	K
+	K,
+	A
 };
+
+#endif

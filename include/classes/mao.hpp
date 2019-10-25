@@ -1,19 +1,16 @@
 #ifndef MAO
 #define MAO
-#include "carta.cpp"
+#include "carta.hpp"
 
-namespace poker{
-
-	class Mao{
+namespace poker {
+	class Mao {
 		private:
 			Carta cartas[2];
 
 		public:
-
-			void Mao(Carta primeira, Carta segunda);
-			
-			Carta* geteCartas();
-	}
+			Mao(Carta primeira, Carta segunda);
+			Carta* getCartas();
+	};
 }
 
 #endif

@@ -2,7 +2,7 @@
 
 using namespace poker;
 
-void Carta::Carta(int naip, int sim){
+Carta::Carta(Naipe naipe, Simbolo sim){
 	this->naipe = naipe;
 	this->simbolo = sim;
 }

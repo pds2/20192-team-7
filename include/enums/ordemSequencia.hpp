@@ -1,3 +1,6 @@
+#ifndef ORDEM_SEQUENCIA
+#define ORDEM_SEQUENCIA
+
 enum OrdemSequencia{
 	HighCard,
 	Pair,
@@ -10,3 +13,5 @@ enum OrdemSequencia{
 	StaigthFlush,
 	RoyalFlush	
 };
+
+#endif

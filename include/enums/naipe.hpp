@@ -1,11 +1,12 @@
 #ifndef NAIPE
 #define NAIPE
-
-enum Naipe{
-	Ouros,
-	Paus,
-	Copas,
-	Espadas
-};
+namespace poker {
+	enum Naipe {
+		Ouros,
+		Paus,
+		Copas,
+		Espadas
+	};
+}
 
 #endif

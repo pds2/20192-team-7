@@ -1,22 +1,20 @@
+#include "naipe.hpp"
+#include "simbolo.hpp"
+
 #ifndef CARTA
 #define CARTA
 
-namespace poker{
-
-
-	class Carta{
+namespace poker {
+	class Carta {
 		private:
 			int naipe;
 			int simbolo;
 
 		public:
-
-			void Carta(int naip, int sim);
-
+			Carta(Naipe naipe, Simbolo sim);
 			int getNaipe();
-
 			int getSimbolo();
-	}
+	};
 }
 
 #endif

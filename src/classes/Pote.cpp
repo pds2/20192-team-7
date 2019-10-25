@@ -1,4 +1,4 @@
-#include 'Pote.h'
+#include "pote.hpp"
 
 using namespace poker;
 
@@ -6,8 +6,8 @@ Pote::Pote() : Pote(0,0,0) {}
 
 Pote::Pote(int valorTotal,int valorApostaAtual, int valorApostaAnterior) : valorTotal(valorTotal),valorApostaAtual(valorApostaAtual),valorApostaAnterior(valorApostaAnterior) {}
 
-void Pote::setValorTotal(int valorAtual){
-    this -> valorAtual = valorAtual; 
+void Pote::setValorTotal(int valorApostaAtual){
+    this -> valorApostaAtual = valorApostaAtual; 
 }
 
 void Pote::setValorApostaAtual(int valorApostaAtual){
@@ -19,7 +19,7 @@ void Pote::setValorApostaAnterior(int valorApostaAnterior){
 }
 
 int Pote::getValorTotal(){
-    return this -> valorAtual; 
+    return this -> valorApostaAtual; 
 }
 
 int Pote::getValorApostaAtual(){
@@ -31,7 +31,7 @@ int Pote::getValorApostaAnterior(){
 }
 
 void Pote::alterarValorAposta(int novoValorAposta){
-    this -> valorAtual = novoValorAposta; 
+    this -> valorApostaAtual = novoValorAposta; 
 }
 
 void Pote::substituirApostaAnterior(int novoValorApostaAnterior){

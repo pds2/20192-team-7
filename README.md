@@ -89,7 +89,7 @@ Mostrar mão atual do jogador
 Verificar resultado da partida
 Entregar prêmio
 
-Classe | EtapaJogo
+Classe | EstadoJogo
 -------|--------
 Responsabilidades | Colaborações
 Atributos:| Baralho

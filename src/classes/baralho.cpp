@@ -1,9 +1,8 @@
-#include "baralho.hpp"
+#include "classes/baralho.hpp"
 #include <vector>
 #include <stdlib.h>
-#include "naipe.hpp"
-#include "naipe.hpp"
-#include "simbolo.hpp"
+#include "enums/naipe.hpp"
+#include "enums/simbolo.hpp"
 
 using namespace poker;
 

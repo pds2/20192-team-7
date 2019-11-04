@@ -1,10 +1,16 @@
-#include "pote.hpp"
+#include "classes/pote.hpp"
 
 using namespace poker;
 
 Pote::Pote() : Pote(0,0,0) {}
 
-Pote::Pote(int valorTotal,int valorApostaAtual, int valorApostaAnterior) : valorTotal(valorTotal),valorApostaAtual(valorApostaAtual),valorApostaAnterior(valorApostaAnterior) {}
+Pote::Pote(int valorTotal, int valorApostaAtual, int valorApostaAnterior) : 
+	valorTotal(valorTotal),
+	valorApostaAtual(valorApostaAtual),
+	valorApostaAnterior(valorApostaAnterior) 
+{
+	
+}
 
 void Pote::setValorTotal(int valorApostaAtual){
     this -> valorApostaAtual = valorApostaAtual; 

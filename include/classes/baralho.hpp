@@ -6,6 +6,7 @@
 namespace poker {
     
     class Baralho {
+    	
         private:
             std::vector<Carta> cartas;
             

@@ -14,6 +14,7 @@ namespace poker {
 
 		public:
 			Carta();
+			Carta(int naipe, int sim);
 			Carta(Naipe naipe, Simbolo sim);
 			int getNaipe();
 			int getSimbolo();

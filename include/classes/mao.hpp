@@ -10,7 +10,7 @@ namespace poker {
 			Carta cartas[2];
 
 		public:
-			Mao(Carta &primeira, Carta &segunda);
+			Mao(Carta primeira, Carta segunda);
 			Carta* getCartas();
 	};
 }

@@ -26,19 +26,19 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(INC) -c -o $@ $<
 
-#main: $(OBJECTS)
-#	@mkdir -p $(BINDIR)
-#	$(CC) $(CFLAGS) $(INC) $(MAIN) $^ -o $(BINDIR)/main
+main: $(OBJECTS)
+	@mkdir -p $(BINDIR)
+	$(CC) $(CFLAGS) $(INC) $(MAIN) $^ -o $(BINDIR)/main
 
 #tests: $(OBJECTS)
 #	@mkdir -p $(BINDIR)
 #	$(CC) $(CFLAGS) $(INC) $(TESTER) $(TSTSOURCES) $^ -o $(BINDIR)/tester
 #	$(BINDIR)/tester
 
-#all: main
+all: main
 
-#run: main
-#	$(BINDIR)/main
+run: main
+	$(BINDIR)/main
 
 clean:
 	$(RM) -r $(OBJDIR)/* $(BINDIR)/*

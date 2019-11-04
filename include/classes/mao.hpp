@@ -1,5 +1,6 @@
 #ifndef MAO
 #define MAO
+
 #include "classes/carta.hpp"
 
 namespace poker {

@@ -19,3 +19,18 @@ void Jogador::pagarAposta(unsigned int valorAposta){
         this->numeroFichas -= valorAposta;
 }
 
+void Jogador::aumentarAposta(){
+
+}
+
+void Jogador::desistirDaPartida(){
+
+}
+
+void Jogador::passarVez(){
+
+}
+
+void Jogador::analisarMao(){
+
+}

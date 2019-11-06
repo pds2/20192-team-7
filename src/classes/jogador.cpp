@@ -17,4 +17,5 @@ Mao Jogador::getMao(){
 void Jogador::pagarAposta(unsigned int valorAposta){
     if ((this->numeroFichas - valorAposta) >= 0)
         this->numeroFichas -= valorAposta;
-    }
+}
+

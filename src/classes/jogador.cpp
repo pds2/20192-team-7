@@ -60,5 +60,7 @@ void Jogador::passarVez(){
 }
 
 std::string Jogador::analisarMao(){
-
+    std::vector<Carta> cartas = this->mesa->getCartasMesa();
+    std::vector<Carta> aux = this->mao->getCartas();
+    cartas.insert(std::end(cartas), std::begin(aux), std::end(aux));
 }

@@ -59,6 +59,6 @@ void Jogador::passarVez(){
     throw(1);
 }
 
-void Jogador::analisarMao(){
-        
+std::string Jogador::analisarMao(){
+
 }

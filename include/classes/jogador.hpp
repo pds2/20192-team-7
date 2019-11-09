@@ -1,3 +1,4 @@
+#include <string>
 #include <classes/mao.hpp>
 #include <classes/pote.hpp>
 #include <classes/mesa.hpp>
@@ -21,7 +22,7 @@ namespace poker{
                   void aumentarAposta(unsigned int valorNovaAposta);
                   void desistirDaPartida();
                   void passarVez();
-                  void analisarMao();
+                  std::string analisarMao();
                   void setMao(Mao mao);
                   Mao getMao();                
 	};

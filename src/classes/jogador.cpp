@@ -1,9 +1,10 @@
 #include <classes/jogador.hpp>
 using namespace poker;
 
-Jogador::Jogador(int numeroFichas, Pote pote){
+Jogador::Jogador(int numeroFichas, Pote* pote, Mesa* mesa){
     this->mao = nullptr;
-    this->pote = &pote;
+    this->pote = pote;
+    this->mesa = mesa;
     this->numeroFichas = numeroFichas;
 }
 
@@ -16,25 +17,48 @@ Mao Jogador::getMao(){
 }
 
 void Jogador::pagarAposta(){
-    int valorApostaAnterior = this->pote->getValorApostaAnterior();
-    if ((this->numeroFichas - valorApostaAnterior) >= 0){
-        this->numeroFichas -= valorApostaAnterior;
-        this->pote->alterarValorTotal(2*valorApostaAnterior);
+    int valorApostaAtual = this->pote->getValorApostaAtual();
+    int valorTotal = this->pote->getValorTotal();
+
+    if ((this->numeroFichas - valorApostaAtual) >= 0){
+        this->numeroFichas -= valorApostaAtual;
+        this->pote->setValorTotal(valorTotal + valorApostaAtual);
+        this->pote->setValorApostaAnterior(valorApostaAtual);
+    }
+
+    else{
+        throw(1);
     }
 }
 
-void Jogador::aumentarAposta(unsigned int valorAposta){
-    
+void Jogador::aumentarAposta(unsigned int valorNovaAposta){
+    int valorTotal = this->pote->getValorTotal();
+    int valorApostaAtual = this->pote->getValorApostaAtual();
+
+    if ((numeroFichas - valorNovaAposta >=0) && (valorNovaAposta > this->pote->getValorApostaAnterior())){
+        this->pote->setValorTotal(valorNovaAposta + valorTotal);
+        this->pote->setValorApostaAnterior(valorApostaAtual);
+        this->pote->setValorApostaAtual(valorNovaAposta);
+    }
+
+    else{
+        throw(1);
+    }
 }
 
 void Jogador::desistirDaPartida(){
-
+    throw(1);
 }
 
 void Jogador::passarVez(){
+    int valorApostaAtual = this->pote->getValorApostaAtual();
+    int valorApostaAnterior = this->pote->getValorApostaAnterior();
 
+    if (valorApostaAtual == valorApostaAnterior)
+        return;
+    throw(1);
 }
 
 void Jogador::analisarMao(){
-
+        
 }

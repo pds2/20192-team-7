@@ -60,7 +60,29 @@ void Jogador::passarVez(){
 }
 
 std::string Jogador::analisarMao(){
+    bool flushFlag, royalFlushFlag;
+    int royalFlushSequence[] = {DEZ, J, Q, K, A};
+    Util util;
     std::vector<Carta> cartas = this->mesa->getCartasMesa();
     std::vector<Carta> aux = this->mao->getCartas();
     cartas.insert(std::end(cartas), std::begin(aux), std::end(aux));
+    cartas = util.OrdenaCartas(cartas);
+    
+    flushFlag = true;
+    for (int i=0; i<cartas.size()-1; i++){
+        if(cartas[i].getNaipe != cartas[i+1].getNaipe())
+        flushFlag = false;
+    }
+
+    if (flushFlag){
+        royalFlushFlag = true;
+        for (int i=3; i < cartas.size(); i++){
+            if(cartas[3].getSimbolo()!= royalFlushSequence[i-3])
+                royalFlushFlag = false;            
+        }
+
+        if(royalFlushFlag)
+            return("Royal Flush");
+    } 
+
 }

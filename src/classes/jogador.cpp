@@ -1,9 +1,10 @@
 #include <classes/jogador.hpp>
 using namespace poker;
 
-Jogador::Jogador(){
+Jogador::Jogador(int numeroFichas, Pote pote){
     this->mao = nullptr;
-    this->numeroFichas = 2000;
+    this->pote = &pote;
+    this->numeroFichas = numeroFichas;
 }
 
 void Jogador::setMao(Mao mao){
@@ -14,13 +15,16 @@ Mao Jogador::getMao(){
     return (*this->mao);
 }
 
-void Jogador::pagarAposta(unsigned int valorAposta){
-    if ((this->numeroFichas - valorAposta) >= 0)
-        this->numeroFichas -= valorAposta;
+void Jogador::pagarAposta(){
+    int valorApostaAnterior = this->pote->getValorApostaAnterior();
+    if ((this->numeroFichas - valorApostaAnterior) >= 0){
+        this->numeroFichas -= valorApostaAnterior;
+        this->pote->alterarValorTotal(2*valorApostaAnterior);
+    }
 }
 
-void Jogador::aumentarAposta(){
-
+void Jogador::aumentarAposta(unsigned int valorAposta){
+    
 }
 
 void Jogador::desistirDaPartida(){

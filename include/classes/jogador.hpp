@@ -1,4 +1,5 @@
 #include <classes/mao.hpp>
+#include <classes/pote.hpp>
 #ifndef JOGADOR_H
 #define JOGADOR_H 
 
@@ -9,11 +10,12 @@ namespace poker{
 		private:
                   Mao* mao;
                   unsigned int numeroFichas;
+                  Pote* pote;
 			
 		public:
-                  Jogador();
-                  void pagarAposta(unsigned int valorAposta);
-                  void aumentarAposta();
+                  Jogador(int numeroFichas, Pote pote);
+                  void pagarAposta();
+                  void aumentarAposta(unsigned int valorAposta);
                   void desistirDaPartida();
                   void passarVez();
                   void analisarMao();

@@ -60,7 +60,7 @@ void Jogador::passarVez(){
 }
 
 std::string Jogador::analisarMao(){
-    bool flushFlag, royalFlushFlag;
+    bool flushFlag, royalFlushFlag, straightFlag;
     int royalFlushSequence[] = {DEZ, J, Q, K, A};
     Util util;
     std::vector<Carta> cartas = this->mesa->getCartasMesa();
@@ -69,20 +69,34 @@ std::string Jogador::analisarMao(){
     cartas = util.OrdenaCartas(cartas);
     
     flushFlag = true;
+    straightFlag = true;
+    royalFlushFlag = true;
+
     for (int i=0; i<cartas.size()-1; i++){
         if(cartas[i].getNaipe != cartas[i+1].getNaipe())
         flushFlag = false;
+
+        if(cartas[i].getSimbolo != (cartas[i+1].getSimbolo()-1))
+        straightFlag = false;
     }
 
-    if (flushFlag){
-        royalFlushFlag = true;
-        for (int i=3; i < cartas.size(); i++){
-            if(cartas[3].getSimbolo()!= royalFlushSequence[i-3])
-                royalFlushFlag = false;            
-        }
+    for (int i=0; i < cartas.size(); i++){
+        if(cartas[3].getSimbolo()!= royalFlushSequence[i] || !flushFlag)
+            royalFlushFlag = false;            
+    }
 
-        if(royalFlushFlag)
-            return("Royal Flush");
-    } 
+    if(royalFlushFlag)
+        return("Royal Flush");
+
+    else if(straightFlag && flushFlag)
+        return("Straight Flush");
+
+    else if(flushFlag)
+        return("Flush");
+    
+    else if(straightFlag){
+        return("Straight");
+    }   
+
 
 }

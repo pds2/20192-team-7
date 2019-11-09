@@ -1,6 +1,7 @@
 #include <classes/mao.hpp>
 #include <classes/pote.hpp>
 #include <classes/mesa.hpp>
+#include <enums/ordemSequencia.hpp>
 #ifndef JOGADOR_H
 #define JOGADOR_H 
 

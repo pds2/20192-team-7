@@ -8,8 +8,8 @@ Jogador::Jogador(int numeroFichas, Pote* pote, Mesa* mesa){
     this->numeroFichas = numeroFichas;
 }
 
-void Jogador::setMao(Mao mao){
-    this->mao = &mao;
+void Jogador::setMao(Mao *mao){
+    this->mao = mao;
 }
 
 Mao Jogador::getMao(){
@@ -61,7 +61,7 @@ void Jogador::passarVez(){
 
 std::string Jogador::analisarMao(){
     int counter;
-    bool flushFlag, royalFlushFlag, straightFlag, fourOfAKindFlag;
+    bool flushFlag, royalFlushFlag, straightFlag, fourOfAKindFlag, threeOfAKindFlag, pairFlag;
     int royalFlushSequence[] = {DEZ, J, Q, K, A};
     Util util;
     std::vector<Carta> cartas = this->mesa->getCartasMesa();
@@ -73,6 +73,8 @@ std::string Jogador::analisarMao(){
     straightFlag = true;
     royalFlushFlag = true;
     fourOfAKindFlag = true;
+    threeOfAKindFlag = true;
+    pairFlag = true;
 
     for (int i=0; i<cartas.size()-1; i++){
         if(cartas[i].getNaipe != cartas[i+1].getNaipe())
@@ -98,13 +100,31 @@ std::string Jogador::analisarMao(){
             fourOfAKindFlag = false;
         }
 
+    for (int i=0; i < cartas.size(); i++){
+        if(cartas[i].getSimbolo() == cartas[i+1].getSimbolo() && !fourOfAKindFlag)
+        counter++;
+    }
+        if(counter != 3){
+            counter = 1;
+            threeOfAKindFlag = false;
+        }
+
+    for (int i=0; i < cartas.size(); i++){
+        if(cartas[i].getSimbolo() == cartas[i+1].getSimbolo() && !fourOfAKindFlag && !threeOfAKindFlag)
+        counter++;
+    }
+        if(counter != 2){
+            counter = 1;
+            pairFlag = false;
+        }
+
 
     if(royalFlushFlag)
         return("Royal Flush");
 
     else if(straightFlag && flushFlag)
         return("Straight Flush");
-        
+
     else if(fourOfAKindFlag)
         return("Four of a kind");
 
@@ -114,7 +134,10 @@ std::string Jogador::analisarMao(){
     else if(straightFlag)
         return("Straight");
     
-
-
-
+    else if(ThreeOfAKind)
+        return("Three of a kind");
+    
+    else if(pairFlag)
+        return("Pair");
+    
 }

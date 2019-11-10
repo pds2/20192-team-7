@@ -24,7 +24,7 @@ namespace poker{
                   void desistirDaPartida();
                   void passarVez();
                   std::string analisarMao();
-                  void setMao(Mao mao);
+                  void setMao(Mao* mao);
                   Mao getMao();                
 	};
 

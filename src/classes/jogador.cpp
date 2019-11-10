@@ -170,60 +170,52 @@ std::map<std::string, int> Jogador::analisarMao(){
     if(royalFlushFlag){
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back().getSimbolo()));
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", RoyalFlush));
-        return(resultadoDaAnalise);
     }
 
     else if(straightFlag && flushFlag){
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back().getSimbolo()));
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", StraigthFlush));
-        return(resultadoDaAnalise);
     }
 
     else if(fourOfAKindFlag){
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", maiorCarta));
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", FourOfAKind));
-        return(resultadoDaAnalise);
     }
     
     else if(threeOfAKindFlag && secondPairFlag){
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", maiorCarta));
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", FullHouse));
-        return(resultadoDaAnalise);
     }
 
     else if(flushFlag){
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back().getSimbolo()));
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", Flush));
-        return(resultadoDaAnalise);
     }
     
     else if(straightFlag){
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back().getSimbolo()));
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", Straight));
-        return(resultadoDaAnalise);
     }
     
     else if(threeOfAKindFlag){
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", maiorCarta));
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", ThreeOfAKind));
-        return(resultadoDaAnalise);
     }
     
     else if(pairFlag && secondPairFlag){
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", maiorCarta));
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", TwoPair));
-        return(resultadoDaAnalise);
     }
     
     else if(pairFlag){
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", maiorCarta));        
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", Pair));
-        return(resultadoDaAnalise);
     }
 
     else{
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back().getSimbolo()));
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", HighCard));
-        return(resultadoDaAnalise);
-    }     
+    }    
+    
+    return(resultadoDaAnalise); 
 }

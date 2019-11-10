@@ -1,3 +1,5 @@
+#include <map>
+#include <vector>
 #include <string>
 #include <classes/mao.hpp>
 #include <classes/pote.hpp>
@@ -23,7 +25,7 @@ namespace poker{
                   void aumentarAposta(unsigned int valorNovaAposta);
                   void desistirDaPartida();
                   void passarVez();
-                  std::string analisarMao();
+                  std::map<std::string, int> analisarMao();
                   void setMao(Mao* mao);
                   Mao getMao();                
 	};

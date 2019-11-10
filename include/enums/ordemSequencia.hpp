@@ -10,7 +10,7 @@ enum OrdemSequencia{
 	Flush,
 	FullHouse,
 	FourOfAKind,
-	StaigthFlush,
+	StraigthFlush,
 	RoyalFlush	
 };
 

@@ -60,7 +60,8 @@ void Jogador::passarVez(){
 }
 
 std::string Jogador::analisarMao(){
-    bool flushFlag, royalFlushFlag, straightFlag;
+    int counter;
+    bool flushFlag, royalFlushFlag, straightFlag, fourOfAKindFlag;
     int royalFlushSequence[] = {DEZ, J, Q, K, A};
     Util util;
     std::vector<Carta> cartas = this->mesa->getCartasMesa();
@@ -71,6 +72,7 @@ std::string Jogador::analisarMao(){
     flushFlag = true;
     straightFlag = true;
     royalFlushFlag = true;
+    fourOfAKindFlag = true;
 
     for (int i=0; i<cartas.size()-1; i++){
         if(cartas[i].getNaipe != cartas[i+1].getNaipe())
@@ -80,23 +82,39 @@ std::string Jogador::analisarMao(){
         straightFlag = false;
     }
 
-    for (int i=0; i < cartas.size(); i++){
-        if(cartas[3].getSimbolo()!= royalFlushSequence[i] || !flushFlag)
+    for (int i=3; i < cartas.size(); i++){
+        if(cartas[i].getSimbolo()!= royalFlushSequence[i-3] || !flushFlag)
             royalFlushFlag = false;            
     }
+
+    counter = 1;
+
+    for (int i=0; i < cartas.size(); i++){
+        if(cartas[i].getSimbolo() == cartas[i+1].getSimbolo())
+        counter++;
+    }
+        if(counter != 4){
+            counter = 1;
+            fourOfAKindFlag = false;
+        }
+
 
     if(royalFlushFlag)
         return("Royal Flush");
 
     else if(straightFlag && flushFlag)
         return("Straight Flush");
+        
+    else if(fourOfAKindFlag)
+        return("Four of a kind");
 
     else if(flushFlag)
         return("Flush");
     
-    else if(straightFlag){
+    else if(straightFlag)
         return("Straight");
-    }   
+    
+
 
 
 }

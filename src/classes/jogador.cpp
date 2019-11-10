@@ -171,8 +171,7 @@ std::string Jogador::analisarMao(){
     
     else if(pairFlag)
         return("Pair");
-          
+
     else
-        return("HighCard");    
-    
+        return("HighCard");     
 }

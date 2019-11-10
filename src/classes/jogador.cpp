@@ -60,8 +60,8 @@ void Jogador::passarVez(){
 }
 
 std::string Jogador::analisarMao(){
-    int counter;
-    bool flushFlag, royalFlushFlag, straightFlag, fourOfAKindFlag, threeOfAKindFlag, pairFlag;
+    short int counter, position;
+    bool flushFlag, royalFlushFlag, straightFlag, fourOfAKindFlag, threeOfAKindFlag, pairFlag, secondPairFlag;
     int royalFlushSequence[] = {DEZ, J, Q, K, A};
     Util util;
     std::vector<Carta> cartas = this->mesa->getCartasMesa();
@@ -75,6 +75,7 @@ std::string Jogador::analisarMao(){
     fourOfAKindFlag = true;
     threeOfAKindFlag = true;
     pairFlag = true;
+    secondPairFlag = true;
 
     for (int i=0; i<cartas.size()-1; i++){
         if(cartas[i].getNaipe != cartas[i+1].getNaipe())
@@ -92,8 +93,9 @@ std::string Jogador::analisarMao(){
     counter = 1;
 
     for (int i=0; i < cartas.size(); i++){
-        if(cartas[i].getSimbolo() == cartas[i+1].getSimbolo())
-        counter++;
+        if(cartas[i].getSimbolo() == cartas[i+1].getSimbolo() && counter!=4)
+            counter++;
+        else if (counter!=4) counter = 1;
     }
         if(counter != 4){
             counter = 1;
@@ -101,21 +103,41 @@ std::string Jogador::analisarMao(){
         }
 
     for (int i=0; i < cartas.size(); i++){
-        if(cartas[i].getSimbolo() == cartas[i+1].getSimbolo() && !fourOfAKindFlag)
-        counter++;
+        if(cartas[i].getSimbolo() == cartas[i+1].getSimbolo() && !fourOfAKindFlag && counter!=3)
+            counter++;
+        else if (counter!=3) counter = 1;
+
+        if (counter == 3)
+            position = i;
     }
         if(counter != 3){
             counter = 1;
             threeOfAKindFlag = false;
         }
+    
 
     for (int i=0; i < cartas.size(); i++){
-        if(cartas[i].getSimbolo() == cartas[i+1].getSimbolo() && !fourOfAKindFlag && !threeOfAKindFlag)
-        counter++;
+        if(cartas[i].getSimbolo() == cartas[i+1].getSimbolo() && !fourOfAKindFlag && !threeOfAKindFlag && counter!=2)
+            counter++;
+        else if (counter!=2) counter = 1;
+
+        if (counter == 2)
+            position = i;
     }
         if(counter != 2){
             counter = 1;
             pairFlag = false;
+        }
+    
+    for (int i = position+1; i<cartas.size(); i++){
+        if(cartas[i].getSimbolo() == cartas[i+1].getSimbolo() && !fourOfAKindFlag && counter!=2)
+            counter++;
+        else if (counter!=2) counter = 1;
+    }
+
+        if(counter != 2){
+            counter = 1;
+            secondPairFlag = false;
         }
 
 
@@ -127,6 +149,9 @@ std::string Jogador::analisarMao(){
 
     else if(fourOfAKindFlag)
         return("Four of a kind");
+    
+    else if(threeOfAKindFlag && secondPairFlag)
+        return("FullHouse");
 
     else if(flushFlag)
         return("Flush");
@@ -134,10 +159,15 @@ std::string Jogador::analisarMao(){
     else if(straightFlag)
         return("Straight");
     
-    else if(ThreeOfAKind)
+    else if(threeOfAKindFlag)
         return("Three of a kind");
+    
+    else if(pairFlag && secondPairFlag)
+        return("Two pairs");
     
     else if(pairFlag)
         return("Pair");
+
+    
     
 }

@@ -18,9 +18,10 @@ namespace poker{
                   Pote* pote;
                   Mesa* mesa;
                   unsigned int numeroFichas;
+                  std::string nome;
 			
 		public:
-                  Jogador(int numeroFichas, Pote* pote, Mesa* mesa);
+                  Jogador(std::string nome, int numeroFichas, Pote* pote, Mesa* mesa);
                   void pagarAposta();
                   void aumentarAposta(unsigned int valorNovaAposta);
                   void desistirDaPartida();

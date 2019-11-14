@@ -13,6 +13,9 @@ namespace poker{
             JogadorHumano(std::string nome, int numeroFichas, Pote* pote, Mesa* mesa);
             void comecarPartida();
             void finalizarPartida();
+            Pote* getPote();
+            Mesa* getMesa();
+            int getNumeroFichas();
 
     };
 

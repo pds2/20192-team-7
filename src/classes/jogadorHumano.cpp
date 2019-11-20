@@ -1,6 +1,7 @@
 #include <classes/jogadorHumano.hpp>
 #include <classes/jogador.hpp>
 #include <vector>
+#include <classes/dealer.hpp>
 using namespace poker;
 
 JogadorHumano::JogadorHumano(std::string nome, int numeroFichas, Pote* pote, Mesa* mesa){
@@ -23,14 +24,19 @@ int JogadorHumano::getNumeroFichas(){
     return this->numeroFichas;
 }
 
-void JogadorHumano::comecarPartida(){
-    Jogador("Clinky", getNumeroFichas(), getPote(), getMesa());
-    Jogador("Adilson", getNumeroFichas(), getPote(), getMesa());
-    Jogador("Taylor Swift", getNumeroFichas(), getPote(), getMesa());
-
-
+std::vector<Jogador*> JogadorHumano::comecarPartida(){
+    std::vector<Jogador*>bots;
+    Jogador *Clinky = new Jogador("Clinky", getNumeroFichas(), getPote(), getMesa());
+    Jogador *Adilson = new Jogador("Adilson", getNumeroFichas(), getPote(), getMesa());
+    Jogador *Taylor = new Jogador("Taylor Swift", getNumeroFichas(), getPote(), getMesa());
+    bots.push_back(Clinky);
+    bots.push_back(Adilson);
+    bots.push_back(Taylor);
+    return bots;
 }
 
-void JogadorHumano::finalizarPartida(){
-
+void JogadorHumano::finalizarPartida(std::vector<Jogador*>bots){
+    for(Jogador* valor : bots){
+        delete valor;
+    }
 }

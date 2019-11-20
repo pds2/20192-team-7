@@ -13,7 +13,7 @@ namespace poker{
 
 	class Jogador{
 
-		private:
+		protected:
                   Mao* mao;
                   Pote* pote;
                   Mesa* mesa;

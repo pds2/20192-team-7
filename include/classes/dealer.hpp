@@ -23,5 +23,4 @@ namespace poker {
 
     };
 }
-
 #endif

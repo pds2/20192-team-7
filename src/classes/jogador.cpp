@@ -47,7 +47,7 @@ void Jogador::aumentarAposta(unsigned int valorNovaAposta){
     }
 
     else{
-        throw(PokerError("Ficahas insuficientes!"));
+        throw(PokerError("Fichas insuficientes!"));
     }
 }
 

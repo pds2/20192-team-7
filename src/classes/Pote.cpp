@@ -6,8 +6,8 @@ Pote::Pote() : Pote(0,0,0) {}
 
 Pote::Pote(int valorTotal,int valorApostaAtual, int valorApostaAnterior) : valorTotal(valorTotal),valorApostaAtual(valorApostaAtual),valorApostaAnterior(valorApostaAnterior) {}
 
-void Pote::setValorTotal(int valorApostaAtual){
-    this -> valorApostaAtual = valorApostaAtual; 
+void Pote::setValorTotal(int valorTotal){
+    this -> valorTotal = valorTotal; 
 }
 
 void Pote::setValorApostaAtual(int valorApostaAtual){
@@ -19,7 +19,7 @@ void Pote::setValorApostaAnterior(int valorApostaAnterior){
 }
 
 int Pote::getValorTotal(){
-    return this -> valorApostaAtual; 
+    return this -> valorTotal; 
 }
 
 int Pote::getValorApostaAtual(){
@@ -30,14 +30,3 @@ int Pote::getValorApostaAnterior(){
     return this -> valorApostaAnterior; 
 }
 
-void Pote::alterarValorAposta(int novoValorAposta){
-    this -> valorApostaAtual = novoValorAposta; 
-}
-
-void Pote::substituirApostaAnterior(int novoValorApostaAnterior){
-    this -> valorApostaAnterior = novoValorApostaAnterior; 
-}
-
-void Pote::alterarValorTotal(int novoValorTotal){
-    this -> valorTotal = novoValorTotal; 
-}

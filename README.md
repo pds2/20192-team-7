@@ -248,7 +248,7 @@ Espadas = 4;
 
 Enum: Símbolo
 -------
-1;
+A;
 2;
 3;
 4;
@@ -261,7 +261,6 @@ Enum: Símbolo
 J;
 Q;
 K;
-A;
 
 
 Enum: OrdemSequencia

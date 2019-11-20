@@ -6,6 +6,7 @@
 #include <classes/mesa.hpp>
 #include <enums/ordemSequencia.hpp>
 #include <classes/util.hpp>
+#include <classes/pokerExceptions.hpp>
 #ifndef JOGADOR_H
 #define JOGADOR_H 
 

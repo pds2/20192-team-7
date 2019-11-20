@@ -28,7 +28,7 @@ void Jogador::pagarAposta(){
     }
 
     else{
-        throw(1);
+        throw(PokerError("Fichas insuficientes"));
     }
 }
 
@@ -36,19 +36,23 @@ void Jogador::aumentarAposta(unsigned int valorNovaAposta){
     int valorTotal = this->pote->getValorTotal();
     int valorApostaAtual = this->pote->getValorApostaAtual();
 
-    if ((numeroFichas - valorNovaAposta >=0) && (valorNovaAposta > this->pote->getValorApostaAnterior())){
-        this->pote->setValorTotal(valorNovaAposta + valorTotal);
-        this->pote->setValorApostaAnterior(valorApostaAtual);
-        this->pote->setValorApostaAtual(valorNovaAposta);
+    if ((numeroFichas - valorNovaAposta >=0)){
+        if (valorNovaAposta > this->pote->getValorApostaAnterior()){
+            this->pote->setValorTotal(valorNovaAposta + valorTotal);
+            this->pote->setValorApostaAnterior(valorApostaAtual);
+            this->pote->setValorApostaAtual(valorNovaAposta);
+        }
+        else 
+            throw(PokerError("É necessário aumentar a aposta!"));
     }
 
     else{
-        throw(1);
+        throw(PokerError("Ficahas insuficientes!"));
     }
 }
 
 void Jogador::desistirDaPartida(){
-    throw(1);
+    throw(PokerError("Fim da partida!"));
 }
 
 void Jogador::passarVez(){
@@ -57,7 +61,7 @@ void Jogador::passarVez(){
 
     if (valorApostaAtual == valorApostaAnterior)
         return;
-    throw(1);
+    throw(PokerError("Não é permitido passar a vez se a aposta já foi aumentada!"));
 }
 
 std::map<std::string, int> Jogador::analisarMao(){

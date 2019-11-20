@@ -17,9 +17,6 @@ namespace poker {
             int getValorTotal();
             int getValorApostaAtual();
             int getValorApostaAnterior();
-            void alterarValorAposta(int novoValorAposta);
-            void substituirApostaAnterior(int novoValorApostaAnterior);
-            void alterarValorTotal(int novoValorTotal);
     };
 }
 

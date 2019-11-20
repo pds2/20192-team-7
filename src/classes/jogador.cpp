@@ -1,11 +1,12 @@
 #include <classes/jogador.hpp>
 using namespace poker;
 
-Jogador::Jogador(int numeroFichas, Pote* pote, Mesa* mesa){
+Jogador::Jogador(std::string nome, int numeroFichas, Pote* pote, Mesa* mesa){
     this->mao = nullptr;
     this->pote = pote;
     this->mesa = mesa;
     this->numeroFichas = numeroFichas;
+    this->nome = nome;
 }
 
 void Jogador::setMao(Mao *mao){

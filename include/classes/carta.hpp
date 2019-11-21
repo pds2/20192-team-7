@@ -1,8 +1,8 @@
-#ifndef CARTA
-#define CARTA
-
 #include "enums/naipe.hpp"
 #include "enums/simbolo.hpp"
+
+#ifndef CARTA
+#define CARTA
 
 namespace poker {
 

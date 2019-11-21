@@ -5,6 +5,7 @@
 #define ESTADO_JOGO_H
 
 namespace poker {
+	
     class EstadoJogo {
         public:
             EstadoJogo();

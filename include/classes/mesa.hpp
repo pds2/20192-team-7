@@ -1,6 +1,6 @@
 #include <vector>
-#include <classes/carta.hpp>
-#include <classes/pote.hpp>
+#include "classes/carta.hpp"
+#include "classes/pote.hpp"
 
 #ifndef MESA_H
 #define MESA_H

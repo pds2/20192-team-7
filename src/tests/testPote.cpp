@@ -1,5 +1,5 @@
 #include <test/doctest.h>
-#include <classes/Pote.cpp>
+#include <classes/pote.hpp>
 using namespace poker;
 
 TEST_CASE("Testando Construtor da classe Pote"){

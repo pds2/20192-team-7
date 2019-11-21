@@ -1,4 +1,4 @@
-#include "mao.hpp"
+#include "classes/mao.hpp"
 
 using namespace poker;
 

@@ -1,10 +1,13 @@
 #ifndef MAO
 #define MAO
-#include "carta.hpp"
+
+#include "classes/carta.hpp"
 #include <vector>
 
 namespace poker {
+	
 	class Mao {
+		
 		private:
 			std::vector<Carta> cartas;
 			

@@ -2,7 +2,9 @@
 #define POTE_H
 
 namespace poker {
+
     class Pote {
+        
     	private:
             int valorTotal;
             int valorApostaAtual;

@@ -1,16 +1,20 @@
-#include "naipe.hpp"
-#include "simbolo.hpp"
-
 #ifndef CARTA
 #define CARTA
 
+#include "enums/naipe.hpp"
+#include "enums/simbolo.hpp"
+
 namespace poker {
+
 	class Carta {
+		
 		private:
-			int naipe;
-			int simbolo;
+			Naipe naipe;
+			Simbolo simbolo;
 
 		public:
+			Carta();
+			Carta(int naipe, int sim);
 			Carta(Naipe naipe, Simbolo sim);
 			int getNaipe();
 			int getSimbolo();

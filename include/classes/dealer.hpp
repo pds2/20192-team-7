@@ -1,24 +1,24 @@
-#include "etapajogo.hpp"
+#include "classes/estadojogo.hpp"
 
-#ifndef POKER_BARALHO
-#define POKER_BARALHO
+#ifndef DEALER_H
+#define DEALER_H
 
 namespace poker {
     
     class Dealer {
         private:
             unsigned int numeroJogadores;
-            EtapaJogo momentoJogo;
+            EstadoJogo momentoJogo;
             
         public:
             Dealer();
 
-            Dealer(EtapaJogo momentoJogo, unsigned int numeroJogadores);
+            Dealer(EstadoJogo momentoJogo, unsigned int numeroJogadores);
             
-            void setEtapaJogo();
+            void setEstadoJogo();
             void setNumeroJogadores();
             
-            EtapaJogo getMomentoJogo();
+            EstadoJogo getMomentoJogo();
             int getNumeroJogadores();
 
     };

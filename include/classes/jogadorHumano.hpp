@@ -1,6 +1,5 @@
-#include <classes/jogador.hpp>
+#include "classes/jogador.hpp"
 #include <string>
-#include <classes/dealer.hpp>
 
 #ifndef JOGADOR_HUMANO
 #define JOGADOR_HUMANO
@@ -11,9 +10,9 @@ namespace poker{
 
         public:
 
-            JogadorHumano(std::string nome, int numeroFichas, Pote* pote, Mesa* mesa);
+            JogadorHumano(std::string nome, int numeroFichas, Pote* pote, Mesa* mesa);	
             std::vector<Jogador*> comecarPartida();
-            void finalizarPartida();
+            void finalizarPartida(std::vector<Jogador*>bots);
             Pote* getPote();
             Mesa* getMesa();
             int getNumeroFichas();

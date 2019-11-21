@@ -1,5 +1,6 @@
-#include <classes/jogador.hpp>
+#include "classes/jogador.hpp"
 using namespace poker;
+
 
 Jogador::Jogador(std::string nome, int numeroFichas, Pote* pote, Mesa* mesa){
     this->mao = nullptr;

@@ -13,15 +13,14 @@ namespace poker{
 
 	class Jogador{
 
-		protected:
-                Mao* mao;
-                Pote* pote;
-                Mesa* mesa;
-                unsigned int numeroFichas;
-                std::string nome;
+	       protected:
+               Mao* mao;
+               Pote* pote;
+               Mesa* mesa;
+               unsigned int numeroFichas;
+               std::string nome;
 			
 		public:
-                Jogador();
                 Jogador(std::string nome, int numeroFichas, Pote* pote, Mesa* mesa);
                 void pagarAposta();
                 void aumentarAposta(unsigned int valorNovaAposta);
@@ -29,8 +28,7 @@ namespace poker{
                 void passarVez();
                 std::map<std::string, int> analisarMao();
                 void setMao(Mao* mao);
-                Mao getMao();
-                ~Jogador();                
+                Mao* getMao();              
 	};
 
 }

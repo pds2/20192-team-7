@@ -3,10 +3,9 @@
 using namespace poker;
 
 Mao::Mao(Carta primeira, Carta segunda) {
-	this->cartas[0] = primeira;
-	this->cartas[1] = segunda;
+	this->cartas.push_back(primeira);
+	this->cartas.push_back(segunda);
 }
-
-Carta* Mao::getCartas(){
+std::vector<Carta> Mao::getCartas(){
 	return this->cartas;
 }

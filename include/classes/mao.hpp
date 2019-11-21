@@ -2,17 +2,18 @@
 #define MAO
 
 #include "classes/carta.hpp"
+#include <vector>
 
 namespace poker {
 	
 	class Mao {
 		
 		private:
-			Carta cartas[2];
-
+			std::vector<Carta> cartas;
+			
 		public:
 			Mao(Carta primeira, Carta segunda);
-			Carta* getCartas();
+			std::vector<Carta> getCartas();
 	};
 }
 

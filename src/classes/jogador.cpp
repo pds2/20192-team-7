@@ -14,8 +14,8 @@ void Jogador::setMao(Mao *mao){
     this->mao = mao;
 }
 
-Mao Jogador::getMao(){
-    return (*this->mao);
+Mao* Jogador::getMao(){
+    return this->mao;
 }
 
 void Jogador::pagarAposta(){
@@ -33,7 +33,7 @@ void Jogador::pagarAposta(){
     }
 }
 
-void Jogador::aumentarAposta(unsigned int valorNovaAposta){
+void Jogador::aumentarAposta(int valorNovaAposta){
     int valorTotal = this->pote->getValorTotal();
     int valorApostaAtual = this->pote->getValorApostaAtual();
 
@@ -62,8 +62,10 @@ void Jogador::passarVez(){
 }
 
 std::map<std::string, int> Jogador::analisarMao(){
+
     std::map<std::string, int> resultadoDaAnalise;
-    short int counter, position;
+    short int counter;
+    unsigned short int position = 0;
     bool flushFlag, royalFlushFlag, straightFlag, fourOfAKindFlag, threeOfAKindFlag, pairFlag, secondPairFlag, firsTimeflag;
     int royalFlushSequence[] = {DEZ, J, Q, K, A};
     int maiorCarta;
@@ -83,20 +85,20 @@ std::map<std::string, int> Jogador::analisarMao(){
     firsTimeflag = true;
     counter = 1;
 
-    for (int i=0; i<cartas.size()-1; i++){
-        if(cartas[i].getNaipe != cartas[i+1].getNaipe())
-        flushFlag = false;
+    for (unsigned int i=0; i<cartas.size()-1; i++){
+        if (cartas[i].getNaipe() != cartas[i+1].getNaipe())
+            flushFlag = false;
 
-        if(cartas[i].getSimbolo != (cartas[i+1].getSimbolo()-1))
-        straightFlag = false;
+        if (cartas[i].getSimbolo() != (cartas[i+1].getSimbolo()-1))
+            straightFlag = false;
     }
 
-    for (int i = cartas.size()-5; i < cartas.size(); i++){
+    for (unsigned int i = cartas.size()-5; i < cartas.size(); i++){
         if(cartas[i].getSimbolo()!= royalFlushSequence[i-3] || !flushFlag)
             royalFlushFlag = false;            
     }
 
-    for (int i=0; i < cartas.size() - 1; i++){
+    for (unsigned int i=0; i < cartas.size() - 1; i++){
         if(cartas[i].getSimbolo() == cartas[i+1].getSimbolo() && counter!=4)
             counter++;
         else if (counter!=4) counter = 1;
@@ -114,7 +116,7 @@ std::map<std::string, int> Jogador::analisarMao(){
 
     firsTimeflag = true;
 
-    for (int i=0; i < cartas.size() - 1; i++){
+    for (unsigned int i=0; i < cartas.size() - 1; i++){
         if(cartas[i].getSimbolo() == cartas[i+1].getSimbolo() && !fourOfAKindFlag && counter!=3)
             counter++;
         else if (counter!=3) counter = 1;
@@ -134,7 +136,7 @@ std::map<std::string, int> Jogador::analisarMao(){
 
     firsTimeflag = true;
 
-    for (int i=0; i < cartas.size() - 1; i++){
+    for (unsigned int i=0; i < cartas.size() - 1; i++){
         if(cartas[i].getSimbolo() == cartas[i+1].getSimbolo() && !fourOfAKindFlag && !threeOfAKindFlag && counter!=2)
             counter++;
         else if (counter!=2) counter = 1;
@@ -153,7 +155,7 @@ std::map<std::string, int> Jogador::analisarMao(){
     counter = 1;
     firsTimeflag = true;
     
-    for (int i = 0; i<cartas.size()-1; i++){
+    for (unsigned int i = 0; i<cartas.size()-1; i++){
         if(cartas[i].getSimbolo() == cartas[i+1].getSimbolo() && !fourOfAKindFlag && counter!=2 && position != i && position != i+1)
             counter++;
         else if ((counter!=2 || i == position) && !threeOfAKindFlag) counter = 1;
@@ -176,7 +178,7 @@ std::map<std::string, int> Jogador::analisarMao(){
 
     else if(straightFlag && flushFlag){
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back().getSimbolo()));
-        resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", StraigthFlush));
+        resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", StraightFlush));
     }
 
     else if(fourOfAKindFlag){

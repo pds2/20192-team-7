@@ -26,11 +26,6 @@ namespace poker{
 			int getPoteTotal();
 			int getPoteApostaAtual();
 			int getPoteApostaAnterior();
-
-			void poteAlterarApostaTotal(int novoValorTotal);
-			void poteAlterarApostaAtual(int novoValorAtual);
-			void poteAlterarApostaAnterior(int novoValorAnterior);
-
 	};
 
 }

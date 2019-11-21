@@ -12,7 +12,7 @@ namespace poker {
 		Flush,
 		FullHouse,
 		FourOfAKind,
-		StaigthFlush,
+		StraightFlush,
 		RoyalFlush	
 	};
 }

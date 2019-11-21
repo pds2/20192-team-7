@@ -15,8 +15,8 @@ namespace poker {
 
             Dealer(EstadoJogo momentoJogo, unsigned int numeroJogadores);
             
-            void setEstadoJogo();
-            void setNumeroJogadores();
+            void setEstadoJogo(EstadoJogo momentoJogo);
+            void setNumeroJogadores(unsigned int numeroJogadores);
             
             EstadoJogo getMomentoJogo();
             int getNumeroJogadores();

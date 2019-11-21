@@ -24,7 +24,7 @@ namespace poker{
       public:
           Jogador(std::string nome, int numeroFichas, Pote* pote, Mesa* mesa);
           void pagarAposta();
-          void aumentarAposta(unsigned int valorNovaAposta);
+          void aumentarAposta(int valorNovaAposta);
           void desistirDaPartida();
           void passarVez();
           std::map<std::string, int> analisarMao();

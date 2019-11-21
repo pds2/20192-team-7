@@ -10,7 +10,8 @@ std::vector<Carta> Util::OrdenaCartas(std::vector<Carta> cartas){
     for (i = 0; i < cartas.size() - 1; i++){
         min = i;
 
-        for (unsigned int j = i+1; j<cartas.size(); j++){
+        unsigned int j;
+        for (j = i+1; j<cartas.size(); j++){
             if (cartas[j].getSimbolo() < cartas[min].getSimbolo())
                 min = j;
 

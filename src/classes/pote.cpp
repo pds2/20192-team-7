@@ -5,11 +5,7 @@ using namespace poker;
 Pote::Pote() : Pote(0,0,0) {}
 
 Pote::Pote(int valorTotal, int valorApostaAtual, int valorApostaAnterior) : 
-	valorTotal(valorTotal),
-	valorApostaAtual(valorApostaAtual),
-	valorApostaAnterior(valorApostaAnterior) 
-{
-	
+	valorTotal(valorTotal),	valorApostaAtual(valorApostaAtual), valorApostaAnterior(valorApostaAnterior) {
 }
 
 void Pote::setValorTotal(int valorTotal){

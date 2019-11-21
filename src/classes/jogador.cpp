@@ -26,9 +26,8 @@ void Jogador::pagarAposta(){
         this->numeroFichas -= valorApostaAtual;
         this->pote->setValorTotal(valorTotal + valorApostaAtual);
         this->pote->setValorApostaAnterior(valorApostaAtual);
-    }
-
-    else{
+    } 
+    else {
         throw(1);
     }
 }
@@ -43,7 +42,7 @@ void Jogador::aumentarAposta(int valorNovaAposta){
         this->pote->setValorApostaAtual(valorNovaAposta);
     }
 
-    else{
+    else {
         throw(1);
     }
 }
@@ -58,6 +57,7 @@ void Jogador::passarVez(){
 
     if (valorApostaAtual == valorApostaAnterior)
         return;
+
     throw(1);
 }
 
@@ -94,50 +94,52 @@ std::map<std::string, int> Jogador::analisarMao(){
     }
 
     for (unsigned int i = cartas.size()-5; i < cartas.size(); i++){
-        if(cartas[i].getSimbolo()!= royalFlushSequence[i-3] || !flushFlag)
+        if( cartas[i].getSimbolo()!= royalFlushSequence[i-3] || !flushFlag)
             royalFlushFlag = false;            
     }
 
     for (unsigned int i=0; i < cartas.size() - 1; i++){
-        if(cartas[i].getSimbolo() == cartas[i+1].getSimbolo() && counter!=4)
+        if (cartas[i].getSimbolo() == cartas[i+1].getSimbolo() && counter!=4)
             counter++;
         else if (counter!=4) counter = 1;
         
-        if(counter == 4 && firsTimeflag){
+        if (counter == 4 && firsTimeflag){
             firsTimeflag = false;
             maiorCarta = cartas[i].getSimbolo();
         }
 
     }
-        if(counter != 4){
-            counter = 1;
-            fourOfAKindFlag = false;
-        }
+
+    if (counter != 4){
+        counter = 1;
+        fourOfAKindFlag = false;
+    }
 
     firsTimeflag = true;
 
     for (unsigned int i=0; i < cartas.size() - 1; i++){
-        if(cartas[i].getSimbolo() == cartas[i+1].getSimbolo() && !fourOfAKindFlag && counter!=3)
+        if (cartas[i].getSimbolo() == cartas[i+1].getSimbolo() && !fourOfAKindFlag && counter!=3)
             counter++;
         else if (counter!=3) counter = 1;
 
         if (counter == 2)
             position = i;
 
-        if(counter == 3 && firsTimeflag && !fourOfAKindFlag){
+        if (counter == 3 && firsTimeflag && !fourOfAKindFlag){
             firsTimeflag = false;
             maiorCarta = cartas[i].getSimbolo();
         }
     }
-        if(counter != 3){
-            counter = 1;
-            threeOfAKindFlag = false;
-        }
+
+    if (counter != 3){
+        counter = 1;
+        threeOfAKindFlag = false;
+    }
 
     firsTimeflag = true;
 
     for (unsigned int i=0; i < cartas.size() - 1; i++){
-        if(cartas[i].getSimbolo() == cartas[i+1].getSimbolo() && !fourOfAKindFlag && !threeOfAKindFlag && counter!=2)
+        if (cartas[i].getSimbolo() == cartas[i+1].getSimbolo() && !fourOfAKindFlag && !threeOfAKindFlag && counter!=2)
             counter++;
         else if (counter!=2) counter = 1;
 
@@ -147,16 +149,17 @@ std::map<std::string, int> Jogador::analisarMao(){
             maiorCarta = cartas[i].getSimbolo();
         }
     }
-        if(counter != 2){
-            counter = 1;
-            pairFlag = false;
-        }
+
+    if (counter != 2) {
+        counter = 1;
+        pairFlag = false;
+    }
     
     counter = 1;
     firsTimeflag = true;
     
     for (unsigned int i = 0; i<cartas.size()-1; i++){
-        if(cartas[i].getSimbolo() == cartas[i+1].getSimbolo() && !fourOfAKindFlag && counter!=2 && position != i && position != i+1)
+        if (cartas[i].getSimbolo() == cartas[i+1].getSimbolo() && !fourOfAKindFlag && counter!=2 && position != i && position != i+1)
             counter++;
         else if ((counter!=2 || i == position) && !threeOfAKindFlag) counter = 1;
 
@@ -165,58 +168,59 @@ std::map<std::string, int> Jogador::analisarMao(){
             maiorCarta = (maiorCarta > cartas[i].getSimbolo()) ? maiorCarta : cartas[i].getSimbolo();
         }
     }
-        if(counter != 2){
-            counter = 1;
-            secondPairFlag = false;
-        }
+
+    if (counter != 2){
+        counter = 1;
+        secondPairFlag = false;
+    }
 
 
-    if(royalFlushFlag){
+    if (royalFlushFlag){
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back().getSimbolo()));
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", RoyalFlush));
     }
 
-    else if(straightFlag && flushFlag){
+    else if (straightFlag && flushFlag){
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back().getSimbolo()));
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", StraightFlush));
     }
 
-    else if(fourOfAKindFlag){
+    else if (fourOfAKindFlag){
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", maiorCarta));
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", FourOfAKind));
     }
     
-    else if(threeOfAKindFlag && secondPairFlag){
+    else if (threeOfAKindFlag && secondPairFlag){
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", maiorCarta));
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", FullHouse));
     }
 
-    else if(flushFlag){
+    else if (flushFlag){
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back().getSimbolo()));
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", Flush));
     }
     
-    else if(straightFlag){
+    else if (straightFlag){
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back().getSimbolo()));
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", Straight));
     }
     
-    else if(threeOfAKindFlag){
+    else if (threeOfAKindFlag){
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", maiorCarta));
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", ThreeOfAKind));
     }
     
-    else if(pairFlag && secondPairFlag){
+    else if (pairFlag && secondPairFlag){
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", maiorCarta));
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", TwoPair));
     }
     
-    else if(pairFlag){
+    else if (pairFlag){
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", maiorCarta));        
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", Pair));
     }
 
-    else{
+    else {
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back().getSimbolo()));
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", HighCard));
     }    

@@ -9,13 +9,13 @@ namespace poker {
     class JogadorHumano : public Jogador {
 
         public:
-            JogadorHumano(std::string nome, int numeroFichas, Pote* pote, Mesa* mesa);	
-            std::vector<Jogador*> comecarPartida();
-            void finalizarPartida(std::vector<Jogador*>bots);
+            JogadorHumano(std::string nome, int numeroFichas, Pote* pote, Mesa* mesa);
+            JogadorHumano(std::string nome, Pote* pote, Mesa* mesa);
+            
             Pote* getPote();
             Mesa* getMesa();
-            int getNumeroFichas();
 
+            void finalizarPartida(std::vector<Jogador*>bots);
     };
 
 }

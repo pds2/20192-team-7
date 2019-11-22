@@ -1,4 +1,6 @@
 #include "classes/estadojogo.hpp"
+#include "classes/pote.hpp"
+#include "classes/mesa.hpp"
 
 #ifndef DEALER_H
 #define DEALER_H
@@ -9,6 +11,9 @@ namespace poker {
         private:
             unsigned int numeroJogadores;
             EstadoJogo momentoJogo;
+            std::vector<Jogador*> jogadores;
+            Pote* pote;
+            Mesa* mesa;
             
         public:
             Dealer();
@@ -20,6 +25,10 @@ namespace poker {
             
             EstadoJogo getMomentoJogo();
             int getNumeroJogadores();
+
+            void inserirJogadores();
+            void distribuirFichas(unsigned int numeroFichas);
+            void iniciarPartida(unsigned int numeroJogadores);
 
     };
 }

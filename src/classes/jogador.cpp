@@ -1,8 +1,15 @@
 #include "classes/jogador.hpp"
 using namespace poker;
 
-
 Jogador::Jogador(std::string nome, int numeroFichas, Pote* pote, Mesa* mesa){
+    this->mao = nullptr;
+    this->pote = pote;
+    this->mesa = mesa;
+    this->numeroFichas = numeroFichas;
+    this->nome = nome;
+}
+
+Jogador::Jogador(std::string nome, Pote* pote, Mesa* mesa){
     this->mao = nullptr;
     this->pote = pote;
     this->mesa = mesa;
@@ -17,6 +24,15 @@ void Jogador::setMao(Mao *mao){
 Mao* Jogador::getMao(){
     return this->mao;
 }
+
+void Jogador::setNumeroFichas(int numeroFichas){
+    this->numeroFichas = numeroFichas;
+}
+
+unsigned int Jogador::getNumeroFichas(){
+    return this->numeroFichas;
+}
+
 
 void Jogador::pagarAposta(){
     int valorApostaAtual = this->pote->getValorApostaAtual();

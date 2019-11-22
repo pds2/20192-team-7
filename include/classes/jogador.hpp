@@ -23,13 +23,19 @@ namespace poker{
 
       public:
           Jogador(std::string nome, int numeroFichas, Pote* pote, Mesa* mesa);
+          Jogador(std::string nome, Pote* pote, Mesa* mesa);
+
+          void setMao(Mao* mao);
+          Mao* getMao();
+          void setNumeroFichas(int numeroFichas);
+          unsigned int getNumeroFichas();
+
+
           void pagarAposta();
           void aumentarAposta(int valorNovaAposta);
           void desistirDaPartida();
           void passarVez();
           std::map<std::string, int> analisarMao();
-          void setMao(Mao* mao);
-          Mao* getMao();              
 	};
 
 }

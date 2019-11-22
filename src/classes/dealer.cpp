@@ -53,7 +53,7 @@ void Dealer::inserirJogadores(){
 
 void Dealer::distribuirFichas(unsigned int numeroFichas){
 	std::vector<Jogador*>::iterator it;
-	
+
 	for (it = this->jogadores.begin() ; it != this->jogadores.end(); ++it){
 		(*it)->setNumeroFichas(numeroFichas);
 	}
@@ -63,4 +63,12 @@ void Dealer::iniciarPartida(unsigned int numeroJogadores){
 	setNumeroJogadores(numeroJogadores);
 	distribuirFichas(FICHAS_POR_JOGADOR);
 	inserirJogadores();
+}
+
+void Dealer::entregarPremio(Jogador* jogadorVencedor){
+	jogadorVencedor->setNumeroFichas(this->pote->getValorTotal());
+	
+	this->pote->setValorTotal(0);
+	this->pote->setValorApostaAtual(0);
+	this->pote->setValorApostaAnterior(0);
 }

@@ -4,27 +4,17 @@
 using namespace poker;
 
 TEST_CASE("Testando o Construtor de Carta"){
-	CHECK_NOTHROWS(Carta());
-
-	CHECK_NOTHROWS(Carta(2, 6));
-	CHECK_NOTHROWS(Carta(3, 9));
-
-	CHECK_THROWS(Carta(5, 10));
-	CHECK_THROWS(Carta(3, 17));
-	CHECK_THROWS(Carta(-1,-6));
-	CHECK_THROWS(Carta("_","@"));
+	CHECK_NOTHROW_MESSAGE(Carta(Copas, Q), "Construtos de Carta OK!");
 }
 
 TEST_CASE("Testando getNaipe"){
-	
-	Carta cartaTeste1(0, 0);
-
-	CHECK_EQ(cartaTeste1.getNaipe(), 0);
+	Carta cartaTeste(Paus, K);
+	CHECK_FALSE((cartaTeste.getNaipe() == 0));
+	CHECK_EQ(cartaTeste.getNaipe(), Paus);
 }
 
 TEST_CASE("Testando getSimbolo"){
-
-	Carta cartaTeste1(0, 0);
-
-	CHECK_EQ(cartaTeste1.getSimbolo(), 0);	
+	Carta cartaTeste(Espadas, A);
+	CHECK_FALSE((cartaTeste.getSimbolo()==0));
+	CHECK_EQ(cartaTeste.getSimbolo(), A);	
 }

@@ -12,6 +12,8 @@ namespace poker {
             Baralho* baralho;
 
         public:
+            EstadoJogo();
+            
             EstadoJogo(Baralho* baralho) {
                 this->baralho = baralho;
             }

@@ -5,8 +5,10 @@
 
 using namespace poker;
 
-Flop::Flop(Baralho* baralho) : EstadoJogo(baralho){
+Flop::Flop() : EstadoJogo(){
+}
 
+Flop::Flop(Baralho* baralho) : EstadoJogo(baralho){
 }
 
 void Flop::distribuirCartas(Mesa* mesa) {

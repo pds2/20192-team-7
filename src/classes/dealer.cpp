@@ -5,7 +5,7 @@ using namespace poker;
 
 #define FICHAS_POR_JOGADOR 2000
 
-Dealer::Dealer(){
+Dealer::Dealer() {
 	this->pote = new Pote();
 	this->mesa = new Mesa();
 	this->baralho = new Baralho();

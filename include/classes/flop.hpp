@@ -8,6 +8,7 @@ namespace poker {
     class Flop : public EstadoJogo {
 
         public:
+            Flop();
             Flop(Baralho* baralho);
 
             void distribuirCartas(Mesa* mesa) override;

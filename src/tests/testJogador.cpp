@@ -5,7 +5,8 @@ using namespace poker;
 TEST_CASE("Testando o construtor da classe Jogador"){
     Pote* pote;
     Mesa* mesa;
-    CHECK_NOTHROW_MESSAGE(Jogador("NOME", 2000, pote, mesa), "Construtor de Jogador OK!");    
+    CHECK_NOTHROW_MESSAGE(Jogador("NOME", 2000, pote, mesa), "Construtor nº1 de Jogador OK!"); 
+    CHECK_NOTHROW_MESSAGE(Jogador("NOME", pote, mesa), "Construtor nº2 de Jogador OK!");    
 }
 
 TEST_CASE("Testando setMao"){

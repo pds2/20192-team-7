@@ -17,7 +17,7 @@ void Flop::distribuirCartas(Mesa* mesa) {
 }
 
 bool Flop::validarApostas(int valorAposta, Jogador* jogador) {
-    return false;
+    return (jogador->getNumeroFichas() >= valorAposta);
 }
 
 void Flop::verificarOpcoesJogador() {}

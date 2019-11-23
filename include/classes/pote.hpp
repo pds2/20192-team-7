@@ -6,19 +6,19 @@ namespace poker {
     class Pote {
         
     	private:
-            int valorTotal;
-            int valorApostaAtual;
-            int valorApostaAnterior;
+            unsigned int valorTotal;
+            unsigned int valorApostaAtual;
+            unsigned int valorApostaAnterior;
 
         public:
             Pote();
-            Pote(int valorTotal,int valorApostaAtual, int valorApostaAnterior);
-            void setValorTotal(int valorTotal);
-            void setValorApostaAtual(int valorApostaAtual);
-            void setValorApostaAnterior(int valorApostaAnterior);
-            int getValorTotal();
-            int getValorApostaAtual();
-            int getValorApostaAnterior();
+            Pote(unsigned int valorTotal,unsigned int valorApostaAtual, unsigned int valorApostaAnterior);
+            void setValorTotal(unsigned int valorTotal);
+            void setValorApostaAtual(unsigned int valorApostaAtual);
+            void setValorApostaAnterior(unsigned int valorApostaAnterior);
+            unsigned int getValorTotal();
+            unsigned int getValorApostaAtual();
+            unsigned int getValorApostaAnterior();
     };
 }
 

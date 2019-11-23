@@ -175,7 +175,7 @@ std::map<std::string, int> Jogador::analisarMao(){
 
     else if(straightFlag && flushFlag){
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back().getSimbolo()));
-        resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", StraigthFlush));
+        resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", StraightFlush));
     }
 
     else if(fourOfAKindFlag){

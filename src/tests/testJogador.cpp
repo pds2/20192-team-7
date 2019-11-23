@@ -129,3 +129,22 @@ TEST_CASE("Testando analisar mão: Straight"){
     CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "Analisar mão sem exceções OK!");
     CHECK_EQ(mapTeste, straightMap);
 }
+
+TEST_CASE("Testando analisar mão: Straight Flush"){
+    std::vector<Carta> straightFlushVector;
+    std::map<std::string, int> mapTeste;
+    std::map<std::string, int> straightFlushMap;
+    straightFlushMap.insert(std::pair<std::string, int>("Carta", SETE));
+    straightFlushMap.insert(std::pair<std::string, int>("Sequencia", StraightFlush));
+    straightFlushVector = {Carta(Copas, TRES), Carta(Copas, QUATRO), Carta(Copas, CINCO)};
+    Mesa mesaTeste;
+    Pote* pote;
+    Mesa* mesa = &mesaTeste;
+    mesaTeste.addCartas(straightFlushVector);
+    Jogador jogadorTeste("NOME", 2000, pote, mesa);
+    Mao mao(Carta(Copas, SEIS), Carta(Copas, SETE));
+    Mao* pointerMao = &mao;
+    jogadorTeste.setMao(pointerMao);
+    CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "Analisar mão sem exceções OK!");
+    CHECK_EQ(mapTeste, straightFlushMap);
+}

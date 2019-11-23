@@ -1,4 +1,5 @@
 #include "classes/dealer.hpp"
+#include "classes/preflop.hpp"
 #include <iterator>
 
 using namespace poker;
@@ -47,9 +48,9 @@ void Dealer::inserirJogadores(){
 
 	unsigned int i; 
 	for (i = 0; i < numeroJogadores; i++)
-    	(this->jogadores).push_back(&bots[i]);
+    	(this->jogadores).push_back(bots[i]);
 	
-	this->jogadores.push_back(new JogadorHumano("Player", pote, mesa));
+	this->jogadores.push_back(JogadorHumano("Player", pote, mesa));
 }
 
 void Dealer::distribuirFichas(unsigned int numeroFichas){
@@ -72,4 +73,10 @@ void Dealer::entregarPremio(Jogador* jogadorVencedor){
 	this->pote->setValorTotal(0);
 	this->pote->setValorApostaAtual(0);
 	this->pote->setValorApostaAnterior(0);
+}
+
+void Dealer::iniciarPreFlop(){
+	PreFlop preFlop = PreFlop(this->baralho);
+	preFlop.distribuirCartasJogadores(this->jogadores);
+	this->momentoJogo = preFlop;
 }

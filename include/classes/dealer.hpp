@@ -11,7 +11,7 @@ namespace poker {
         private:
             unsigned int numeroJogadores;
             EstadoJogo momentoJogo;
-            std::vector<Jogador*> jogadores;
+            std::vector<Jogador> jogadores;
             Pote* pote;
             Mesa* mesa;
             Baralho* baralho;
@@ -31,6 +31,7 @@ namespace poker {
             void distribuirFichas(unsigned int numeroFichas);
             void iniciarPartida(unsigned int numeroJogadores);
             void entregarPremio(Jogador* jogadorVencedor);
+            void iniciarPreFlop();
     };
 }
 #endif

@@ -243,3 +243,22 @@ TEST_CASE("Testando analisar mão: Pair"){
     CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "Pair Analisar mão sem exceções OK!");
     CHECK_EQ(mapTeste, pairMap);
 }
+
+TEST_CASE("Testando analisar mão: High Card"){
+    std::vector<Carta> highCardVector;
+    std::map<std::string, int> mapTeste;
+    std::map<std::string, int>highCardMap;
+    highCardMap.insert(std::pair<std::string, int>("Carta", Q));
+    highCardMap.insert(std::pair<std::string, int>("Sequencia", HighCard));
+    highCardVector = {Carta(Copas, CINCO), Carta(Ouros, OITO), Carta(Paus, DOIS)};
+    Mesa mesaTeste;
+    Pote* pote;
+    Mesa* mesa = &mesaTeste;
+    mesaTeste.addCartas(highCardVector);
+    Jogador jogadorTeste("NOME", 2000, pote, mesa);
+    Mao mao(Carta(Copas, NOVE), Carta(Espadas, Q));
+    Mao* pointerMao = &mao;
+    jogadorTeste.setMao(pointerMao);
+    CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "High Card Analisar mão sem exceções OK!");
+    CHECK_EQ(mapTeste, highCardMap);
+}

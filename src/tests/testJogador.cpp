@@ -88,7 +88,7 @@ TEST_CASE("Testando analisar mão: Royal Flush"){
     Mao mao(Carta(Copas, DEZ), Carta(Copas, J));
     Mao* pointerMao = &mao;
     jogadorTeste.setMao(pointerMao);
-    CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "Analisar mão sem exceções OK!");
+    CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "Royal Flush Analisar mão sem exceções OK!");
     CHECK_EQ(mapTeste, royalFlushMap);
 }
 
@@ -107,7 +107,7 @@ TEST_CASE("Testando analisar mão: Flush"){
     Mao mao(Carta(Copas, SEIS), Carta(Copas, SETE));
     Mao* pointerMao = &mao;
     jogadorTeste.setMao(pointerMao);
-    CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "Analisar mão sem exceções OK!");
+    CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "Flush Analisar mão sem exceções OK!");
     CHECK_EQ(mapTeste, FlushMap);
 }
 
@@ -126,7 +126,7 @@ TEST_CASE("Testando analisar mão: Straight"){
     Mao mao(Carta(Espadas, SEIS), Carta(Copas, SETE));
     Mao* pointerMao = &mao;
     jogadorTeste.setMao(pointerMao);
-    CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "Analisar mão sem exceções OK!");
+    CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "Straight Analisar mão sem exceções OK!");
     CHECK_EQ(mapTeste, straightMap);
 }
 
@@ -145,7 +145,7 @@ TEST_CASE("Testando analisar mão: Straight Flush"){
     Mao mao(Carta(Copas, SEIS), Carta(Copas, SETE));
     Mao* pointerMao = &mao;
     jogadorTeste.setMao(pointerMao);
-    CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "Analisar mão sem exceções OK!");
+    CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "Flush Analisar mão sem exceções OK!");
     CHECK_EQ(mapTeste, straightFlushMap);
 }
 
@@ -164,7 +164,7 @@ TEST_CASE("Testando analisar mão: Four of a Kind"){
     Mao mao(Carta(Copas, SEIS), Carta(Espadas, CINCO));
     Mao* pointerMao = &mao;
     jogadorTeste.setMao(pointerMao);
-    CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "Analisar mão sem exceções OK!");
+    CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "Four of a Kind Analisar mão sem exceções OK!");
     CHECK_EQ(mapTeste, fourOfAKindMap);
 }
 
@@ -183,6 +183,25 @@ TEST_CASE("Testando analisar mão: FullHouse"){
     Mao mao(Carta(Copas, TRES), Carta(Espadas, TRES));
     Mao* pointerMao = &mao;
     jogadorTeste.setMao(pointerMao);
-    CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "Analisar mão sem exceções OK!");
+    CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "FullHouse Analisar mão sem exceções OK!");
     CHECK_EQ(mapTeste, fullHouseMap);
+}
+
+TEST_CASE("Testando analisar mão: Three of a Kind"){
+    std::vector<Carta> threeOfAKindVector;
+    std::map<std::string, int> mapTeste;
+    std::map<std::string, int> threeOfAKindMap;
+    threeOfAKindMap.insert(std::pair<std::string, int>("Carta", CINCO));
+    threeOfAKindMap.insert(std::pair<std::string, int>("Sequencia", ThreeOfAKind));
+    threeOfAKindVector = {Carta(Copas, CINCO), Carta(Ouros, CINCO), Carta(Paus, SETE)};
+    Mesa mesaTeste;
+    Pote* pote;
+    Mesa* mesa = &mesaTeste;
+    mesaTeste.addCartas(threeOfAKindVector);
+    Jogador jogadorTeste("NOME", 2000, pote, mesa);
+    Mao mao(Carta(Copas, NOVE), Carta(Espadas, TRES));
+    Mao* pointerMao = &mao;
+    jogadorTeste.setMao(pointerMao);
+    CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "Three of a Kind Analisar mão sem exceções OK!");
+    CHECK_EQ(mapTeste, threeOfAKindMap);
 }

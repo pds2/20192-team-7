@@ -1,6 +1,6 @@
 #include <vector>
-#include <classes/carta.hpp>
-#include <classes/pote.hpp>
+#include "classes/carta.hpp"
+#include "classes/pote.hpp"
 
 #ifndef MESA_H
 #define MESA_H
@@ -26,11 +26,6 @@ namespace poker{
 			int getPoteTotal();
 			int getPoteApostaAtual();
 			int getPoteApostaAnterior();
-
-			void poteAlterarApostaTotal(int novoValorTotal);
-			void poteAlterarApostaAtual(int novoValorAtual);
-			void poteAlterarApostaAnterior(int novoValorAnterior);
-
 	};
 
 }

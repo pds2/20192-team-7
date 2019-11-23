@@ -1,26 +1,35 @@
-#include "etapajogo.hpp"
+#include "classes/estadojogo.hpp"
+#include "classes/pote.hpp"
+#include "classes/mesa.hpp"
 
-#ifndef POKER_BARALHO
-#define POKER_BARALHO
+#ifndef DEALER_H
+#define DEALER_H
 
 namespace poker {
     
     class Dealer {
         private:
             unsigned int numeroJogadores;
-            EtapaJogo momentoJogo;
+            EstadoJogo momentoJogo;
+            std::vector<Jogador*> jogadores;
+            Pote* pote;
+            Mesa* mesa;
             
         public:
             Dealer();
 
-            Dealer(EtapaJogo momentoJogo, unsigned int numeroJogadores);
+            Dealer(EstadoJogo momentoJogo, unsigned int numeroJogadores);
             
-            void setEtapaJogo();
-            void setNumeroJogadores();
+            void setEstadoJogo(EstadoJogo momentoJogo);
+            void setNumeroJogadores(unsigned int numeroJogadores);
             
-            EtapaJogo getMomentoJogo();
+            EstadoJogo getMomentoJogo();
             int getNumeroJogadores();
 
+            void inserirJogadores();
+            void distribuirFichas(unsigned int numeroFichas);
+            void iniciarPartida(unsigned int numeroJogadores);
+            void entregarPremio(Jogador* jogadorVencedor);
     };
 }
 #endif

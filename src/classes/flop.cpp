@@ -29,6 +29,10 @@ bool verificarBet(Jogador* jogador, Pote* pote){
 }
 
 bool verificarFold(Jogador* jogador, Pote* pote){
+    return false;
+}
+
+bool verificarFold(JogadorHumano* jogador, Pote* pote){
     return true;
 }
 

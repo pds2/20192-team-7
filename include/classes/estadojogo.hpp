@@ -7,10 +7,12 @@
 namespace poker {
 	
     class EstadoJogo {
+
         public:
             EstadoJogo();
-            virtual bool validarApostas(int valorAposta, JogadorHumano jogadorHumano);
+
             virtual void distribuirCartas(Mesa mesa);
+            virtual bool validarApostas(int valorAposta, JogadorHumano jogadorHumano);
             virtual void verificarOpcoesJogador();
     };
 }

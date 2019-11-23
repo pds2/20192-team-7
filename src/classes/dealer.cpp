@@ -8,6 +8,7 @@ using namespace poker;
 Dealer::Dealer(){
 	this->pote = new Pote();
 	this->mesa = new Mesa();
+	this->baralho = new Baralho();
 }
 
 Dealer::Dealer(EstadoJogo momentoJogo, unsigned int numeroJogadores){

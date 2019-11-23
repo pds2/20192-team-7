@@ -11,9 +11,9 @@ namespace poker {
         public:
             EstadoJogo();
 
-            virtual void distribuirCartas(Mesa mesa) = 0;
-            virtual bool validarApostas(int valorAposta, JogadorHumano jogadorHumano) = 0;
-            virtual void verificarOpcoesJogador() = 0;
+            virtual void distribuirCartas(Mesa mesa);
+            virtual bool validarApostas(int valorAposta, JogadorHumano jogadorHumano);
+            virtual void verificarOpcoesJogador();
     };
 }
 

@@ -17,14 +17,11 @@ namespace poker {
 
         public:
             EstadoJogo();
-
-            EstadoJogo(Baralho* baralho) {
-                this->baralho = baralho;
-            }
-
+            EstadoJogo(Baralho* baralho);
+            
             virtual void distribuirCartas(Mesa* mesa);
             virtual bool validarApostas(int valorAposta, Jogador* jogador);
-            virtual std::map<std::string, bool> verificarOpcoesJogador(Jogador* jogador, Pote* pote);
+            std::map<std::string, bool> verificarOpcoesJogador(Jogador* jogador, Pote* pote);
     };
 }
 

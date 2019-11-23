@@ -4,7 +4,8 @@
 using namespace poker;
 
 TEST_CASE("Testando o Construtor de Carta"){
-	CHECK_NOTHROW_MESSAGE(Carta(Copas, Q), "Construtos de Carta OK!");
+	CHECK_NOTHROW_MESSAGE(Carta(Copas, Q), "Construtor nº1 de Carta OK!");
+	CHECK_NOTHROW_MESSAGE(Carta(2, 5), "Construtor nº2 de Carta OK!");
 }
 
 TEST_CASE("Testando getNaipe"){

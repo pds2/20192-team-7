@@ -1,4 +1,4 @@
-#include <classes/mesa.hpp>
+#include "classes/mesa.hpp"
 
 using namespace poker;
 
@@ -15,7 +15,7 @@ void Mesa::addCartas(std::vector<Carta> cartasMesa){
         this->cartasMesa = cartasMesa;
 }
 
-std::vector<Carta> getCartasMesa(){
+std::vector<Carta> Mesa::getCartasMesa(){
     return (this->cartasMesa);
 }
 
@@ -31,7 +31,7 @@ void Mesa::setPoteApostaAnterior(int valorAnterior){
     this->pote.setValorApostaAnterior(valorAnterior);
 }
 
-int Mesa::getPoteApostaTotal(){
+int Mesa::getPoteTotal(){
     return(this->pote.getValorTotal());
 }
 
@@ -41,16 +41,4 @@ int Mesa::getPoteApostaAtual(){
 
 int Mesa::getPoteApostaAnterior(){
     return(this->pote.getValorApostaAnterior());
-}
-
-void Mesa::poteAlterarApostaTotal(int novoValorTotal){
-    this->pote.alterarValorTotal(novoValorTotal)
-}
-
-void Mesa::poteAlterarApostaAtual(int novoValorAtual){
-    this->pote.alterarValorAposta(novoValorAtual)
-}
-
-void Mesa::poteAlterarApostaAnterior(int novoValorAnterior){
-    this->pote.substituirApostaAnterior(novoValorAnterior)
 }

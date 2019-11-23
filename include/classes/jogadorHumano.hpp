@@ -1,23 +1,21 @@
-#include <classes/jogador.hpp>
+#include "classes/jogador.hpp"
 #include <string>
-#include <classes/dealer.hpp>
 
 #ifndef JOGADOR_HUMANO
 #define JOGADOR_HUMANO
 
-namespace poker{
+namespace poker {
 
-    class JogadorHumano : public Jogador{
+    class JogadorHumano : public Jogador {
 
         public:
-
             JogadorHumano(std::string nome, int numeroFichas, Pote* pote, Mesa* mesa);
-            std::vector<Jogador*> comecarPartida();
-            void finalizarPartida();
+            JogadorHumano(std::string nome, Pote* pote, Mesa* mesa);
+            
             Pote* getPote();
             Mesa* getMesa();
-            int getNumeroFichas();
 
+            void finalizarPartida(std::vector<Jogador*>bots);
     };
 
 }

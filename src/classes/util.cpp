@@ -4,10 +4,15 @@ using namespace poker;
 std::vector<Carta> Util::OrdenaCartas(std::vector<Carta> cartas){
     Carta aux(Ouros, DOIS);
     int min;
-    for (int i = 0; i<cartas.size()-1; i++){
-        min=i;
-        for (int j = i+1; j<cartas.size(); j++){
-            if (cartas[j].getSimbolo < cartas[min].getSimbolo())
+
+    unsigned int i;
+
+    for (i = 0; i < cartas.size() - 1; i++){
+        min = i;
+
+        unsigned int j;
+        for (j = i+1; j<cartas.size(); j++){
+            if (cartas[j].getSimbolo() < cartas[min].getSimbolo())
                 min = j;
 
             if (cartas[i].getSimbolo()!= cartas[min].getSimbolo()){

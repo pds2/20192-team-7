@@ -14,6 +14,7 @@ namespace poker {
             std::vector<Jogador*> jogadores;
             Pote* pote;
             Mesa* mesa;
+            Baralho* baralho;
             
         public:
             Dealer();

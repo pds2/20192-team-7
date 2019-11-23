@@ -8,3 +8,12 @@ PokerError::PokerError(std::string message){
 std::string PokerError::what(){
     return this->message;
 }
+
+FimPartida::FimPartida() : std::exception() {
+}
+
+
+std::string FimPartida::what(){
+    return "Fim da partida";
+}
+

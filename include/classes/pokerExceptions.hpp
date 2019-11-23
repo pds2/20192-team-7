@@ -10,8 +10,14 @@ namespace poker {
 		private:
 		    std::string message;
 
-		public :
+		public:
 		    PokerError(std::string message);
+		    std::string what();
+	};
+
+	class FimPartida : public std::exception {
+		public:
+			FimPartida();
 		    std::string what();
 	};
 }

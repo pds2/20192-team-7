@@ -1,4 +1,5 @@
 #include "classes/pote.hpp"
+#include "classes/pokerExceptions.hpp"
 
 using namespace poker;
 
@@ -9,7 +10,11 @@ Pote::Pote(int valorTotal, int valorApostaAtual, int valorApostaAnterior) :
 }
 
 void Pote::setValorTotal(int valorTotal){
-    this -> valorTotal = valorTotal; 
+    if(valorTotal < 2000*4)
+        this -> valorTotal = valorTotal;
+    else
+        throw(PokerError("Total de fichas ultrapassado!"));
+     
 }
 
 void Pote::setValorApostaAtual(int valorApostaAtual){

@@ -1,6 +1,8 @@
 #include <map>
 #include <vector>
 #include <string>
+
+#include "classes/pokerExceptions.hpp"
 #include "classes/mao.hpp"
 #include "classes/pote.hpp"
 #include "classes/mesa.hpp"

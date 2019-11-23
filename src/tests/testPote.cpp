@@ -5,8 +5,6 @@ using namespace poker;
 TEST_CASE("Testando Construtor da classe Pote"){
     CHECK_NOTHROW(Pote());
     CHECK_NOTHROW(Pote(5,5,5));
-    CHECK_THROWS(Pote('a',1,2));
-    CHECK_THROWS(Pote('@', 2, -999.5));
 }
 
 TEST_CASE("Testando Setters"){

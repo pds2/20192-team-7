@@ -9,11 +9,20 @@ std::string PokerError::what(){
     return this->message;
 }
 
-FimPartida::FimPartida() : std::exception() {
+FimRodada::FimRodada() : std::exception() {
 }
 
 
-std::string FimPartida::what(){
-    return "Fim da partida";
+std::string FimRodada::what(){
+    return "Fim da rodada";
+}
+
+
+FimJogo::FimJogo() : std::exception() {
+}
+
+
+std::string FimJogo::what(){
+    return "Fim do jogo";
 }
 

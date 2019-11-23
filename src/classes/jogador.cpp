@@ -63,10 +63,6 @@ void Jogador::apostar(int valorAposta){
     }
 }
 
-void Jogador::desistirDaPartida(){
-    throw (FimPartida());
-}
-
 void Jogador::pagarAposta(){
     int valorApostaAtual = this->pote->getValorApostaAtual();
     int valorTotal = this->pote->getValorTotal();

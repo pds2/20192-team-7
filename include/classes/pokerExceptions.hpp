@@ -15,9 +15,15 @@ namespace poker {
 		    std::string what();
 	};
 
-	class FimPartida : public std::exception {
+	class FimRodada : public std::exception {
 		public:
-			FimPartida();
+			FimRodada();
+		    std::string what();
+	};
+
+	class FimJogo : public std::exception {
+		public:
+			FimJogo();
 		    std::string what();
 	};
 }

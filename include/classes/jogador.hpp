@@ -12,9 +12,9 @@
 #ifndef JOGADOR_H
 #define JOGADOR_H 
 
-namespace poker{
+namespace poker {
 
-	class Jogador{
+	class Jogador {
 
       protected:
           Mao* mao;
@@ -35,7 +35,6 @@ namespace poker{
 
           void passarVez();
           void apostar(int valorAposta);
-          void desistirDaPartida();
           void pagarAposta();
           void aumentarAposta(int valorNovaAposta);
           

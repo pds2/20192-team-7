@@ -176,3 +176,55 @@ void Dealer::verificarResultadoJogo(){
 		throw (PokerError("Método chamado no momento errado, mais de um jogador vencedor ou número de fichas do vencedore igual a zero."));
 	}
 }
+
+void Dealer::verificarResultadoRodada(){
+	Jogador vencedor = Jogador();
+	for(Jogador primeiroCandidatoVencer : this->jogadores){
+		for(Jogador comparacaoVencedor : this->jogadores){
+			if(verificarMaiorMao(primeiroCandidatoVencer,comparacaoVencedor)){
+				vencedor = primeiroCandidatoVencer;
+			}else if(verificarMaoIgual(primeiroCandidatoVencer,comparacaoVencedor)){
+				vencedor = verificarJogadorMaiorCarta(primeiroCandidatoVencer,comparacaoVencedor);
+			}
+		}
+	}
+	entregarPremio(&vencedor);
+}
+
+bool verificarMaiorMao(Jogador primeiroJogador, Jogador segundoJogador){
+	return primeiroJogador.analisarMao().at("Sequencia") > segundoJogador.analisarMao().at("Sequencia");
+}
+
+bool verificarMaoIgual(Jogador primeiroJogador, Jogador segundoJogador){
+	return primeiroJogador.analisarMao().at("Sequencia") = segundoJogador.analisarMao().at("Sequencia");
+}
+
+Jogador verificarJogadorMaiorCarta(Jogador primeiroJogador, Jogador segundoJogador){
+	if(verificarCartasIguais(converterCarta(primeiroJogador.analisarMao().at("Carta")),converterCarta(segundoJogador.analisarMao().at("Carta")))){
+		return primeiroJogador;
+	}
+	
+	if(compararCartas(converterCarta(primeiroJogador.analisarMao().at("Carta")),converterCarta(segundoJogador.analisarMao().at("Carta")))){
+		return primeiroJogador;
+	}else{
+		return segundoJogador;
+	}
+
+}
+
+bool compararCartas(Carta primeiraCarta, Carta segundaCarta){
+	return (primeiraCarta.getSimbolo() > segundaCarta.getSimbolo());
+}
+
+bool verificarCartasIguais(Carta cartaUm, Carta cartaDois){
+	return cartaUm.getSimbolo() == cartaDois.getSimbolo();
+}
+
+Carta recuperarCarta(Jogador jogador, int posicao){
+	return jogador.getMao()->getCartas().at(posicao);
+}
+
+Carta converterCarta(int simbolo){
+	return Carta(static_cast<Simbolo>(simbolo),static_cast<Naipe>(simbolo));
+}
+

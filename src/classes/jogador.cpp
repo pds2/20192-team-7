@@ -273,14 +273,14 @@ std::map<std::string, int> Jogador::analisarMao(){
     return(resultadoDaAnalise); 
 }
 
-void Jogador::jogar(std::map<std::string, bool> opcoesJogador, Pote* pote){
+void Jogador::jogar(std::map<std::string, bool> opcoesJogador){
     std::string opcaoSelecionada;
 
     do {
         opcaoSelecionada = converterOpcaoJogador(geradorInteiroAleatorio());
     } while (opcoesJogador.at(opcaoSelecionada) == true);
     
-    realizarJogada(opcaoSelecionada, this, pote);
+    realizarJogada(opcaoSelecionada);
 }
 
 std::string converterOpcaoJogador(int numeroOpcao){
@@ -314,18 +314,18 @@ int geradorInteiroAleatorio(){
     return rand() % (numeroOpcoesMaxima-numeroOpcoesMinima) + numeroOpcoesMinima; 
 }
 
-void realizarJogada(std::string opcaoSelecionada, Jogador* jogador, Pote* pote){
+void Jogador::realizarJogada(std::string opcaoSelecionada){
     if (opcaoSelecionada == "check")
-        jogador->passarVez();
+        this->passarVez();
 
     else if (opcaoSelecionada == "apostar")
-        jogador->apostar(gerarValorAposta(*jogador));
+        this->apostar(gerarValorAposta(*this));
 
     else if (opcaoSelecionada == "pagar")
-        jogador->pagarAposta();
+        this->pagarAposta();
 
     else if (opcaoSelecionada == "aumentar")
-        jogador->aumentarAposta(gerarValorAumentarAposta(*jogador, pote));
+        this->aumentarAposta(gerarValorAumentarAposta(*this, this->pote));
 }
 
 int gerarValorAposta(Jogador jogador){

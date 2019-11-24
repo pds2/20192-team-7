@@ -1,6 +1,9 @@
 #include "classes/dealer.hpp"
-#include "classes/preflop.hpp"
+#include "classes/util.hpp"
+
+#include <map>
 #include <iterator>
+#include <iostream>
 
 using namespace poker;
 
@@ -61,10 +64,91 @@ void Dealer::distribuirFichas(unsigned int numeroFichas){
 	}
 }
 
-void Dealer::iniciarPartida(unsigned int numeroJogadores){
+void Dealer::mostrarMaoAtualJogador(Jogador jogador){
+	Util util;
+
+	std::map<std::string, int> mapMao = jogador.analisarMao();
+
+	if (mapMao.find("Carta") != mapMao.end()) {
+		Simbolo maiorCarta = (Simbolo)(mapMao.find("Carta")->second);
+		OrdemSequencia sequencia = (OrdemSequencia)(mapMao.find("Sequencia")->second);
+
+		std::string maiorCartaString = util.ObterStringSimbolo(maiorCarta);
+		std::string sequenciaString = util.ObterStringSequencia(sequencia);
+
+		std::cout << "Sua mão contém: " << sequenciaString << " com a carta mais alta sendo " << maiorCartaString << std::endl;
+	}
+}
+
+void Dealer::jogada(Jogador jogador){
+	jogador.jogar();
+}
+
+void Dealer::jogada(JogadorHumano jogador){
+	mostrarMaoAtualJogador(jogador);
+
+	jogador.jogar();
+}
+
+void Dealer::iniciarJogadas(){
+	std::vector<Jogador>::iterator it;
+
+	for (it = this->jogadores.begin() ; it != this->jogadores.end(); ++it){
+		jogada(*it);
+	}
+}
+
+void Dealer::iniciarEstadoJogo (PreFlop* estadoJogo){
+	setEstadoJogo((EstadoJogo)(*estadoJogo));
+
+	estadoJogo->distribuirCartasJogadores(this->jogadores);
+}
+
+void Dealer::iniciarEstadoJogo (Flop* estadoJogo){
+	setEstadoJogo((EstadoJogo)(*estadoJogo));
+
+	estadoJogo->distribuirCartas(this->mesa);
+}
+
+void Dealer::iniciarEstadoJogo (Turn* estadoJogo){
+	setEstadoJogo((EstadoJogo)(*estadoJogo));
+
+	estadoJogo->distribuirCartas(this->mesa);
+}
+
+void Dealer::iniciarEstadoJogo (River* estadoJogo){
+	setEstadoJogo((EstadoJogo)(*estadoJogo));
+
+	estadoJogo->distribuirCartas(this->mesa);
+}
+
+void Dealer::iniciarJogo(unsigned int numeroJogadores){
 	setNumeroJogadores(numeroJogadores);
-	distribuirFichas(FICHAS_POR_JOGADOR);
 	inserirJogadores();
+
+	distribuirFichas(FICHAS_POR_JOGADOR);
+
+	// enquanto não for lançada a exceção de final de jogo
+	iniciarPartida();
+
+}
+
+void Dealer::iniciarPartida(){
+	// enquanto não for lançada a exceção de final de partida e o baralho ainda puder distribuir o numero de cartas adequado
+	// realizar operações abaixo
+
+	PreFlop* preFlop = new PreFlop(this->baralho);
+	Flop* flop = new Flop(this->baralho);
+	Turn* turn = new Turn(this->baralho);
+	River* river = new River(this->baralho);
+	
+	iniciarEstadoJogo(preFlop);
+	iniciarEstadoJogo(flop);
+	iniciarEstadoJogo(turn);
+	iniciarEstadoJogo(river);
+
+//  Jogador* jogadorVencedor = verificarResultadoPartida();
+//  entregarPremio(jogadorVencedor)
 }
 
 void Dealer::entregarPremio(Jogador* jogadorVencedor){
@@ -73,10 +157,4 @@ void Dealer::entregarPremio(Jogador* jogadorVencedor){
 	this->pote->setValorTotal(0);
 	this->pote->setValorApostaAtual(0);
 	this->pote->setValorApostaAnterior(0);
-}
-
-void Dealer::iniciarPreFlop(){
-	PreFlop preFlop = PreFlop(this->baralho);
-	preFlop.distribuirCartasJogadores(this->jogadores);
-	this->momentoJogo = preFlop;
 }

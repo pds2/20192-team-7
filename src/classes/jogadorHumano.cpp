@@ -29,3 +29,12 @@ void JogadorHumano::finalizarJogo(){
 void JogadorHumano::desistirDaPartida(){
     throw (FimRodada());
 }
+
+void JogadorHumano::jogar(){
+    // verificar opções de ação
+	// exibir na tela as opções de ação pro jogador
+
+
+	// switch para a opção escolhida, executar e passar pro próximo jogador
+		// tratar exceções
+}

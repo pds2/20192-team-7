@@ -263,3 +263,8 @@ std::map<std::string, int> Jogador::analisarMao(){
     
     return(resultadoDaAnalise); 
 }
+
+void Jogador::jogar(){
+	// verificar opções de ação do jogador
+	// escolher automaticamente
+}

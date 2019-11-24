@@ -32,11 +32,12 @@ namespace poker {
           void setNumeroFichas(int numeroFichas);
           unsigned int getNumeroFichas();
 
-
           void passarVez();
           void apostar(int valorAposta);
           void pagarAposta();
           void aumentarAposta(int valorNovaAposta);
+
+          virtual void jogar();
           
           std::map<std::string, int> analisarMao();
 	};

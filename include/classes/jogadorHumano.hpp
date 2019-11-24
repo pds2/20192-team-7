@@ -17,6 +17,8 @@ namespace poker {
 
             void desistirDaPartida();
             void finalizarJogo();
+
+            void jogar() override;
     };
 
 }

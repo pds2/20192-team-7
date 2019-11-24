@@ -1,6 +1,7 @@
 #include "classes/dealer.hpp"
 #include "classes/preflop.hpp"
 #include <iterator>
+#include <iostream>
 
 using namespace poker;
 
@@ -79,4 +80,13 @@ void Dealer::iniciarPreFlop(){
 	PreFlop preFlop = PreFlop(this->baralho);
 	preFlop.distribuirCartasJogadores(this->jogadores);
 	this->momentoJogo = preFlop;
+}
+
+void Dealer::verificarResultadoPartida(){
+	std::vector<Jogador> jogadores = this->jogadores;
+	for(Jogador jogador : jogadores){
+		if(jogador.getNumeroFichas() != 0 ){
+			std::cout << "O vencedor foi o Jogador : " << jogador.getNome() << "com " << jogador.getNumeroFichas() << "fichas ao fim da partida.";
+		}
+	}
 }

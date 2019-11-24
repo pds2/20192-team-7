@@ -25,6 +25,11 @@ Mao* Jogador::getMao(){
     return this->mao;
 }
 
+std::string Jogador::getNome(){
+    return this->nome;
+}
+
+
 void Jogador::setNumeroFichas(int numeroFichas){
     this->numeroFichas = numeroFichas;
 }

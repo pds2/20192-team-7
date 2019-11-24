@@ -31,6 +31,7 @@ namespace poker{
           Mao* getMao();
           void setNumeroFichas(int numeroFichas);
           unsigned int getNumeroFichas();
+          std::string getNome();
 
 
           void pagarAposta();

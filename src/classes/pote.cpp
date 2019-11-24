@@ -14,7 +14,7 @@ void Pote::setValorTotal(int valorTotal){
         this -> valorTotal = valorTotal;
     else
         throw(PokerError("Total de fichas ultrapassado!"));
-     
+        
 }
 
 void Pote::setValorApostaAtual(int valorApostaAtual){

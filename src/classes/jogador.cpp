@@ -45,7 +45,7 @@ void Jogador::pagarAposta(){
     }
 
     else{
-        throw(PokerError("Fichas insuficientes"));
+        throw(PokerError("Fichas insuficientes!"));
     }
 }
 

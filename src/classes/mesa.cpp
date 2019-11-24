@@ -1,4 +1,5 @@
 #include "classes/mesa.hpp"
+#include "classes/pokerExceptions.hpp"
 
 using namespace poker;
 
@@ -13,6 +14,9 @@ Mesa::Mesa(Pote pote){
 void Mesa::addCartas(std::vector<Carta> cartasMesa){
     if (cartasMesa.size() <= 5)
         this->cartasMesa = cartasMesa;
+    else
+        throw(PokerError("Mesa cheia!"));
+    
 }
 
 std::vector<Carta> Mesa::getCartasMesa(){

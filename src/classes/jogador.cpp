@@ -77,7 +77,6 @@ void Jogador::pagarAposta(){
         this->pote->setValorTotal(valorTotal + valorApostaAtual);
         this->pote->setValorApostaAnterior(valorApostaAtual);
     }
-
     else {
         throw (PokerError("Fichas insuficientes"));
     }

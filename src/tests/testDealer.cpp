@@ -37,14 +37,6 @@ TEST_CASE("Testando iniciar a partida"){
     CHECK_NOTHROW_MESSAGE(dealer.iniciarPartida(), "Iniciar partida OK!");
 }
 
-
-TEST_CASE("Testando iniciar estado jogo"){
-    
-
-}
-
-
-
 TEST_CASE("Testando entregar o prêmio"){
     Pote poteTeste(20, 20, 0);
     Pote* pote = &poteTeste;

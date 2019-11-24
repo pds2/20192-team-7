@@ -4,6 +4,7 @@
 #include "classes/pokerExceptions.hpp"
 
 #include <vector>
+#include <iostream>
 
 using namespace poker;
 
@@ -30,11 +31,30 @@ void JogadorHumano::desistirDaPartida(){
     throw (FimRodada());
 }
 
-void JogadorHumano::jogar(std::map<std::string, bool> opcoesJogador, Pote* pote){
-    // verificar opções de ação
-	// exibir na tela as opções de ação pro jogador
+void JogadorHumano::jogar(std::map<std::string, bool> opcoesJogador){
+    std::string opcoes = "";
+    int contadorOpcoes = 0;
 
+    int opcaoEscolhida = 0;
 
-	// switch para a opção escolhida, executar e passar pro próximo jogador
-		// tratar exceções
+    std::map<int, std::string> menu;
+
+    for (std::map<std::string, bool>::iterator it = opcoesJogador.begin(); it != opcoesJogador.end(); ++it){
+        if (it->second){
+            contadorOpcoes++;
+            opcoes += '\t' + (contadorOpcoes) + " - " + it->first + '\n';
+            
+            menu.insert(std::make_pair(contadorOpcoes, it->first));
+        }
+    }
+
+    do {
+        std::cout << "Escolha sua jogada:" << std::endl << opcoes;
+
+        std::cin >> opcaoEscolhida;
+
+    } while (opcaoEscolhida < 1 || opcaoEscolhida > (contadorOpcoes+1) );
+
+    realizarJogada(menu.find(opcaoEscolhida)->second);
+
 }

@@ -39,7 +39,9 @@ namespace poker {
           void pagarAposta();
           void aumentarAposta(int valorNovaAposta);
 
-          void jogar(std::map<std::string, bool> opcoesJogador, Pote* pote);
+          void realizarJogada(std::string opcaoSelecionada);
+
+          void jogar(std::map<std::string, bool> opcoesJogador);
 
           std::map<std::string, int> analisarMao();
 	};

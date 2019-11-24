@@ -81,13 +81,13 @@ void Dealer::mostrarMaoAtualJogador(Jogador jogador){
 }
 
 void Dealer::jogada(Jogador jogador){
-	jogador.jogar(this->getMomentoJogo().verificarOpcoesJogador(&jogador, this->pote), this->pote);
+	jogador.jogar(this->getMomentoJogo().verificarOpcoesJogador(&jogador, this->pote));
 }
 
 void Dealer::jogada(JogadorHumano jogador){
 	mostrarMaoAtualJogador(jogador);
 
-	jogador.jogar(this->getMomentoJogo().verificarOpcoesJogador(&jogador, this->pote), this->pote);
+	jogador.jogar(this->getMomentoJogo().verificarOpcoesJogador(&jogador, this->pote));
 }
 
 void Dealer::iniciarJogadas(){

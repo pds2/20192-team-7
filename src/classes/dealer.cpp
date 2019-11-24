@@ -54,10 +54,10 @@ void Dealer::inserirJogadores(){
 }
 
 void Dealer::distribuirFichas(unsigned int numeroFichas){
-	std::vector<Jogador*>::iterator it;
+	std::vector<Jogador>::iterator it;
 
 	for (it = this->jogadores.begin() ; it != this->jogadores.end(); ++it){
-		(*it)->setNumeroFichas(numeroFichas);
+		(it)->setNumeroFichas(numeroFichas);
 	}
 }
 

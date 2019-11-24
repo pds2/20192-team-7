@@ -84,9 +84,16 @@ void Dealer::iniciarPreFlop(){
 
 void Dealer::verificarResultadoPartida(){
 	std::vector<Jogador> jogadores = this->jogadores;
+	std::vector<Jogador> vencedoresPotencias;
 	for(Jogador jogador : jogadores){
-		if(jogador.getNumeroFichas() != 0 ){
-			std::cout << "O vencedor foi o Jogador : " << jogador.getNome() << "com " << jogador.getNumeroFichas() << "fichas ao fim da partida.";
+		if(jogador.getNumeroFichas() > 0 ){
+			vencedoresPotencias.push_back(jogador);
 		}
+	}
+
+	if(vencedoresPotencias.size() == 1 && vencedoresPotencias.at(0).getNumeroFichas() > 0){
+		std::cout << "O vencedor foi o jogador : " << vencedoresPotencias.at(0).getNome() << " com " << vencedoresPotencias.at(0).getNumeroFichas() << "fichas";
+	}else{
+		throw(PokerError("Método chamado no momento errado, mais de um jogador vencedor ou número de fichas do vencedore igual a zero."));
 	}
 }

@@ -38,7 +38,7 @@ namespace poker {
           void pagarAposta();
           void aumentarAposta(int valorNovaAposta);
 
-          virtual void jogar();
+          void jogar();
           
           std::map<std::string, int> analisarMao();
 	};

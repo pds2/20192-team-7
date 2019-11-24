@@ -15,7 +15,10 @@ namespace poker {
             Pote* getPote();
             Mesa* getMesa();
 
-            void finalizarPartida(std::vector<Jogador*>bots);
+            void desistirDaPartida();
+            void finalizarJogo();
+
+            void jogar() override;
     };
 
 }

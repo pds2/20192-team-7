@@ -13,7 +13,9 @@ namespace poker {
 			
 		public:
 			Mao(Carta primeira, Carta segunda);
+			Mao();
 			std::vector<Carta> getCartas();
+			void setCartas(std::vector<Carta> cartas);
 	};
 }
 

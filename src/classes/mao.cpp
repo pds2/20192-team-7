@@ -13,6 +13,12 @@ Mao::Mao(Carta primeira, Carta segunda) {
 	}
 }
 
+Mao::Mao(){}
+
 std::vector<Carta> Mao::getCartas(){
 	return this->cartas;
+}
+
+void Mao::setCartas(std::vector<Carta> cartas){
+	this->cartas = cartas;
 }

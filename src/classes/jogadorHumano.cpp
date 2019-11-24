@@ -1,6 +1,8 @@
 #include "classes/jogadorHumano.hpp"
 #include "classes/jogador.hpp"
 #include "classes/dealer.hpp"
+#include "classes/pokerExceptions.hpp"
+
 #include <vector>
 
 using namespace poker;
@@ -20,8 +22,19 @@ Mesa* JogadorHumano::getMesa(){
     return this->mesa;
 }
 
-void JogadorHumano::finalizarPartida(std::vector<Jogador*>bots){
-    for (Jogador* valor : bots){
-        delete valor;
-    }
+void JogadorHumano::finalizarJogo(){
+    throw (FimJogo());
+}
+
+void JogadorHumano::desistirDaPartida(){
+    throw (FimRodada());
+}
+
+void JogadorHumano::jogar(){
+    // verificar opções de ação
+	// exibir na tela as opções de ação pro jogador
+
+
+	// switch para a opção escolhida, executar e passar pro próximo jogador
+		// tratar exceções
 }

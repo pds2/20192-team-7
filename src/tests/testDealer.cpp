@@ -34,8 +34,16 @@ TEST_CASE("Testando distribuir fichas"){
 
 TEST_CASE("Testando iniciar a partida"){
     Dealer dealer;
-    CHECK_NOTHROW_MESSAGE(dealer.iniciarPartida(4), "Iniciar partida OK!");
+    CHECK_NOTHROW_MESSAGE(dealer.iniciarPartida(), "Iniciar partida OK!");
 }
+
+
+TEST_CASE("Testando iniciar estado jogo"){
+    
+
+}
+
+
 
 TEST_CASE("Testando entregar o prêmio"){
     Pote poteTeste(20, 20, 0);

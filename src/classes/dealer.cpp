@@ -81,13 +81,13 @@ void Dealer::mostrarMaoAtualJogador(Jogador jogador){
 }
 
 void Dealer::jogada(Jogador jogador){
-	jogador.jogar();
+	jogador.jogar(this->getMomentoJogo().verificarOpcoesJogador(&jogador, this->pote), this->pote);
 }
 
 void Dealer::jogada(JogadorHumano jogador){
 	mostrarMaoAtualJogador(jogador);
 
-	jogador.jogar();
+	jogador.jogar(this->getMomentoJogo().verificarOpcoesJogador(&jogador, this->pote), this->pote);
 }
 
 void Dealer::iniciarJogadas(){
@@ -163,8 +163,9 @@ void Dealer::entregarPremio(Jogador* jogadorVencedor){
 void Dealer::verificarResultadoJogo(){
 	std::vector<Jogador> jogadores = this->jogadores;
 	std::vector<Jogador> vencedoresPotencias;
-	for(Jogador jogador : jogadores){
-		if(jogador.getNumeroFichas() > 0 ){
+	
+	for (Jogador jogador : this->jogadores){
+		if (jogador.getNumeroFichas() > 0 ){
 			vencedoresPotencias.push_back(jogador);
 		}
 	}

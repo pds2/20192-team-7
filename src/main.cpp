@@ -10,5 +10,5 @@ int main() {
         std::cin >> numeroJogadores;
     } while (numeroJogadores > 7 || numeroJogadores < 1);
 
-    dealer->iniciarPartida(numeroJogadores);
+    dealer->iniciarJogo(numeroJogadores);
 }

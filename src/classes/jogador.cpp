@@ -39,6 +39,14 @@ unsigned int Jogador::getNumeroFichas(){
     return this->numeroFichas;
 }
 
+void Jogador::setUltimaAcao(std::string ultimaAcao){
+    this->ultimaAcao = ultimaAcao;
+}
+
+std::string Jogador::getUltimaAcao(){
+    return this->ultimaAcao;
+}
+
 void Jogador::passarVez(){
     int valorApostaAtual = this->pote->getValorApostaAtual();
     int valorApostaAnterior = this->pote->getValorApostaAnterior();
@@ -326,6 +334,8 @@ void Jogador::realizarJogada(std::string opcaoSelecionada){
 
     else if (opcaoSelecionada == "aumentar")
         this->aumentarAposta(gerarValorAumentarAposta(*this, this->pote));
+
+    setUltimaAcao(opcaoSelecionada);
 }
 
 int gerarValorAposta(Jogador jogador){

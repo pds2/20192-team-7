@@ -64,6 +64,36 @@ void Dealer::distribuirFichas(unsigned int numeroFichas){
 	}
 }
 
+void Dealer::iniciarJogadas(){
+	std::vector<Jogador>::iterator it;
+
+	bool podeSeguirProximaRodada = false;
+
+	do{
+		try {
+			for (it = this->jogadores.begin(); it != this->jogadores.end(); ++it){
+				jogada(*it);
+			}
+		} catch (FimRodada e){
+			podeSeguirProximaRodada = true;
+			std::cout << e.what() << std::endl;
+			iniciarPartida();
+		}
+
+	} while (!podeSeguirProximaRodada);
+
+}
+
+void Dealer::jogada(Jogador jogador){
+	jogador.jogar(this->getMomentoJogo().verificarOpcoesJogador(&jogador, this->pote));
+}
+
+void Dealer::jogada(JogadorHumano jogador){
+	mostrarMaoAtualJogador(jogador);
+
+	jogador.jogar(this->getMomentoJogo().verificarOpcoesJogador(&jogador, this->pote));
+}
+
 void Dealer::mostrarMaoAtualJogador(Jogador jogador){
 	Util util;
 
@@ -80,46 +110,18 @@ void Dealer::mostrarMaoAtualJogador(Jogador jogador){
 	}
 }
 
-void Dealer::jogada(Jogador jogador){
-	jogador.jogar(this->getMomentoJogo().verificarOpcoesJogador(&jogador, this->pote));
-}
-
-void Dealer::jogada(JogadorHumano jogador){
-	mostrarMaoAtualJogador(jogador);
-
-	jogador.jogar(this->getMomentoJogo().verificarOpcoesJogador(&jogador, this->pote));
-}
-
-void Dealer::iniciarJogadas(){
-	std::vector<Jogador>::iterator it;
-
-	for (it = this->jogadores.begin(); it != this->jogadores.end(); ++it){
-		jogada(*it);
-	}
-}
-
 void Dealer::iniciarEstadoJogo (PreFlop* estadoJogo){
 	setEstadoJogo((EstadoJogo)(*estadoJogo));
 
 	estadoJogo->distribuirCartasJogadores(this->jogadores);
+	this->iniciarJogadas();
 }
 
-void Dealer::iniciarEstadoJogo (Flop* estadoJogo){
+void Dealer::iniciarEstadoJogo (EstadoJogo* estadoJogo){
 	setEstadoJogo((EstadoJogo)(*estadoJogo));
 
 	estadoJogo->distribuirCartas(this->mesa);
-}
-
-void Dealer::iniciarEstadoJogo (Turn* estadoJogo){
-	setEstadoJogo((EstadoJogo)(*estadoJogo));
-
-	estadoJogo->distribuirCartas(this->mesa);
-}
-
-void Dealer::iniciarEstadoJogo (River* estadoJogo){
-	setEstadoJogo((EstadoJogo)(*estadoJogo));
-
-	estadoJogo->distribuirCartas(this->mesa);
+	this->iniciarJogadas();
 }
 
 void Dealer::iniciarJogo(unsigned int numeroJogadores){
@@ -128,15 +130,24 @@ void Dealer::iniciarJogo(unsigned int numeroJogadores){
 
 	distribuirFichas(FICHAS_POR_JOGADOR);
 
-	// enquanto não for lançada a exceção de final de jogo
-	iniciarPartida();
+	bool podeContinuarJogo = true;
+
+	while(podeContinuarJogo){
+		try {
+			iniciarPartida();
+		} catch (FimJogo e){
+			std::cout << e.what() << std::endl;
+		}
+	}
 
 	verificarResultadoJogo();
 }
 
 void Dealer::iniciarPartida(){
-	// enquanto não for lançada a exceção de final de partida e o baralho ainda puder distribuir o numero de cartas adequado
+	// enquanto não for lançada a exceção de final de partida
 	// realizar operações abaixo
+
+	this->baralho->embaralhar();
 
 	PreFlop* preFlop = new PreFlop(this->baralho);
 	Flop* flop = new Flop(this->baralho);

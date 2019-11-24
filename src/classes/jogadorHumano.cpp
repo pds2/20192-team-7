@@ -102,5 +102,7 @@ void JogadorHumano::realizarJogada(std::string opcaoSelecionada){
 
     else if (opcaoSelecionada == "desistir")
         this->desistirDaPartida();
+
+    setUltimaAcao(opcaoSelecionada);
 }
 

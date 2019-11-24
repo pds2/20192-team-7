@@ -22,6 +22,7 @@ namespace poker {
           Mesa* mesa;
           unsigned int numeroFichas;
           std::string nome;
+          std::string ultimaAcao;
 
       public:
           Jogador();
@@ -33,6 +34,8 @@ namespace poker {
           void setNumeroFichas(int numeroFichas);
           unsigned int getNumeroFichas();
           std::string getNome();
+          void setUltimaAcao(std::string ultimaAcao);
+          std::string getUltimaAcao();
 
           void passarVez();
           void apostar(int valorAposta);

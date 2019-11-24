@@ -1,5 +1,9 @@
 #include "classes/dealer.hpp"
+#include "classes/util.hpp"
+
+#include <map>
 #include <iterator>
+#include <iostream>
 
 using namespace poker;
 
@@ -47,23 +51,105 @@ void Dealer::inserirJogadores(){
 
 	unsigned int i; 
 	for (i = 0; i < numeroJogadores; i++)
-    	(this->jogadores).push_back(&bots[i]);
+    	(this->jogadores).push_back(bots[i]);
 	
-	this->jogadores.push_back(new JogadorHumano("Player", pote, mesa));
+	this->jogadores.push_back(JogadorHumano("Player", pote, mesa));
 }
 
 void Dealer::distribuirFichas(unsigned int numeroFichas){
-	std::vector<Jogador*>::iterator it;
+	std::vector<Jogador>::iterator it;
 
 	for (it = this->jogadores.begin() ; it != this->jogadores.end(); ++it){
-		(*it)->setNumeroFichas(numeroFichas);
+		(it)->setNumeroFichas(numeroFichas);
 	}
 }
 
-void Dealer::iniciarPartida(unsigned int numeroJogadores){
+void Dealer::mostrarMaoAtualJogador(Jogador jogador){
+	Util util;
+
+	std::map<std::string, int> mapMao = jogador.analisarMao();
+
+	if (mapMao.find("Carta") != mapMao.end()) {
+		Simbolo maiorCarta = (Simbolo)(mapMao.find("Carta")->second);
+		OrdemSequencia sequencia = (OrdemSequencia)(mapMao.find("Sequencia")->second);
+
+		std::string maiorCartaString = util.ObterStringSimbolo(maiorCarta);
+		std::string sequenciaString = util.ObterStringSequencia(sequencia);
+
+		std::cout << "Sua mão contém: " << sequenciaString << " com a carta mais alta sendo " << maiorCartaString << std::endl;
+	}
+}
+
+void Dealer::jogada(Jogador jogador){
+	jogador.jogar();
+}
+
+void Dealer::jogada(JogadorHumano jogador){
+	mostrarMaoAtualJogador(jogador);
+
+	jogador.jogar();
+}
+
+void Dealer::iniciarJogadas(){
+	std::vector<Jogador>::iterator it;
+
+	for (it = this->jogadores.begin() ; it != this->jogadores.end(); ++it){
+		jogada(*it);
+	}
+}
+
+void Dealer::iniciarEstadoJogo (PreFlop* estadoJogo){
+	setEstadoJogo((EstadoJogo)(*estadoJogo));
+
+	estadoJogo->distribuirCartasJogadores(this->jogadores);
+}
+
+void Dealer::iniciarEstadoJogo (Flop* estadoJogo){
+	setEstadoJogo((EstadoJogo)(*estadoJogo));
+
+	estadoJogo->distribuirCartas(this->mesa);
+}
+
+void Dealer::iniciarEstadoJogo (Turn* estadoJogo){
+	setEstadoJogo((EstadoJogo)(*estadoJogo));
+
+	estadoJogo->distribuirCartas(this->mesa);
+}
+
+void Dealer::iniciarEstadoJogo (River* estadoJogo){
+	setEstadoJogo((EstadoJogo)(*estadoJogo));
+
+	estadoJogo->distribuirCartas(this->mesa);
+}
+
+void Dealer::iniciarJogo(unsigned int numeroJogadores){
 	setNumeroJogadores(numeroJogadores);
-	distribuirFichas(FICHAS_POR_JOGADOR);
 	inserirJogadores();
+
+	distribuirFichas(FICHAS_POR_JOGADOR);
+
+	// enquanto não for lançada a exceção de final de jogo
+	iniciarPartida();
+
+	verificarResultadoJogo();
+}
+
+void Dealer::iniciarPartida(){
+	// enquanto não for lançada a exceção de final de partida e o baralho ainda puder distribuir o numero de cartas adequado
+	// realizar operações abaixo
+
+	PreFlop* preFlop = new PreFlop(this->baralho);
+	Flop* flop = new Flop(this->baralho);
+	Turn* turn = new Turn(this->baralho);
+	River* river = new River(this->baralho);
+	
+	iniciarEstadoJogo(preFlop);
+	iniciarEstadoJogo(flop);
+	iniciarEstadoJogo(turn);
+	iniciarEstadoJogo(river);
+
+//  Jogador* jogadorVencedor = verificarResultadoPartida();
+//  entregarPremio(jogadorVencedor)
 }
 
 void Dealer::entregarPremio(Jogador* jogadorVencedor){
@@ -72,4 +158,21 @@ void Dealer::entregarPremio(Jogador* jogadorVencedor){
 	this->pote->setValorTotal(0);
 	this->pote->setValorApostaAtual(0);
 	this->pote->setValorApostaAnterior(0);
+}
+
+void Dealer::verificarResultadoJogo(){
+	std::vector<Jogador> jogadores = this->jogadores;
+	std::vector<Jogador> vencedoresPotencias;
+	for(Jogador jogador : jogadores){
+		if(jogador.getNumeroFichas() > 0 ){
+			vencedoresPotencias.push_back(jogador);
+		}
+	}
+
+	if (vencedoresPotencias.size() == 1 && vencedoresPotencias.at(0).getNumeroFichas() > 0){
+		std::cout << "O vencedor foi o jogador : " << vencedoresPotencias.at(0).getNome() << " com " << vencedoresPotencias.at(0).getNumeroFichas() << "fichas";
+	} 
+	else {
+		throw (PokerError("Método chamado no momento errado, mais de um jogador vencedor ou número de fichas do vencedore igual a zero."));
+	}
 }

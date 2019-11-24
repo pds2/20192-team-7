@@ -1,16 +1,20 @@
+#include "classes/carta.hpp"
+#include "enums/ordemSequencia.hpp"
+#include "enums/simbolo.hpp"
 #include <vector>
-#include <classes/carta.hpp>
 
 #ifndef UTIL_H
 #define UTIL_H
 
-namespace poker{
+namespace poker {
+
+    class Util {
     
-class Util{
-  
-    public:
-        std::vector<Carta> OrdenaCartas(std::vector<Carta> cartas);
-};
+        public:
+            std::vector<Carta> OrdenaCartas(std::vector<Carta> cartas);
+            std::string ObterStringSimbolo(Simbolo simbolo);
+            std::string ObterStringSequencia(OrdemSequencia sequencia);
+    };
 
 }
 

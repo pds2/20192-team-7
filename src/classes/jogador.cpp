@@ -1,20 +1,16 @@
 #include "classes/jogador.hpp"
 using namespace poker;
 
-Jogador::Jogador(std::string nome, int numeroFichas, Pote* pote, Mesa* mesa){
-    this->mao = nullptr;
-    this->pote = pote;
-    this->mesa = mesa;
-    this->numeroFichas = numeroFichas;
-    this->nome = nome;
-}
-
 Jogador::Jogador(std::string nome, Pote* pote, Mesa* mesa){
     this->mao = nullptr;
     this->pote = pote;
     this->mesa = mesa;
-    this->numeroFichas = numeroFichas;
     this->nome = nome;
+}
+
+Jogador::Jogador(std::string nome, int numeroFichas, Pote* pote, Mesa* mesa){
+    Jogador(nome, pote, mesa);
+    this->numeroFichas = numeroFichas;
 }
 
 void Jogador::setMao(Mao *mao){
@@ -25,6 +21,11 @@ Mao* Jogador::getMao(){
     return this->mao;
 }
 
+std::string Jogador::getNome(){
+    return this->nome;
+}
+
+
 void Jogador::setNumeroFichas(int numeroFichas){
     this->numeroFichas = numeroFichas;
 }
@@ -33,6 +34,39 @@ unsigned int Jogador::getNumeroFichas(){
     return this->numeroFichas;
 }
 
+void Jogador::passarVez(){
+    int valorApostaAtual = this->pote->getValorApostaAtual();
+    int valorApostaAnterior = this->pote->getValorApostaAnterior();
+
+    if (valorApostaAtual == valorApostaAnterior)
+        return;
+
+    throw (PokerError("Não é permitido passar a vez se a aposta já foi aumentada!"));
+}
+
+void Jogador::apostar(int valorAposta){
+    int valorApostaAtual = this->pote->getValorApostaAtual();
+    int valorTotal = this->pote->getValorTotal();
+
+    if (this->pote->getValorApostaAnterior() == valorApostaAtual){
+        if (valorAposta <= 0 || valorAposta <= valorApostaAtual){
+            throw (PokerError("Valor de aposta inválido. Deve ser maior que " + valorApostaAtual));
+        } 
+        else {
+            if (this->getNumeroFichas() >= valorApostaAtual+valorAposta) {
+                this->numeroFichas -= valorApostaAtual;
+                this->pote->setValorTotal(valorTotal + valorApostaAtual);
+                this->pote->setValorApostaAnterior(valorApostaAtual);
+            } 
+            else {
+                throw (PokerError("Fichas insuficientes! Valor máximo: " + numeroFichas-valorApostaAtual));
+            }
+        }
+    } 
+    else {
+        throw (PokerError("Não é possível apostar agora. Apostas já foram feitas na rodada."));
+    }
+}
 
 void Jogador::pagarAposta(){
     int valorApostaAtual = this->pote->getValorApostaAtual();
@@ -44,8 +78,8 @@ void Jogador::pagarAposta(){
         this->pote->setValorApostaAnterior(valorApostaAtual);
     }
 
-    else{
-        throw(PokerError("Fichas insuficientes"));
+    else {
+        throw (PokerError("Fichas insuficientes"));
     }
 }
 
@@ -59,25 +93,13 @@ void Jogador::aumentarAposta(int valorNovaAposta){
             this->pote->setValorApostaAnterior(valorApostaAtual);
             this->pote->setValorApostaAtual(valorNovaAposta);
         }
-        else 
-            throw(PokerError("É necessário aumentar a aposta!"));
+        else {
+            throw (PokerError("É necessário aumentar a aposta!"));
+        }
     }
-    else{
-        throw(PokerError("Fichas insuficientes!"));
+    else {
+        throw (PokerError("Fichas insuficientes! Valor máximo: " + numeroFichas-valorApostaAtual));
     }
-}
-
-void Jogador::desistirDaPartida(){
-    throw(PokerError("Fim da partida!"));
-}
-
-void Jogador::passarVez(){
-    int valorApostaAtual = this->pote->getValorApostaAtual();
-    int valorApostaAnterior = this->pote->getValorApostaAnterior();
-
-    if (valorApostaAtual == valorApostaAnterior)
-        return;
-    throw(PokerError("Não é permitido passar a vez se a aposta já foi aumentada!"));
 }
 
 std::map<std::string, int> Jogador::analisarMao(){
@@ -104,7 +126,7 @@ std::map<std::string, int> Jogador::analisarMao(){
     firsTimeflag = true;
     counter = 1;
 
-    for (unsigned int i=0; i<cartas.size()-1; i++){
+    for (unsigned int i = 0; i < cartas.size()-1; i++){
         if (cartas[i].getNaipe() != cartas[i+1].getNaipe())
             flushFlag = false;
 
@@ -113,7 +135,7 @@ std::map<std::string, int> Jogador::analisarMao(){
     }
 
     for (unsigned int i = cartas.size()-5; i < cartas.size(); i++){
-        if( cartas[i].getSimbolo()!= royalFlushSequence[i-3] || !flushFlag)
+        if (cartas[i].getSimbolo()!= royalFlushSequence[i-3] || !flushFlag)
             royalFlushFlag = false;            
     }
 
@@ -245,4 +267,9 @@ std::map<std::string, int> Jogador::analisarMao(){
     }    
     
     return(resultadoDaAnalise); 
+}
+
+void Jogador::jogar(){
+	// verificar opções de ação do jogador
+	// escolher automaticamente
 }

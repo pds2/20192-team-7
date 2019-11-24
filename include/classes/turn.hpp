@@ -1,15 +1,15 @@
 #include "classes/estadojogo.hpp"
 
-#ifndef ESTADO_JOGO_FLOP_H
-#define ESTADO_JOGO_FLOP_H
+#ifndef ESTADO_JOGO_TURN_H
+#define ESTADO_JOGO_TURN_H
 
 namespace poker {
 	
-    class Flop : public EstadoJogo {
+    class Turn : public EstadoJogo {
 
         public:
-            Flop();
-            Flop(Baralho* baralho);
+            Turn();
+            Turn(Baralho* baralho);
 
             void distribuirCartas(Mesa* mesa) override;
             bool validarApostas(int valorAposta, Jogador* jogador) override;

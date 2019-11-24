@@ -39,6 +39,14 @@ unsigned int Jogador::getNumeroFichas(){
     return this->numeroFichas;
 }
 
+void Jogador::setUltimaAcao(std::string ultimaAcao){
+    this->ultimaAcao = ultimaAcao;
+}
+
+std::string Jogador::getUltimaAcao(){
+    return this->ultimaAcao;
+}
+
 void Jogador::passarVez(){
     unsigned int valorApostaAtual = this->pote->getValorApostaAtual();
     unsigned int valorApostaAnterior = this->pote->getValorApostaAnterior();
@@ -305,6 +313,21 @@ int geradorInteiroAleatorio(){
     return rand() % (numeroOpcoesMaxima-numeroOpcoesMinima) + numeroOpcoesMinima; 
 }
 
+void Jogador::realizarJogada(std::string opcaoSelecionada){
+    if (opcaoSelecionada == "check")
+        this->passarVez();
+
+    else if (opcaoSelecionada == "apostar")
+        this->apostar(gerarValorAposta(*this));
+
+    else if (opcaoSelecionada == "pagar")
+        this->pagarAposta();
+
+    else if (opcaoSelecionada == "aumentar")
+        this->aumentarAposta(gerarValorAumentarAposta(*this, this->pote));
+
+    setUltimaAcao(opcaoSelecionada);
+}
 
 int gerarValorAposta(Jogador jogador){
     int valorMinimo = 1;

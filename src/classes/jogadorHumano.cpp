@@ -58,3 +58,51 @@ void JogadorHumano::jogar(std::map<std::string, bool> opcoesJogador){
     realizarJogada(menu.find(opcaoEscolhida)->second);
 
 }
+
+void JogadorHumano::realizarJogada(std::string opcaoSelecionada){
+    unsigned int valorAposta;
+    bool apostou = false;
+
+    if (opcaoSelecionada == "check")
+        this->passarVez();
+
+    else if (opcaoSelecionada == "apostar"){
+        do {
+            try {
+                std::cout << "Valor da aposta: " ;
+                std::cin >> valorAposta;
+                
+                this->apostar(valorAposta);
+
+                apostou = true;
+            } catch (PokerError pokerErrorException){
+                std::cout << pokerErrorException.what() << std::endl;
+                apostou = false;
+            }
+        } while (!apostou);
+    }
+    else if (opcaoSelecionada == "pagar")
+        this->pagarAposta();
+
+    else if (opcaoSelecionada == "aumentar"){
+        do {
+            try {
+                std::cout << "Valor da nova aposta: " ;
+                std::cin >> valorAposta;
+                
+                this->aumentarAposta(valorAposta);
+
+                apostou = true;
+            } catch (PokerError pokerErrorException){
+                std::cout << pokerErrorException.what() << std::endl;
+                apostou = false;
+            }
+        } while (!apostou);
+    }
+
+    else if (opcaoSelecionada == "desistir")
+        this->desistirDaPartida();
+
+    setUltimaAcao(opcaoSelecionada);
+}
+

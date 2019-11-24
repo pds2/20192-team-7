@@ -1,6 +1,6 @@
 # 20192-team-7
 
-Projeto da disciplina deProgramação e Desenvolvimento de Software 2 do curso de Sistemas de Informação da UFMG.
+Projeto da disciplina de Programação e Desenvolvimento de Software 2 do curso de Sistemas de Informação da UFMG.
 
 ## Descrição
 

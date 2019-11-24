@@ -313,29 +313,6 @@ int geradorInteiroAleatorio(){
     return rand() % (numeroOpcoesMaxima-numeroOpcoesMinima) + numeroOpcoesMinima; 
 }
 
-void Jogador::realizarJogada(std::string opcaoSelecionada){
-    if (opcaoSelecionada == "check")
-        this->passarVez();
-
-    else if (opcaoSelecionada == "apostar")
-        this->apostar(gerarValorAposta(*this));
-
-    else if (opcaoSelecionada == "pagar")
-        this->pagarAposta();
-
-    else if (opcaoSelecionada == "aumentar")
-        this->aumentarAposta(gerarValorAumentarAposta(*this, this->pote));
-
-    setUltimaAcao(opcaoSelecionada);
-}
-
-int gerarValorAposta(Jogador jogador){
-    int valorMinimo = 1;
-    int valorMaximo = jogador.getNumeroFichas();
-
-    return rand() % (valorMaximo-valorMinimo) + valorMinimo; 
-}
-
 int gerarValorChanceAposta(){
     int valorMaximo = 100;
     int valorMinimo = 1;
@@ -348,6 +325,13 @@ float gerarPorcentagemAumentoAposta(){
     int valorMinimo = 10;
 
     return (rand() % (valorMaximo-valorMinimo) + valorMinimo)/10;
+}
+
+int gerarValorAposta(Jogador jogador){
+    int valorMinimo = 1;
+    int valorMaximo = jogador.getNumeroFichas();
+
+    return rand() % (valorMaximo-valorMinimo) + valorMinimo; 
 }
 
 int gerarValorAumentarAposta(Jogador jogador, Pote* pote){
@@ -371,6 +355,8 @@ void Jogador::realizarJogada(std::string opcaoSelecionada){
 
     else if (opcaoSelecionada == "aumentar")
         this->aumentarAposta(gerarValorAumentarAposta(*this, this->pote));
+
+    setUltimaAcao(opcaoSelecionada);
 }
 
 void Jogador::jogar(std::map<std::string, bool> opcoesJogador){

@@ -2,9 +2,6 @@
 #include <classes/turn.hpp>
 using namespace poker;
 
-TEST_CASE("Testando o construtor de turn"){
-    CHECK_NOTHROW_MESSAGE( Turn(), "Construtor de Turn OK!" );
-}
 
 TEST_CASE("Testando o método distribuirCartas de turn"){
     Turn turnTeste1;

@@ -2,9 +2,6 @@
 #include <classes/river.hpp>
 using namespace poker;
 
-TEST_CASE("Testando o construtor de river"){
-    CHECK_NOTHROW_MESSAGE( River(), "Construtor de River OK!" );
-}
 
 TEST_CASE("Testando o método distribuirCartas de river"){
     River riverTeste1;

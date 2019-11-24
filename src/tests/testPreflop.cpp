@@ -2,9 +2,6 @@
 #include <classes/preflop.hpp>
 using namespace poker;
 
-TEST_CASE("Testando o construtor de PreFlop"){
-    CHECK_NOTHROW_MESSAGE( PreFlop(), "Construtor de PreFlop OK!" );
-}
 
 TEST_CASE("Testando o método distribuirCartas de PreFlop"){
     PreFlop preflopTeste1;

@@ -2,9 +2,6 @@
 #include <classes/flop.hpp>
 using namespace poker;
 
-TEST_CASE("Testando o construtor de flop"){
-    CHECK_NOTHROW_MESSAGE( Flop(), "Construtor de Flop OK!" );
-}
 
 TEST_CASE("Testando o método distribuirCartas de flop"){
     Flop flopTeste1;

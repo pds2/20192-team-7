@@ -70,13 +70,6 @@ TEST_CASE("Testando aumentar aposta"){
     CHECK_THROWS_MESSAGE(jogadorTeste.aumentarAposta(15), "Impossível aumentar a aposta com um valor inferior que o antigo OK!");
 }
 
-TEST_CASE("Testando desistir da partida"){
-    Pote poteTeste(20, 20, 0);
-    Pote* pote = &poteTeste;
-    Mesa* mesa;
-    Jogador jogadorTeste("NOME", 2000, pote, mesa);
-    CHECK_THROWS_MESSAGE(jogadorTeste.desistirDaPartida(), "Desistir da partida OK!");
-}
 
 TEST_CASE("Testando passar vez"){
     Pote poteTeste(40, 20, 20);

@@ -8,11 +8,10 @@ namespace poker {
     class Flop : public EstadoJogo {
 
         public:
-            Flop();
             Flop(Baralho* baralho);
 
             void distribuirCartas(Mesa* mesa) override;
-            bool validarApostas(int valorAposta, Jogador* jogador) override;
+            bool validarApostas(unsigned int valorAposta, Jogador* jogador) override;
     };
 }
 

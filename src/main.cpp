@@ -11,4 +11,5 @@ int main() {
     } while (numeroJogadores > 7 || numeroJogadores < 1);
 
     dealer->iniciarJogo(numeroJogadores);
+    return 0;
 }

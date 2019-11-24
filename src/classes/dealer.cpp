@@ -1,6 +1,5 @@
 #include "classes/dealer.hpp"
 #include "classes/util.hpp"
-
 #include <map>
 #include <iterator>
 #include <iostream>
@@ -13,15 +12,16 @@ Dealer::Dealer() {
 	this->pote = new Pote();
 	this->mesa = new Mesa();
 	this->baralho = new Baralho();
+	this->momentoJogo = new EstadoJogo();
 }
 
-Dealer::Dealer(EstadoJogo momentoJogo, unsigned int numeroJogadores){
+Dealer::Dealer(EstadoJogo* momentoJogo, unsigned int numeroJogadores){
 	Dealer();
 	this->momentoJogo = momentoJogo;
 	this->numeroJogadores = numeroJogadores;
 }
 
-void Dealer::setEstadoJogo(EstadoJogo momentoJogo){
+void Dealer::setEstadoJogo(EstadoJogo* momentoJogo){
 	this->momentoJogo = momentoJogo;
 }
 
@@ -30,7 +30,7 @@ void Dealer::setNumeroJogadores(unsigned int numeroJogadores){
 }
 
 EstadoJogo Dealer::getMomentoJogo(){
-	return this->momentoJogo;
+	return *this->momentoJogo;
 }
 
 int Dealer::getNumeroJogadores(){
@@ -99,27 +99,66 @@ void Dealer::iniciarJogadas(){
 }
 
 void Dealer::iniciarEstadoJogo (PreFlop* estadoJogo){
-	setEstadoJogo((EstadoJogo)(*estadoJogo));
+	setEstadoJogo((EstadoJogo*)(estadoJogo));
 
 	estadoJogo->distribuirCartasJogadores(this->jogadores);
 }
 
 void Dealer::iniciarEstadoJogo (Flop* estadoJogo){
-	setEstadoJogo((EstadoJogo)(*estadoJogo));
+	setEstadoJogo((EstadoJogo*)(estadoJogo));
 
 	estadoJogo->distribuirCartas(this->mesa);
 }
 
 void Dealer::iniciarEstadoJogo (Turn* estadoJogo){
-	setEstadoJogo((EstadoJogo)(*estadoJogo));
+	setEstadoJogo((EstadoJogo*)(estadoJogo));
 
 	estadoJogo->distribuirCartas(this->mesa);
 }
 
 void Dealer::iniciarEstadoJogo (River* estadoJogo){
-	setEstadoJogo((EstadoJogo)(*estadoJogo));
+	setEstadoJogo((EstadoJogo*)(estadoJogo));
 
 	estadoJogo->distribuirCartas(this->mesa);
+}
+
+bool verificarMaiorMao(Jogador primeiroJogador, Jogador segundoJogador){
+	return primeiroJogador.analisarMao().at("Sequencia") > segundoJogador.analisarMao().at("Sequencia");
+}
+
+bool verificarMaoIgual(Jogador primeiroJogador, Jogador segundoJogador){
+	return primeiroJogador.analisarMao().at("Sequencia") == segundoJogador.analisarMao().at("Sequencia");
+}
+
+
+bool compararCartas(Carta primeiraCarta, Carta segundaCarta){
+	return (primeiraCarta.getSimbolo() > segundaCarta.getSimbolo());
+}
+
+bool verificarCartasIguais(Carta cartaUm, Carta cartaDois){
+	return cartaUm.getSimbolo() == cartaDois.getSimbolo();
+}
+
+Carta recuperarCarta(Jogador jogador, int posicao){
+	return jogador.getMao()->getCartas().at(posicao);
+}
+
+Carta converterCarta(int simbolo){
+	return Carta(static_cast<Simbolo>(simbolo),static_cast<Naipe>(simbolo));
+}
+
+Jogador* verificarJogadorMaiorCarta(Jogador* primeiroJogador, Jogador* segundoJogador){
+	if (verificarCartasIguais(converterCarta(primeiroJogador->analisarMao().at("Carta")), converterCarta(segundoJogador->analisarMao().at("Carta")))){
+		return primeiroJogador;
+	}
+	
+	if (compararCartas(converterCarta(primeiroJogador->analisarMao().at("Carta")), converterCarta(segundoJogador->analisarMao().at("Carta")))){
+		return primeiroJogador;
+	}
+	else {
+		return segundoJogador;
+	}
+
 }
 
 void Dealer::iniciarJogo(unsigned int numeroJogadores){
@@ -179,57 +218,19 @@ void Dealer::verificarResultadoJogo(){
 }
 
 Jogador* Dealer::verificarResultadoRodada(){
-	Jogador vencedor = Jogador();
+	Jogador* vencedor = nullptr;
 	
 	for (Jogador primeiroCandidatoVencer : this->jogadores){
 	
 		for (Jogador comparacaoVencedor : this->jogadores){
 			if (verificarMaiorMao(primeiroCandidatoVencer,comparacaoVencedor)){
-				vencedor = primeiroCandidatoVencer;
+				vencedor = &primeiroCandidatoVencer;
 			}
 			else if (verificarMaoIgual(primeiroCandidatoVencer,comparacaoVencedor)){
-				vencedor = verificarJogadorMaiorCarta(primeiroCandidatoVencer,comparacaoVencedor);
+				vencedor = verificarJogadorMaiorCarta(&primeiroCandidatoVencer, &comparacaoVencedor);
 			}
 		}
 	}
 
-	return &vencedor;
-}
-
-bool verificarMaiorMao(Jogador primeiroJogador, Jogador segundoJogador){
-	return primeiroJogador.analisarMao().at("Sequencia") > segundoJogador.analisarMao().at("Sequencia");
-}
-
-bool verificarMaoIgual(Jogador primeiroJogador, Jogador segundoJogador){
-	return primeiroJogador.analisarMao().at("Sequencia") = segundoJogador.analisarMao().at("Sequencia");
-}
-
-Jogador verificarJogadorMaiorCarta(Jogador primeiroJogador, Jogador segundoJogador){
-	if (verificarCartasIguais(converterCarta(primeiroJogador.analisarMao().at("Carta")), converterCarta(segundoJogador.analisarMao().at("Carta")))){
-		return primeiroJogador;
-	}
-	
-	if (compararCartas(converterCarta(primeiroJogador.analisarMao().at("Carta")), converterCarta(segundoJogador.analisarMao().at("Carta")))){
-		return primeiroJogador;
-	}
-	else {
-		return segundoJogador;
-	}
-
-}
-
-bool compararCartas(Carta primeiraCarta, Carta segundaCarta){
-	return (primeiraCarta.getSimbolo() > segundaCarta.getSimbolo());
-}
-
-bool verificarCartasIguais(Carta cartaUm, Carta cartaDois){
-	return cartaUm.getSimbolo() == cartaDois.getSimbolo();
-}
-
-Carta recuperarCarta(Jogador jogador, int posicao){
-	return jogador.getMao()->getCartas().at(posicao);
-}
-
-Carta converterCarta(int simbolo){
-	return Carta(static_cast<Simbolo>(simbolo),static_cast<Naipe>(simbolo));
+	return vencedor;
 }

@@ -40,8 +40,8 @@ unsigned int Jogador::getNumeroFichas(){
 }
 
 void Jogador::passarVez(){
-    int valorApostaAtual = this->pote->getValorApostaAtual();
-    int valorApostaAnterior = this->pote->getValorApostaAnterior();
+    unsigned int valorApostaAtual = this->pote->getValorApostaAtual();
+    unsigned int valorApostaAnterior = this->pote->getValorApostaAnterior();
 
     if (valorApostaAtual == valorApostaAnterior)
         return;
@@ -49,9 +49,9 @@ void Jogador::passarVez(){
     throw (PokerError("Não é permitido passar a vez se a aposta já foi aumentada!"));
 }
 
-void Jogador::apostar(int valorAposta){
-    int valorApostaAtual = this->pote->getValorApostaAtual();
-    int valorTotal = this->pote->getValorTotal();
+void Jogador::apostar(unsigned int valorAposta){
+    unsigned int valorApostaAtual = this->pote->getValorApostaAtual();
+    unsigned int valorTotal = this->pote->getValorTotal();
 
     if (this->pote->getValorApostaAnterior() == valorApostaAtual){
         if (valorAposta <= 0 || valorAposta <= valorApostaAtual){
@@ -74,8 +74,8 @@ void Jogador::apostar(int valorAposta){
 }
 
 void Jogador::pagarAposta(){
-    int valorApostaAtual = this->pote->getValorApostaAtual();
-    int valorTotal = this->pote->getValorTotal();
+    unsigned int valorApostaAtual = this->pote->getValorApostaAtual();
+    unsigned int valorTotal = this->pote->getValorTotal();
 
     if ((this->numeroFichas - valorApostaAtual) >= 0){
         this->numeroFichas -= valorApostaAtual;
@@ -87,9 +87,9 @@ void Jogador::pagarAposta(){
     }
 }
 
-void Jogador::aumentarAposta(int valorNovaAposta){
-    int valorTotal = this->pote->getValorTotal();
-    int valorApostaAtual = this->pote->getValorApostaAtual();
+void Jogador::aumentarAposta(unsigned int valorNovaAposta){
+    unsigned int valorTotal = this->pote->getValorTotal();
+    unsigned int valorApostaAtual = this->pote->getValorApostaAtual();
 
     if ((numeroFichas - valorNovaAposta >=0)){
         if (valorNovaAposta > this->pote->getValorApostaAnterior()){
@@ -273,15 +273,6 @@ std::map<std::string, int> Jogador::analisarMao(){
     return(resultadoDaAnalise); 
 }
 
-void Jogador::jogar(std::map<std::string, bool> opcoesJogador){
-    std::string opcaoSelecionada;
-
-    do {
-        opcaoSelecionada = converterOpcaoJogador(geradorInteiroAleatorio());
-    } while (opcoesJogador.at(opcaoSelecionada) == true);
-    
-    realizarJogada(opcaoSelecionada);
-}
 
 std::string converterOpcaoJogador(int numeroOpcao){
 
@@ -314,19 +305,6 @@ int geradorInteiroAleatorio(){
     return rand() % (numeroOpcoesMaxima-numeroOpcoesMinima) + numeroOpcoesMinima; 
 }
 
-void Jogador::realizarJogada(std::string opcaoSelecionada){
-    if (opcaoSelecionada == "check")
-        this->passarVez();
-
-    else if (opcaoSelecionada == "apostar")
-        this->apostar(gerarValorAposta(*this));
-
-    else if (opcaoSelecionada == "pagar")
-        this->pagarAposta();
-
-    else if (opcaoSelecionada == "aumentar")
-        this->aumentarAposta(gerarValorAumentarAposta(*this, this->pote));
-}
 
 int gerarValorAposta(Jogador jogador){
     int valorMinimo = 1;
@@ -356,4 +334,28 @@ int gerarValorAumentarAposta(Jogador jogador, Pote* pote){
     else {
         return jogador.getNumeroFichas();
     }
+}
+
+void Jogador::realizarJogada(std::string opcaoSelecionada){
+    if (opcaoSelecionada == "check")
+        this->passarVez();
+
+    else if (opcaoSelecionada == "apostar")
+        this->apostar(gerarValorAposta(*this));
+
+    else if (opcaoSelecionada == "pagar")
+        this->pagarAposta();
+
+    else if (opcaoSelecionada == "aumentar")
+        this->aumentarAposta(gerarValorAumentarAposta(*this, this->pote));
+}
+
+void Jogador::jogar(std::map<std::string, bool> opcoesJogador){
+    std::string opcaoSelecionada;
+
+    do {
+        opcaoSelecionada = converterOpcaoJogador(geradorInteiroAleatorio());
+    } while (opcoesJogador.at(opcaoSelecionada) == true);
+    
+    realizarJogada(opcaoSelecionada);
 }

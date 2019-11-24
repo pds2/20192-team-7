@@ -5,9 +5,6 @@
 
 using namespace poker;
 
-River::River() : EstadoJogo(){
-}
-
 River::River(Baralho* baralho) : EstadoJogo(baralho){
 }
 
@@ -16,6 +13,6 @@ void River::distribuirCartas(Mesa* mesa) {
     mesa->addCartas(cartasMesa);
 }
 
-bool River::validarApostas(int valorAposta, Jogador* jogador) {
+bool River::validarApostas(unsigned int valorAposta, Jogador* jogador) {
     return (jogador->getNumeroFichas() >= valorAposta);
 }

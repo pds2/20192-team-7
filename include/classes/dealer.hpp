@@ -14,7 +14,7 @@ namespace poker {
     class Dealer {
         private:
             unsigned int numeroJogadores;
-            EstadoJogo momentoJogo;
+            EstadoJogo *momentoJogo;
             std::vector<Jogador> jogadores;
             Pote* pote;
             Mesa* mesa;
@@ -34,9 +34,9 @@ namespace poker {
         public:
             Dealer();
 
-            Dealer(EstadoJogo momentoJogo, unsigned int numeroJogadores);
+            Dealer(EstadoJogo* momentoJogo, unsigned int numeroJogadores);
             
-            void setEstadoJogo(EstadoJogo momentoJogo);
+            void setEstadoJogo(EstadoJogo* momentoJogo);
             void setNumeroJogadores(unsigned int numeroJogadores);
             
             EstadoJogo getMomentoJogo();

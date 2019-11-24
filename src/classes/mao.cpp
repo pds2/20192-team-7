@@ -4,12 +4,12 @@
 using namespace poker;
 
 Mao::Mao(Carta primeira, Carta segunda) {
-	if(this->cartas.empty){
+	if(this->cartas.empty()){
 		this->cartas.push_back(primeira);
 		this->cartas.push_back(segunda);
 	}
 	else{
-		throw(PokerError("A mçao já possui cartas!"));
+		throw(PokerError("A mão já possui cartas!"));
 	}
 }
 

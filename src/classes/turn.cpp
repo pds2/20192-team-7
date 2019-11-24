@@ -5,9 +5,6 @@
 
 using namespace poker;
 
-Turn::Turn() : EstadoJogo(){
-}
-
 Turn::Turn(Baralho* baralho) : EstadoJogo(baralho){
 }
 
@@ -16,6 +13,6 @@ void Turn::distribuirCartas(Mesa* mesa) {
     mesa->addCartas(cartasMesa);
 }
 
-bool Turn::validarApostas(int valorAposta, Jogador* jogador) {
+bool Turn::validarApostas(unsigned int valorAposta, Jogador* jogador) {
     return (jogador->getNumeroFichas() >= valorAposta);
 }

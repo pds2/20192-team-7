@@ -27,7 +27,7 @@ std::vector<Carta> Util::OrdenaCartas(std::vector<Carta> cartas){
 }
 
 std::string Util::ObterStringSimbolo(Simbolo simbolo){
-	std::string simboloString;
+	std::string simboloString = "";
 	switch (simbolo)
 	{
 		case DOIS :
@@ -72,13 +72,14 @@ std::string Util::ObterStringSimbolo(Simbolo simbolo){
 		
 		default:
 			break;
+		
 	}
 
 	return simboloString;
 }
 
 std::string Util::ObterStringSequencia(OrdemSequencia sequencia){
-	std::string sequenciaString;
+	std::string sequenciaString = "";
 
 	switch (sequencia)
 	{
@@ -115,5 +116,7 @@ std::string Util::ObterStringSequencia(OrdemSequencia sequencia){
 		
 		default:
 			break;
+
 	}
+		return sequenciaString;
 }

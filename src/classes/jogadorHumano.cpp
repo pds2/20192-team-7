@@ -42,7 +42,7 @@ void JogadorHumano::jogar(std::map<std::string, bool> opcoesJogador){
     for (std::map<std::string, bool>::iterator it = opcoesJogador.begin(); it != opcoesJogador.end(); ++it){
         if (it->second){
             contadorOpcoes++;
-            opcoes += '\t' + (contadorOpcoes) + " - " + it->first + '\n';
+            opcoes += ('\t' + (contadorOpcoes) + " - " + it->first + '\n');
             
             menu.insert(std::make_pair(contadorOpcoes, it->first));
         }

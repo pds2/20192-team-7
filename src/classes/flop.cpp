@@ -5,9 +5,6 @@
 
 using namespace poker;
 
-Flop::Flop() : EstadoJogo(){
-}
-
 Flop::Flop(Baralho* baralho) : EstadoJogo(baralho){
 }
 
@@ -16,6 +13,6 @@ void Flop::distribuirCartas(Mesa* mesa) {
     mesa->addCartas(cartasMesa);
 }
 
-bool Flop::validarApostas(int valorAposta, Jogador* jogador) {
+bool Flop::validarApostas(unsigned int valorAposta, Jogador* jogador) {
     return (jogador->getNumeroFichas() >= valorAposta);
 }

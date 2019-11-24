@@ -12,9 +12,9 @@
 #ifndef JOGADOR_H
 #define JOGADOR_H 
 
-namespace poker{
+namespace poker {
 
-	class Jogador{
+	class Jogador {
 
       protected:
           Mao* mao;
@@ -24,8 +24,8 @@ namespace poker{
           std::string nome;
 
       public:
-          Jogador(std::string nome, int numeroFichas, Pote* pote, Mesa* mesa);
           Jogador(std::string nome, Pote* pote, Mesa* mesa);
+          Jogador(std::string nome, int numeroFichas, Pote* pote, Mesa* mesa);
 
           void setMao(Mao* mao);
           Mao* getMao();
@@ -33,11 +33,13 @@ namespace poker{
           unsigned int getNumeroFichas();
           std::string getNome();
 
-
+          void passarVez();
+          void apostar(int valorAposta);
           void pagarAposta();
           void aumentarAposta(int valorNovaAposta);
-          void desistirDaPartida();
-          void passarVez();
+
+          virtual void jogar();
+          
           std::map<std::string, int> analisarMao();
 	};
 

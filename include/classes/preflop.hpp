@@ -14,7 +14,6 @@ namespace poker {
             void distribuirCartas(Mesa* mesa) override;
             void distribuirCartasJogadores(std::vector<Jogador> jogadores);
             bool validarApostas(int valorAposta, Jogador* jogador) override;
-            std::map<std::string, bool> verificarOpcoesJogador(Jogador* jogador, Pote* pote) override;
     };
 }
 

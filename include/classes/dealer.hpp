@@ -1,6 +1,10 @@
 #include "classes/estadojogo.hpp"
 #include "classes/pote.hpp"
 #include "classes/mesa.hpp"
+#include "classes/preflop.hpp"
+#include "classes/flop.hpp"
+#include "classes/turn.hpp"
+#include "classes/river.hpp"
 
 #ifndef DEALER_H
 #define DEALER_H
@@ -15,6 +19,17 @@ namespace poker {
             Pote* pote;
             Mesa* mesa;
             Baralho* baralho;
+
+            void jogada(Jogador jogador);
+            void jogada(JogadorHumano jogador);
+            void iniciarJogadas();
+
+            void iniciarEstadoJogo (PreFlop* estadoJogo);
+            void iniciarEstadoJogo (Flop* estadoJogo);
+            void iniciarEstadoJogo (Turn* estadoJogo);
+            void iniciarEstadoJogo (River* estadoJogo);
+
+            void mostrarMaoAtualJogador(Jogador jogador);
             
         public:
             Dealer();
@@ -29,10 +44,10 @@ namespace poker {
 
             void inserirJogadores();
             void distribuirFichas(unsigned int numeroFichas);
-            void iniciarPartida(unsigned int numeroJogadores);
+            void iniciarJogo(unsigned int numeroJogadores);
+            void iniciarPartida();
             void entregarPremio(Jogador* jogadorVencedor);
-            void iniciarPreFlop();
-            void verificarResultadoPartida();
+            void verificarResultadoJogo();
     };
 }
 #endif

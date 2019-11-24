@@ -326,6 +326,9 @@ void Jogador::realizarJogada(std::string opcaoSelecionada){
 
     else if (opcaoSelecionada == "aumentar")
         this->aumentarAposta(gerarValorAumentarAposta(*this, this->pote));
+    else
+        throw(PokerError("Opção inválida!"));
+    
 }
 
 int gerarValorAposta(Jogador jogador){

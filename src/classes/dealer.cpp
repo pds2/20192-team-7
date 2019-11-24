@@ -64,6 +64,40 @@ void Dealer::distribuirFichas(unsigned int numeroFichas){
 	}
 }
 
+bool verificarTodosCheck(std::vector<Jogador> jogadores){
+	bool todosCheck = false;
+	for (Jogador jogador : jogadores){
+		if (jogador.getUltimaAcao() == "check"){
+			todosCheck = true;
+		} 
+		else {
+			todosCheck = false;
+		}
+	}
+
+	return todosCheck;
+}
+
+bool verificarTodosPagam(std::vector<Jogador> jogadores){
+	bool todosPagam = false;
+
+	for (Jogador jogador : jogadores){
+		if (jogador.getUltimaAcao() == "aumentar" || jogador.getUltimaAcao() == "apostar"){
+			for (Jogador j : jogadores){
+				if (jogador.getNome() != j.getNome()){
+					if (j.getUltimaAcao() == "pagar")
+						todosPagam = true;
+					else
+						todosPagam = false;									
+				}
+			}
+		}
+	}
+
+	return todosPagam;
+
+}
+
 void Dealer::iniciarJogadas(){
 	std::vector<Jogador>::iterator it;
 
@@ -76,39 +110,14 @@ void Dealer::iniciarJogadas(){
 					jogada(*it);
 				}
 
-				bool todosCheck = false;
-				bool todosPagam = false;
-
-				for (Jogador jogador : this->jogadores){
-					if (jogador.getUltimaAcao() == "check"){
-						todosCheck = true;
-					} 
-					else {
-						todosCheck = false;
-					}
-				}
-
-				if (todosCheck)
+				bool todosCheck = verificarTodosCheck(this->jogadores);
+				if (todosCheck){
 					podeSeguirProximaRodada = true;
+				}
 				else {
-					for (Jogador jogador : this->jogadores){
-						if (jogador.getUltimaAcao() == "aumentar" || jogador.getUltimaAcao() == "apostar"){
-							for (Jogador j : this->jogadores){
-								if (jogador.getNome() != j.getNome()){
-									if (j.getUltimaAcao() == "pagar")
-										todosPagam = true;
-									else
-										todosPagam = false;									
-								}
-							}
-
-							if (todosPagam){
-								podeSeguirProximaRodada = true;
-								break;
-							}
-						}
-					}
-
+					bool todosPagam = verificarTodosPagam(this->jogadores);
+					if (todosPagam)
+						podeSeguirProximaRodada = true;
 				}
 			}
 		} catch (FimRodada e){

@@ -123,7 +123,7 @@ void Dealer::iniciarJogadas(){
 		} catch (FimRodada e){
 			podeSeguirProximaRodada = true;
 			std::cout << e.what() << std::endl;
-			iniciarPartida();
+			iniciarRodada();
 		}
 
 	} while (!podeSeguirProximaRodada);
@@ -180,7 +180,7 @@ void Dealer::iniciarJogo(unsigned int numeroJogadores){
 
 	while(podeContinuarJogo){
 		try {
-			iniciarPartida();
+			iniciarRodada();
 		} catch (FimJogo e){
 			std::cout << e.what() << std::endl;
 		}
@@ -189,7 +189,7 @@ void Dealer::iniciarJogo(unsigned int numeroJogadores){
 	verificarResultadoJogo();
 }
 
-void Dealer::iniciarPartida(){
+void Dealer::iniciarRodada(){
 	// enquanto não for lançada a exceção de final de partida
 	// realizar operações abaixo
 

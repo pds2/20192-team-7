@@ -101,32 +101,23 @@ bool verificarTodosPagam(std::vector<Jogador> jogadores){
 void Dealer::iniciarJogadas(){
 	std::vector<Jogador>::iterator it;
 
-	bool podeSeguirProximaRodada = false;
+	bool podeSeguirProximaJogada = false;
 
 	do {
-		try {
-			while (!podeSeguirProximaRodada){
-				for (it = this->jogadores.begin(); it != this->jogadores.end(); ++it){
-					jogada(*it);
-				}
-
-				bool todosCheck = verificarTodosCheck(this->jogadores);
-				if (todosCheck){
-					podeSeguirProximaRodada = true;
-				}
-				else {
-					bool todosPagam = verificarTodosPagam(this->jogadores);
-					if (todosPagam)
-						podeSeguirProximaRodada = true;
-				}
-			}
-		} catch (FimRodada e){
-			podeSeguirProximaRodada = true;
-			std::cout << e.what() << std::endl;
-			iniciarRodada();
+		for (it = this->jogadores.begin(); it != this->jogadores.end(); ++it){
+			jogada(*it);
 		}
 
-	} while (!podeSeguirProximaRodada);
+		bool todosCheck = verificarTodosCheck(this->jogadores);
+		if (todosCheck){
+			podeSeguirProximaJogada = true;
+		}
+		else {
+			bool todosPagam = verificarTodosPagam(this->jogadores);
+			if (todosPagam)
+				podeSeguirProximaJogada = true;
+		}
+	} while (!podeSeguirProximaJogada);
 
 }
 
@@ -178,11 +169,12 @@ void Dealer::iniciarJogo(unsigned int numeroJogadores){
 
 	bool podeContinuarJogo = true;
 
-	while(podeContinuarJogo){
+	while (podeContinuarJogo){
 		try {
 			iniciarRodada();
 		} catch (FimJogo e){
 			std::cout << e.what() << std::endl;
+			podeContinuarJogo = false;
 		}
 	}
 
@@ -190,23 +182,31 @@ void Dealer::iniciarJogo(unsigned int numeroJogadores){
 }
 
 void Dealer::iniciarRodada(){
-	// enquanto não for lançada a exceção de final de partida
-	// realizar operações abaixo
 
-	this->baralho->embaralhar();
+	try {
+		this->baralho->embaralhar();
 
-	PreFlop* preFlop = new PreFlop(this->baralho);
-	Flop* flop = new Flop(this->baralho);
-	Turn* turn = new Turn(this->baralho);
-	River* river = new River(this->baralho);
-	
-	iniciarEstadoJogo(preFlop);
-	iniciarEstadoJogo(flop);
-	iniciarEstadoJogo(turn);
-	iniciarEstadoJogo(river);
+		PreFlop* preFlop = new PreFlop(this->baralho);
+		Flop* flop = new Flop(this->baralho);
+		Turn* turn = new Turn(this->baralho);
+		River* river = new River(this->baralho);
 
-	Jogador* jogadorVencedor = verificarResultadoRodada();
-	entregarPremio(jogadorVencedor);
+		iniciarEstadoJogo(preFlop);
+		iniciarEstadoJogo(flop);
+		iniciarEstadoJogo(turn);
+		iniciarEstadoJogo(river);
+
+		Jogador* jogadorVencedor = verificarResultadoRodada();
+		entregarPremio(jogadorVencedor);
+
+		for (Jogador jogador : this->jogadores){
+			if (jogador.getNumeroFichas() == 0)
+				throw FimJogo();
+		}
+
+	} catch (FimRodada e){
+		std::cout << e.what() << std::endl;
+	}
 }
 
 void Dealer::entregarPremio(Jogador* jogadorVencedor){

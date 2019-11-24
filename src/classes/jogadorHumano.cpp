@@ -22,11 +22,7 @@ Mesa* JogadorHumano::getMesa(){
     return this->mesa;
 }
 
-void JogadorHumano::finalizarJogo(std::vector<Jogador*>bots){
-    for (Jogador* valor : bots){
-        delete valor;
-    }
-
+void JogadorHumano::finalizarJogo(){
     throw (FimJogo());
 }
 

@@ -1,13 +1,15 @@
 #include "classes/dealer.hpp"
+#include "classes/preflop.hpp"
 #include <iterator>
 
 using namespace poker;
 
 #define FICHAS_POR_JOGADOR 2000
 
-Dealer::Dealer(){
+Dealer::Dealer() {
 	this->pote = new Pote();
 	this->mesa = new Mesa();
+	this->baralho = new Baralho();
 }
 
 Dealer::Dealer(EstadoJogo momentoJogo, unsigned int numeroJogadores){
@@ -46,16 +48,16 @@ void Dealer::inserirJogadores(){
 
 	unsigned int i; 
 	for (i = 0; i < numeroJogadores; i++)
-    	(this->jogadores).push_back(&bots[i]);
+    	(this->jogadores).push_back(bots[i]);
 	
-	this->jogadores.push_back(new JogadorHumano("Player", pote, mesa));
+	this->jogadores.push_back(JogadorHumano("Player", pote, mesa));
 }
 
 void Dealer::distribuirFichas(unsigned int numeroFichas){
-	std::vector<Jogador*>::iterator it;
+	std::vector<Jogador>::iterator it;
 
 	for (it = this->jogadores.begin() ; it != this->jogadores.end(); ++it){
-		(*it)->setNumeroFichas(numeroFichas);
+		(it)->setNumeroFichas(numeroFichas);
 	}
 }
 
@@ -71,4 +73,10 @@ void Dealer::entregarPremio(Jogador* jogadorVencedor){
 	this->pote->setValorTotal(0);
 	this->pote->setValorApostaAtual(0);
 	this->pote->setValorApostaAnterior(0);
+}
+
+void Dealer::iniciarPreFlop(){
+	PreFlop preFlop = PreFlop(this->baralho);
+	preFlop.distribuirCartasJogadores(this->jogadores);
+	this->momentoJogo = preFlop;
 }

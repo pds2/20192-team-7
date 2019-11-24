@@ -69,10 +69,47 @@ void Dealer::iniciarJogadas(){
 
 	bool podeSeguirProximaRodada = false;
 
-	do{
+	do {
 		try {
-			for (it = this->jogadores.begin(); it != this->jogadores.end(); ++it){
-				jogada(*it);
+			while (!podeSeguirProximaRodada){
+				for (it = this->jogadores.begin(); it != this->jogadores.end(); ++it){
+					jogada(*it);
+				}
+
+				bool todosCheck = false;
+				bool todosPagam = false;
+
+				for (Jogador jogador : this->jogadores){
+					if (jogador.getUltimaAcao() == "check"){
+						todosCheck = true;
+					} 
+					else {
+						todosCheck = false;
+					}
+				}
+
+				if (todosCheck)
+					podeSeguirProximaRodada = true;
+				else {
+					for (Jogador jogador : this->jogadores){
+						if (jogador.getUltimaAcao() == "aumentar" || jogador.getUltimaAcao() == "apostar"){
+							for (Jogador j : this->jogadores){
+								if (jogador.getNome() != j.getNome()){
+									if (j.getUltimaAcao() == "pagar")
+										todosPagam = true;
+									else
+										todosPagam = false;									
+								}
+							}
+
+							if (todosPagam){
+								podeSeguirProximaRodada = true;
+								break;
+							}
+						}
+					}
+
+				}
 			}
 		} catch (FimRodada e){
 			podeSeguirProximaRodada = true;

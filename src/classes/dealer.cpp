@@ -148,8 +148,8 @@ void Dealer::iniciarPartida(){
 	iniciarEstadoJogo(turn);
 	iniciarEstadoJogo(river);
 
-//  Jogador* jogadorVencedor = verificarResultadoPartida();
-//  entregarPremio(jogadorVencedor)
+	Jogador* jogadorVencedor = verificarResultadoRodada();
+	entregarPremio(jogadorVencedor);
 }
 
 void Dealer::entregarPremio(Jogador* jogadorVencedor){
@@ -177,18 +177,22 @@ void Dealer::verificarResultadoJogo(){
 	}
 }
 
-void Dealer::verificarResultadoRodada(){
+Jogador* Dealer::verificarResultadoRodada(){
 	Jogador vencedor = Jogador();
-	for(Jogador primeiroCandidatoVencer : this->jogadores){
-		for(Jogador comparacaoVencedor : this->jogadores){
-			if(verificarMaiorMao(primeiroCandidatoVencer,comparacaoVencedor)){
+	
+	for (Jogador primeiroCandidatoVencer : this->jogadores){
+	
+		for (Jogador comparacaoVencedor : this->jogadores){
+			if (verificarMaiorMao(primeiroCandidatoVencer,comparacaoVencedor)){
 				vencedor = primeiroCandidatoVencer;
-			}else if(verificarMaoIgual(primeiroCandidatoVencer,comparacaoVencedor)){
+			}
+			else if (verificarMaoIgual(primeiroCandidatoVencer,comparacaoVencedor)){
 				vencedor = verificarJogadorMaiorCarta(primeiroCandidatoVencer,comparacaoVencedor);
 			}
 		}
 	}
-	entregarPremio(&vencedor);
+
+	return &vencedor;
 }
 
 bool verificarMaiorMao(Jogador primeiroJogador, Jogador segundoJogador){
@@ -200,13 +204,14 @@ bool verificarMaoIgual(Jogador primeiroJogador, Jogador segundoJogador){
 }
 
 Jogador verificarJogadorMaiorCarta(Jogador primeiroJogador, Jogador segundoJogador){
-	if(verificarCartasIguais(converterCarta(primeiroJogador.analisarMao().at("Carta")),converterCarta(segundoJogador.analisarMao().at("Carta")))){
+	if (verificarCartasIguais(converterCarta(primeiroJogador.analisarMao().at("Carta")), converterCarta(segundoJogador.analisarMao().at("Carta")))){
 		return primeiroJogador;
 	}
 	
-	if(compararCartas(converterCarta(primeiroJogador.analisarMao().at("Carta")),converterCarta(segundoJogador.analisarMao().at("Carta")))){
+	if (compararCartas(converterCarta(primeiroJogador.analisarMao().at("Carta")), converterCarta(segundoJogador.analisarMao().at("Carta")))){
 		return primeiroJogador;
-	}else{
+	}
+	else {
 		return segundoJogador;
 	}
 
@@ -227,4 +232,3 @@ Carta recuperarCarta(Jogador jogador, int posicao){
 Carta converterCarta(int simbolo){
 	return Carta(static_cast<Simbolo>(simbolo),static_cast<Naipe>(simbolo));
 }
-

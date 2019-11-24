@@ -48,7 +48,8 @@ namespace poker {
             void iniciarPartida();
             void entregarPremio(Jogador* jogadorVencedor);
             void verificarResultadoJogo();
-            void verificarResultadoRodada();
+            Jogador* verificarResultadoRodada();
+            
     };
 }
 #endif

@@ -18,6 +18,7 @@ namespace poker {
             void desistirDaPartida();
             void finalizarJogo();
 
+            void realizarJogada(std::string opcaoSelecionada);
             void jogar(std::map<std::string, bool> opcoesJogador);
     };
 

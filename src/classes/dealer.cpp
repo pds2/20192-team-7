@@ -93,7 +93,7 @@ void Dealer::jogada(JogadorHumano jogador){
 void Dealer::iniciarJogadas(){
 	std::vector<Jogador>::iterator it;
 
-	for (it = this->jogadores.begin() ; it != this->jogadores.end(); ++it){
+	for (it = this->jogadores.begin(); it != this->jogadores.end(); ++it){
 		jogada(*it);
 	}
 }

@@ -28,6 +28,21 @@ TEST_CASE("Testando getMao"){
     CHECK_EQ(jogadorTeste.getMao(), mao);
 }
 
+TEST_CASE("Testando apostar"){
+    Pote poteTeste1(20,20,0);
+    Pote poteTeste2(40, 20, 20);
+    Pote* pote1 = &poteTeste1;
+    Pote* pote2 = &poteTeste2;
+    Mesa* mesa;
+    Jogador jogadorTeste1("NOME", 2000, pote1, mesa);
+    Jogador jogadorTeste2("NOME", 2000, pote2, mesa);
+    CHECK_THROWS_MESSAGE(jogadorTeste1.apostar(200), "Impossível apostar com apostas já feitas na rodada OK!");
+    CHECK_THROWS_MESSAGE(jogadorTeste2.apostar(0), "Impossível apostar valores <= 0 OK!");
+    CHECK_THROWS_MESSAGE(jogadorTeste2.apostar(19), "Impossível apostar menos que o valor atual OK!");
+    CHECK_THROWS_MESSAGE(jogadorTeste2.apostar(5000), "Impossível apostar mais que o valor de fichas disponíveis OK!");
+    CHECK_NOTHROW_MESSAGE(jogadorTeste2.apostar(50), "Aposta válida OK!");
+}
+
 TEST_CASE("Testando pagar aposta"){
     Pote poteTeste(20, 20, 0);
     Pote* pote = &poteTeste;

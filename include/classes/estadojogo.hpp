@@ -20,7 +20,7 @@ namespace poker {
             EstadoJogo(Baralho* baralho);
             
             virtual void distribuirCartas(Mesa* mesa);
-            virtual bool validarApostas(int valorAposta, Jogador* jogador);
+            virtual bool validarApostas(unsigned int valorAposta, Jogador* jogador);
             std::map<std::string, bool> verificarOpcoesJogador(Jogador* jogador, Pote* pote);
     };
 }

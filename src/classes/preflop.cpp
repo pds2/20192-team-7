@@ -5,9 +5,6 @@
 
 using namespace poker;
 
-PreFlop::PreFlop() : EstadoJogo(){
-}
-
 PreFlop::PreFlop(Baralho* baralho) : EstadoJogo(baralho){
 }
 
@@ -23,6 +20,6 @@ void PreFlop::distribuirCartasJogadores(std::vector<Jogador> jogadores) {
     }
 }
 
-bool PreFlop::validarApostas(int valorAposta, Jogador* jogador) {
+bool PreFlop::validarApostas(unsigned int valorAposta, Jogador* jogador) {
     return (jogador->getNumeroFichas() >= valorAposta);
 }

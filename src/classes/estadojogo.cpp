@@ -4,8 +4,16 @@
 
 using namespace poker;
 
+EstadoJogo::EstadoJogo(){}
+
 EstadoJogo::EstadoJogo(Baralho* baralho){
     this->baralho = baralho;
+}
+
+void EstadoJogo::distribuirCartas(Mesa* mesa){}
+
+bool EstadoJogo::validarApostas(unsigned int valorAposta, Jogador* jogador){
+    return(jogador->getNumeroFichas()>=valorAposta);
 }
 
 bool verificarCheck(Jogador* jogador, Pote* pote){

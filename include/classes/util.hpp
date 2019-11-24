@@ -2,6 +2,7 @@
 #include "enums/ordemSequencia.hpp"
 #include "enums/simbolo.hpp"
 #include <vector>
+#include <string>
 
 #ifndef UTIL_H
 #define UTIL_H

@@ -38,9 +38,9 @@ namespace poker {
           std::string getUltimaAcao();
 
           void passarVez();
-          void apostar(int valorAposta);
+          void apostar(unsigned int valorAposta);
           void pagarAposta();
-          void aumentarAposta(int valorNovaAposta);
+          void aumentarAposta(unsigned int valorNovaAposta);
 
           void realizarJogada(std::string opcaoSelecionada);
 

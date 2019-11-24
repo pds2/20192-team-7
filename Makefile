@@ -11,7 +11,7 @@ TSTDIR := tests
 OBJDIR := build
 BINDIR := bin
 
-MAIN := src/main.cpp
+MAIN := program/main.cpp
 #TESTER := program/tester.cpp
 
 SRCEXT := cpp

@@ -1,6 +1,8 @@
 #include "classes/jogador.hpp"
 using namespace poker;
 
+#define CHANCE_APOSTA_BOT 95
+
 Jogador::Jogador(){}
 
 Jogador::Jogador(std::string nome, Pote* pote, Mesa* mesa){
@@ -271,17 +273,17 @@ std::map<std::string, int> Jogador::analisarMao(){
     return(resultadoDaAnalise); 
 }
 
-void Jogador::jogar(map<std::string, bool> opcoesJogador, Pote* pote){
+void Jogador::jogar(std::map<std::string, bool> opcoesJogador, Pote* pote){
     std::string opcaoSelecionada;
 
     do {
         opcaoSelecionada = converterOpcaoJogador(geradorInteiroAleatorio());
-    } while (opcoesJogador.at(opcaoSelecionada) == true));
+    } while (opcoesJogador.at(opcaoSelecionada) == true);
     
-    realizarJogada(opcaoSelecionada, Jogador(this->mao, this->pote, this->mesa, this->nome), pote);
+    realizarJogada(opcaoSelecionada, this, pote);
 }
 
-std:string converterOpcaoJogador(int numeroOpcao){
+std::string converterOpcaoJogador(int numeroOpcao){
 
     switch (numeroOpcao){
         case 1:
@@ -307,55 +309,51 @@ std:string converterOpcaoJogador(int numeroOpcao){
 
 int geradorInteiroAleatorio(){
     int numeroOpcoesMaxima = 5;
-    int numeroOpcoesMinima = 1;]
+    int numeroOpcoesMinima = 1;
 
     return rand() % (numeroOpcoesMaxima-numeroOpcoesMinima) + numeroOpcoesMinima; 
 }
 
-void realizarJogada(std::string opcaoSelecionada, Jogador jogador,Pote* pote){
-    switch (opcaoSelecionada){
-        case "check":
-            jogador.passaVez();
-            break;
-        case "apostar":
-            jogador.apostar(gerarValorAposta());
-            break;
-        case "desistir":
-            break;
-        case "pagar":
-            jogador.pagarAposta();
-            break;
-        case "aumentar":
-            jogador.aumentarAposta(gerarValorAumentarAposta(jogador,pote));
-            break;
-        default: 
-            jogador.passaVez();
-            break;
-    }
+void realizarJogada(std::string opcaoSelecionada, Jogador* jogador, Pote* pote){
+    if (opcaoSelecionada == "check")
+        jogador->passarVez();
+
+    else if (opcaoSelecionada == "apostar")
+        jogador->apostar(gerarValorAposta(*jogador));
+
+    else if (opcaoSelecionada == "pagar")
+        jogador->pagarAposta();
+
+    else if (opcaoSelecionada == "aumentar")
+        jogador->aumentarAposta(gerarValorAumentarAposta(*jogador, pote));
 }
 
 int gerarValorAposta(Jogador jogador){
     int valorMinimo = 1;
     int valorMaximo = jogador.getNumeroFichas();
+
     return rand() % (valorMaximo-valorMinimo) + valorMinimo; 
 }
 
 int gerarValorChanceAposta(){
     int valorMaximo = 100;
     int valorMinimo = 1;
+
     return rand() % (valorMaximo-valorMinimo) + valorMinimo;
 }
 
 float gerarPorcentagemAumentoAposta(){
     int valorMaximo = 80;
     int valorMinimo = 10;
+
     return (rand() % (valorMaximo-valorMinimo) + valorMinimo)/10;
 }
 
 int gerarValorAumentarAposta(Jogador jogador, Pote* pote){
-    if(gerarValorChanceAposta <= 95){
+    if (gerarValorChanceAposta() <= CHANCE_APOSTA_BOT){
         return (float)pote->getValorApostaAnterior() * gerarPorcentagemAumentoAposta();
-    }else{
+    }
+    else {
         return jogador.getNumeroFichas();
     }
 }

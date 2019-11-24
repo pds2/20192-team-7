@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "enums/naipe.hpp"
 #include "enums/simbolo.hpp"
+#include "classes/pokerExceptions.hpp"
 
 using namespace poker;
 
@@ -28,6 +29,10 @@ std::vector<Carta> Baralho::distribuirCartas (unsigned int numeroCartas){
 			cartas.resize(cartas.size() - 1);
 		}
 	}
+	else{
+		throw(PokerError("Cartas insuficientes no baralho!"));
+	}
+	
 
 	return cartasDistribuidas;
 }

@@ -1,14 +1,13 @@
-#include <map>
-#include <vector>
-#include <string>
-
 #include "classes/pokerExceptions.hpp"
 #include "classes/mao.hpp"
 #include "classes/pote.hpp"
 #include "classes/mesa.hpp"
 #include "enums/ordemSequencia.hpp"
 #include "classes/util.hpp"
-#include "classes/estadojogo.hpp"
+
+#include <map>
+#include <vector>
+#include <string>
 
 #ifndef JOGADOR_H
 #define JOGADOR_H 
@@ -39,7 +38,7 @@ namespace poker {
           void pagarAposta();
           void aumentarAposta(int valorNovaAposta);
 
-          void jogar();
+          void jogar(std::map<std::string, bool> opcoesJogador, Pote* pote);
           
           std::map<std::string, int> analisarMao();
 	};

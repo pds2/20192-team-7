@@ -30,7 +30,7 @@ void JogadorHumano::desistirDaPartida(){
     throw (FimRodada());
 }
 
-void JogadorHumano::jogar(){
+void JogadorHumano::jogar(map<std::string, bool> opcoesJogador, Pote* pote){
     // verificar opções de ação
 	// exibir na tela as opções de ação pro jogador
 

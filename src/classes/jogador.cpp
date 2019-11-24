@@ -269,19 +269,19 @@ std::map<std::string, int> Jogador::analisarMao(){
     return(resultadoDaAnalise); 
 }
 
-void Jogador::jogar(EstadoJogo momentoJogo,Pote* pote){
-	std::map<std::string, bool> opcoesJogador= momentoJogo.verificarOpcoesJogador(Jogador(this->mao,this->pote,this->mesa,this->nome),pote);
+void Jogador::jogar(map<std::string, bool> opcoesJogador, Pote* pote){
     std::string opcaoSelecionada;
-    do{
-        opcaoSelecionada = converterOpcaoJogador(geradorInteiroAleatorio());
-    }while(opcoesJogador.at(opcaoSelecionada) == true));
-    realizarJogada(opcaoSelecionada,Jogador(this->mao,this->pote,this->mesa,this->nome),pote);
 
+    do {
+        opcaoSelecionada = converterOpcaoJogador(geradorInteiroAleatorio());
+    } while (opcoesJogador.at(opcaoSelecionada) == true));
+    
+    realizarJogada(opcaoSelecionada, Jogador(this->mao, this->pote, this->mesa, this->nome), pote);
 }
 
 std:string converterOpcaoJogador(int numeroOpcao){
 
-    switch(numeroOpcao){
+    switch (numeroOpcao){
         case 1:
             return "check";
             break;
@@ -305,12 +305,13 @@ std:string converterOpcaoJogador(int numeroOpcao){
 
 int geradorInteiroAleatorio(){
     int numeroOpcoesMaxima = 5;
-    int numeroOpcoesMinima = 1;
+    int numeroOpcoesMinima = 1;]
+
     return rand() % (numeroOpcoesMaxima-numeroOpcoesMinima) + numeroOpcoesMinima; 
 }
 
 void realizarJogada(std::string opcaoSelecionada, Jogador jogador,Pote* pote){
-    switch(opcaoSelecionada){
+    switch (opcaoSelecionada){
         case "check":
             jogador.passaVez();
             break;

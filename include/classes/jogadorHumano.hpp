@@ -18,7 +18,7 @@ namespace poker {
             void desistirDaPartida();
             void finalizarJogo();
 
-            void jogar() override;
+            void jogar(map<std::string, bool> opcoesJogador, Pote* pote) override;
     };
 
 }

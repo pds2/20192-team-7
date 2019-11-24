@@ -163,8 +163,9 @@ void Dealer::entregarPremio(Jogador* jogadorVencedor){
 void Dealer::verificarResultadoJogo(){
 	std::vector<Jogador> jogadores = this->jogadores;
 	std::vector<Jogador> vencedoresPotencias;
-	for(Jogador jogador : jogadores){
-		if(jogador.getNumeroFichas() > 0 ){
+	
+	for (Jogador jogador : this->jogadores){
+		if (jogador.getNumeroFichas() > 0 ){
 			vencedoresPotencias.push_back(jogador);
 		}
 	}

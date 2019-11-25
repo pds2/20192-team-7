@@ -13,10 +13,9 @@ Mesa::Mesa(Pote pote){
 
 void Mesa::addCartas(std::vector<Carta*> cartasMesa){
     if (cartasMesa.size() <= 5)
-        this->cartasMesa = cartasMesa;
+        this->cartasMesa.insert(this->cartasMesa.end(), cartasMesa.begin(), cartasMesa.end());
     else
         throw(PokerError("Mesa cheia!"));
-    
 }
 
 std::vector<Carta*> Mesa::getCartasMesa(){

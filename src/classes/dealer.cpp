@@ -170,7 +170,7 @@ void Dealer::iniciarEstadoJogo (PreFlop* estadoJogo){
 void Dealer::iniciarEstadoJogo (EstadoJogo* estadoJogo){
 	setEstadoJogo((EstadoJogo*)(estadoJogo));
 	estadoJogo->distribuirCartas(this->mesa);
-
+	
 	this->iniciarJogadas();
 }
 

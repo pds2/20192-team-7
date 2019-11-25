@@ -64,6 +64,8 @@ void Dealer::distribuirFichas(unsigned int numeroFichas){
 	for (it = this->jogadores.begin() ; it != this->jogadores.end(); ++it){
 		(*it)->setNumeroFichas(numeroFichas);
 	}
+
+	this->jogadorHumano->setNumeroFichas(numeroFichas);
 }
 
 bool verificarTodosCheck(std::vector<Jogador*> jogadores){

@@ -1,5 +1,5 @@
 #include "classes/jogador.hpp"
-#include<iostream>
+#include <iostream>
 using namespace poker;
 
 #define CHANCE_APOSTA_BOT 95
@@ -68,6 +68,7 @@ void Jogador::apostar(unsigned int valorAposta){
         } 
         else {
             if (this->getNumeroFichas() >= valorApostaAtual+valorAposta) {
+
                 this->numeroFichas -= valorApostaAtual;
                 this->pote->setValorTotal(valorTotal + valorApostaAtual);
                 this->pote->setValorApostaAnterior(valorApostaAtual);

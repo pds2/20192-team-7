@@ -115,8 +115,10 @@ bool verificarTodosPagam(std::vector<Jogador*> jogadores){
 void Dealer::iniciarJogadas(){
 	std::vector<Jogador*>::iterator it;
 	bool podeSeguirProximaJogada = false;
-	jogada(this->jogadorHumano);
+
 	do {
+	
+		jogada(this->jogadorHumano);
 	
 		for (it = this->jogadores.begin(); it != this->jogadores.end(); ++it){
 			jogada(*it);

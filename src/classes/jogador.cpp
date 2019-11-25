@@ -138,6 +138,7 @@ std::map<std::string, int> Jogador::analisarMao(){
     firsTimeflag = true;
     counter = 1;
 
+
     for (unsigned int i = 0; i < cartas.size()-1; i++){
         if (cartas[i]->getNaipe() != cartas[i+1]->getNaipe())
             flushFlag = false;
@@ -150,12 +151,14 @@ std::map<std::string, int> Jogador::analisarMao(){
         flushFlag = false;
     }
 
-    for (unsigned int i = cartas.size()-5; i < cartas.size(); i++){
-        std::cout<<cartas.size()-5<<std::endl;//
-        if ((cartas[i]->getSimbolo()!= royalFlushSequence[i-3]) || !flushFlag)
-            royalFlushFlag = false;            
+    if (cartas.size()>=5){
+        for (unsigned int i = cartas.size()-5; i < cartas.size(); i++){
+            if ((cartas[i]->getSimbolo()!= royalFlushSequence[i-3]) || !flushFlag)
+                royalFlushFlag = false;            
+        }
     }
-    if (cartas.size()<5) royalFlushFlag = false;
+    else royalFlushFlag = false;
+
 
     for (unsigned int i=0; i < cartas.size() - 1; i++){
         if (cartas[i]->getSimbolo() == cartas[i+1]->getSimbolo() && counter!=4)
@@ -233,6 +236,7 @@ std::map<std::string, int> Jogador::analisarMao(){
         secondPairFlag = false;
     }
 
+    
 
     if (royalFlushFlag){
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back()->getSimbolo()));
@@ -283,6 +287,7 @@ std::map<std::string, int> Jogador::analisarMao(){
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back()->getSimbolo()));
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", HighCard));
     }    
+    
     
     return(resultadoDaAnalise); 
 }

@@ -6,8 +6,8 @@ using namespace poker;
 TEST_CASE("Testando o construtor de Jogador Humano"){
     Pote* pote;
     Mesa* mesa;
-    CHECK_NOTHROW_MESSAGE(JogadorHumano("NOME", 2000, pote, mesa), "1º Construtor de Jogador Humano OK!"); 
-    CHECK_NOTHROW_MESSAGE(JogadorHumano("NOME", pote, mesa), "2º Construtor de Jogador Humano OK!"); 
+    CHECK_NOTHROW_MESSAGE(new JogadorHumano("NOME", 2000, pote, mesa), "1º Construtor de Jogador Humano OK!"); 
+    CHECK_NOTHROW_MESSAGE(new JogadorHumano("NOME", pote, mesa), "2º Construtor de Jogador Humano OK!"); 
 }
 
 

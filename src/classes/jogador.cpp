@@ -138,7 +138,6 @@ std::map<std::string, int> Jogador::analisarMao(){
     firsTimeflag = true;
     counter = 1;
 
-
     for (unsigned int i = 0; i < cartas.size()-1; i++){
         if (cartas[i]->getNaipe() != cartas[i+1]->getNaipe())
             flushFlag = false;
@@ -150,15 +149,14 @@ std::map<std::string, int> Jogador::analisarMao(){
         straightFlag = false;
         flushFlag = false;
     }
-
-    if (cartas.size()>=5){
+    
+    if (cartas.size()>5){
         for (unsigned int i = cartas.size()-5; i < cartas.size(); i++){
             if ((cartas[i]->getSimbolo()!= royalFlushSequence[i-3]) || !flushFlag)
                 royalFlushFlag = false;            
         }
     }
     else royalFlushFlag = false;
-
 
     for (unsigned int i=0; i < cartas.size() - 1; i++){
         if (cartas[i]->getSimbolo() == cartas[i+1]->getSimbolo() && counter!=4)

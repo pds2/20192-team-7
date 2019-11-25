@@ -2,6 +2,11 @@
 #include <classes/preflop.hpp>
 using namespace poker;
 
+TEST_CASE("Testando o construtor de Preflop"){
+    Baralho baralho;
+    Baralho* baralhoPointer = &baralho;
+    CHECK_NOTHROW_MESSAGE(new PreFlop(baralhoPointer), "Construtor de Preflop ok!");
+}
 
 TEST_CASE("Testando o método distribuirCartas de PreFlop"){
     Baralho baralho;

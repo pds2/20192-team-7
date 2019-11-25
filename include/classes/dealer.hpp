@@ -15,19 +15,20 @@ namespace poker {
         private:
             unsigned int numeroJogadores;
             EstadoJogo *momentoJogo;
-            std::vector<Jogador> jogadores;
+            std::vector<Jogador*> jogadores;
+            JogadorHumano* jogadorHumano;
             Pote* pote;
             Mesa* mesa;
             Baralho* baralho;
 
-            void jogada(Jogador jogador);
-            void jogada(JogadorHumano jogador);
+            void jogada(Jogador* jogador);
+            void jogada(JogadorHumano* jogador);
             void iniciarJogadas();
 
             void iniciarEstadoJogo (PreFlop* estadoJogo);
             void iniciarEstadoJogo (EstadoJogo* estadoJogo);
 
-            void mostrarMaoAtualJogador(Jogador jogador);
+            void mostrarMaoAtualJogador(Jogador* jogador);
             
         public:
             Dealer();

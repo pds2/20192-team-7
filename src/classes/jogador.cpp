@@ -1,4 +1,5 @@
 #include "classes/jogador.hpp"
+#include<iostream>
 using namespace poker;
 
 #define CHANCE_APOSTA_BOT 95
@@ -115,7 +116,6 @@ void Jogador::aumentarAposta(unsigned int valorNovaAposta){
 }
 
 std::map<std::string, int> Jogador::analisarMao(){
-
     std::map<std::string, int> resultadoDaAnalise;
     short int counter;
     unsigned short int position = 0;
@@ -123,8 +123,8 @@ std::map<std::string, int> Jogador::analisarMao(){
     int royalFlushSequence[] = {DEZ, J, Q, K, A};
     int maiorCarta;
     Util util;
-    std::vector<Carta> cartas = this->mesa->getCartasMesa();
-    std::vector<Carta> aux = this->mao->getCartas();
+    std::vector<Carta*> cartas = this->mesa->getCartasMesa();
+    std::vector<Carta*> aux = this->mao->getCartas();
     cartas.insert(std::end(cartas), std::begin(aux), std::end(aux));
     cartas = util.OrdenaCartas(cartas);
     
@@ -139,26 +139,25 @@ std::map<std::string, int> Jogador::analisarMao(){
     counter = 1;
 
     for (unsigned int i = 0; i < cartas.size()-1; i++){
-        if (cartas[i].getNaipe() != cartas[i+1].getNaipe())
+        if (cartas[i]->getNaipe() != cartas[i+1]->getNaipe())
             flushFlag = false;
 
-        if (cartas[i].getSimbolo() != (cartas[i+1].getSimbolo()-1))
+        if (cartas[i]->getSimbolo() != (cartas[i+1]->getSimbolo()-1))
             straightFlag = false;
     }
-
     for (unsigned int i = cartas.size()-5; i < cartas.size(); i++){
-        if (cartas[i].getSimbolo()!= royalFlushSequence[i-3] || !flushFlag)
+        if (cartas[i]->getSimbolo()!= royalFlushSequence[i-3] || !flushFlag)
             royalFlushFlag = false;            
     }
 
     for (unsigned int i=0; i < cartas.size() - 1; i++){
-        if (cartas[i].getSimbolo() == cartas[i+1].getSimbolo() && counter!=4)
+        if (cartas[i]->getSimbolo() == cartas[i+1]->getSimbolo() && counter!=4)
             counter++;
         else if (counter!=4) counter = 1;
         
         if (counter == 4 && firsTimeflag){
             firsTimeflag = false;
-            maiorCarta = cartas[i].getSimbolo();
+            maiorCarta = cartas[i]->getSimbolo();
         }
 
     }
@@ -171,7 +170,7 @@ std::map<std::string, int> Jogador::analisarMao(){
     firsTimeflag = true;
 
     for (unsigned int i=0; i < cartas.size() - 1; i++){
-        if (cartas[i].getSimbolo() == cartas[i+1].getSimbolo() && !fourOfAKindFlag && counter!=3)
+        if (cartas[i]->getSimbolo() == cartas[i+1]->getSimbolo() && !fourOfAKindFlag && counter!=3)
             counter++;
         else if (counter!=3) counter = 1;
 
@@ -180,7 +179,7 @@ std::map<std::string, int> Jogador::analisarMao(){
 
         if (counter == 3 && firsTimeflag && !fourOfAKindFlag){
             firsTimeflag = false;
-            maiorCarta = cartas[i].getSimbolo();
+            maiorCarta = cartas[i]->getSimbolo();
         }
     }
 
@@ -192,14 +191,14 @@ std::map<std::string, int> Jogador::analisarMao(){
     firsTimeflag = true;
 
     for (unsigned int i=0; i < cartas.size() - 1; i++){
-        if (cartas[i].getSimbolo() == cartas[i+1].getSimbolo() && !fourOfAKindFlag && !threeOfAKindFlag && counter!=2)
+        if (cartas[i]->getSimbolo() == cartas[i+1]->getSimbolo() && !fourOfAKindFlag && !threeOfAKindFlag && counter!=2)
             counter++;
         else if (counter!=2) counter = 1;
 
         if (counter == 2 && !threeOfAKindFlag && firsTimeflag){
             position = i;
             firsTimeflag = false;
-            maiorCarta = cartas[i].getSimbolo();
+            maiorCarta = cartas[i]->getSimbolo();
         }
     }
 
@@ -212,13 +211,13 @@ std::map<std::string, int> Jogador::analisarMao(){
     firsTimeflag = true;
     
     for (unsigned int i = 0; i<cartas.size()-1; i++){
-        if (cartas[i].getSimbolo() == cartas[i+1].getSimbolo() && !fourOfAKindFlag && counter!=2 && position != i && position != i+1)
+        if (cartas[i]->getSimbolo() == cartas[i+1]->getSimbolo() && !fourOfAKindFlag && counter!=2 && position != i && position != i+1)
             counter++;
         else if ((counter!=2 || i == position) && !threeOfAKindFlag) counter = 1;
 
         if (counter == 2 && !threeOfAKindFlag && firsTimeflag){
             firsTimeflag = false;
-            maiorCarta = (maiorCarta > cartas[i].getSimbolo()) ? maiorCarta : cartas[i].getSimbolo();
+            maiorCarta = (maiorCarta > cartas[i]->getSimbolo()) ? maiorCarta : cartas[i]->getSimbolo();
         }
     }
 
@@ -229,12 +228,12 @@ std::map<std::string, int> Jogador::analisarMao(){
 
 
     if (royalFlushFlag){
-        resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back().getSimbolo()));
+        resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back()->getSimbolo()));
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", RoyalFlush));
     }
 
     else if (straightFlag && flushFlag){
-        resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back().getSimbolo()));
+        resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back()->getSimbolo()));
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", StraightFlush));
     }
 
@@ -249,12 +248,12 @@ std::map<std::string, int> Jogador::analisarMao(){
     }
 
     else if (flushFlag){
-        resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back().getSimbolo()));
+        resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back()->getSimbolo()));
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", Flush));
     }
     
     else if (straightFlag){
-        resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back().getSimbolo()));
+        resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back()->getSimbolo()));
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", Straight));
     }
     
@@ -274,7 +273,7 @@ std::map<std::string, int> Jogador::analisarMao(){
     }
 
     else {
-        resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back().getSimbolo()));
+        resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back()->getSimbolo()));
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", HighCard));
     }    
     

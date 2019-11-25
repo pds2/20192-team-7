@@ -13,18 +13,18 @@ TEST_CASE("Testando o construtor parametrizado da classe Mesa"){
 
 TEST_CASE("Testando Adição de Cartas"){
     Mesa mesaTeste;
-    std::vector<Carta> vectorTeste;
+    std::vector<Carta*> vectorTeste;
     for (int i=0; i<5; i++){
-        vectorTeste.push_back(Carta(Copas, Q));
+        vectorTeste.push_back(new Carta(Copas, Q));
     }
     CHECK_NOTHROW_MESSAGE(mesaTeste.addCartas(vectorTeste), "Cartas adicionadas a mesa!");
 }
 
 TEST_CASE("Testando Retorno de Cartas"){
     Mesa mesaTeste;
-    std::vector<Carta> vectorTeste;
+    std::vector<Carta*> vectorTeste;
     for (int i=0; i<5; i++){
-        vectorTeste.push_back(Carta(Copas, Q));
+        vectorTeste.push_back(new Carta(Copas, Q));
     }
     mesaTeste.addCartas(vectorTeste);
     CHECK_EQ(mesaTeste.getCartasMesa(), vectorTeste);

@@ -1,8 +1,8 @@
 #include <classes/util.hpp>
 using namespace poker;
 
-std::vector<Carta> Util::OrdenaCartas(std::vector<Carta> cartas){
-    Carta aux(Ouros, DOIS);
+std::vector<Carta*> Util::OrdenaCartas(std::vector<Carta*> cartas){
+    Carta* aux = new Carta(Ouros, DOIS);
     int min;
 
     unsigned int i;
@@ -12,10 +12,10 @@ std::vector<Carta> Util::OrdenaCartas(std::vector<Carta> cartas){
 
         unsigned int j;
         for (j = i+1; j<cartas.size(); j++){
-            if (cartas[j].getSimbolo() < cartas[min].getSimbolo())
+            if (cartas[j]->getSimbolo() < cartas[min]->getSimbolo())
                 min = j;
 
-            if (cartas[i].getSimbolo()!= cartas[min].getSimbolo()){
+            if (cartas[i]->getSimbolo()!= cartas[min]->getSimbolo()){
                 aux = cartas[i];
                 cartas[i] = cartas[min];
                 cartas[min] = aux;

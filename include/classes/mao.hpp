@@ -9,13 +9,13 @@ namespace poker {
 	class Mao {
 		
 		private:
-			std::vector<Carta> cartas;
+			std::vector<Carta*> cartas;
 			
 		public:
-			Mao(Carta primeira, Carta segunda);
+			Mao(Carta* primeira, Carta* segunda);
 			Mao();
-			std::vector<Carta> getCartas();
-			void setCartas(std::vector<Carta> cartas);
+			std::vector<Carta*> getCartas();
+			void setCartas(std::vector<Carta*> cartas);
 	};
 }
 

@@ -9,7 +9,7 @@ Turn::Turn(Baralho* baralho) : EstadoJogo(baralho){
 }
 
 void Turn::distribuirCartas(Mesa* mesa) {
-    std::vector<Carta> cartasMesa = this->baralho->distribuirCartas(1);
+    std::vector<Carta*> cartasMesa = this->baralho->distribuirCartas(1);
     mesa->addCartas(cartasMesa);
 }
 

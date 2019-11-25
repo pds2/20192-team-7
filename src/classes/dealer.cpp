@@ -39,35 +39,35 @@ int Dealer::getNumeroJogadores(){
 
 
 void Dealer::inserirJogadores(){
-    Jogador bots[7] = {
-		Jogador("Clinky", pote, mesa),
-		Jogador("Adilson", pote, mesa),
-		Jogador("Taylor Swift", pote, mesa),
-		Jogador("Bryan", pote, mesa),
-		Jogador("Julio", pote, mesa),
-		Jogador("Ricky", pote, mesa),
-		Jogador("Morty", pote, mesa),
+    Jogador* bots[7] = {
+		new Jogador("Clinky", pote, mesa),
+		new Jogador("Adilson", pote, mesa),
+		new Jogador("Taylor Swift", pote, mesa),
+		new Jogador("Bryan", pote, mesa),
+		new Jogador("Julio", pote, mesa),
+		new Jogador("Ricky", pote, mesa),
+		new Jogador("Morty", pote, mesa),
 	}; 
-
 	unsigned int i; 
 	for (i = 0; i < numeroJogadores; i++)
     	(this->jogadores).push_back(bots[i]);
 	
-	this->jogadores.push_back(JogadorHumano("Player", pote, mesa));
+	this->jogadorHumano = new JogadorHumano("Player", pote, mesa);
+	
 }
 
 void Dealer::distribuirFichas(unsigned int numeroFichas){
-	std::vector<Jogador>::iterator it;
+	std::vector<Jogador*>::iterator it;
 
 	for (it = this->jogadores.begin() ; it != this->jogadores.end(); ++it){
-		(it)->setNumeroFichas(numeroFichas);
+		(*it)->setNumeroFichas(numeroFichas);
 	}
 }
 
-bool verificarTodosCheck(std::vector<Jogador> jogadores){
+bool verificarTodosCheck(std::vector<Jogador*> jogadores){
 	bool todosCheck = false;
-	for (Jogador jogador : jogadores){
-		if (jogador.getUltimaAcao() == "check"){
+	for (Jogador* jogador : jogadores){
+		if (jogador->getUltimaAcao() == "check"){
 			todosCheck = true;
 		} 
 		else {
@@ -78,14 +78,14 @@ bool verificarTodosCheck(std::vector<Jogador> jogadores){
 	return todosCheck;
 }
 
-bool verificarTodosPagam(std::vector<Jogador> jogadores){
+bool verificarTodosPagam(std::vector<Jogador*> jogadores){
 	bool todosPagam = false;
 
-	for (Jogador jogador : jogadores){
-		if (jogador.getUltimaAcao() == "aumentar" || jogador.getUltimaAcao() == "apostar"){
-			for (Jogador j : jogadores){
-				if (jogador.getNome() != j.getNome()){
-					if (j.getUltimaAcao() == "pagar")
+	for (Jogador* jogador : jogadores){
+		if (jogador->getUltimaAcao() == "aumentar" || jogador->getUltimaAcao() == "apostar"){
+			for (Jogador* j : jogadores){
+				if (jogador->getNome() != j->getNome()){
+					if (j->getUltimaAcao() == "pagar")
 						todosPagam = true;
 					else
 						todosPagam = false;									
@@ -99,10 +99,10 @@ bool verificarTodosPagam(std::vector<Jogador> jogadores){
 }
 
 void Dealer::iniciarJogadas(){
-	std::vector<Jogador>::iterator it;
-
+	std::vector<Jogador*>::iterator it;
 	bool podeSeguirProximaJogada = false;
-
+	jogada(this->jogadorHumano);
+	
 	do {
 		for (it = this->jogadores.begin(); it != this->jogadores.end(); ++it){
 			jogada(*it);
@@ -118,23 +118,20 @@ void Dealer::iniciarJogadas(){
 				podeSeguirProximaJogada = true;
 		}
 	} while (!podeSeguirProximaJogada);
-
 }
 
-void Dealer::jogada(Jogador jogador){
-	jogador.jogar(this->getMomentoJogo().verificarOpcoesJogador(&jogador, this->pote));
+void Dealer::jogada(Jogador* jogador){
+	jogador->jogar(this->getMomentoJogo().verificarOpcoesJogador(jogador, this->pote));
 }
 
-void Dealer::jogada(JogadorHumano jogador){
+void Dealer::jogada(JogadorHumano* jogador){
 	mostrarMaoAtualJogador(jogador);
-
-	jogador.jogar(this->getMomentoJogo().verificarOpcoesJogador(&jogador, this->pote));
+	jogador->jogar(this->getMomentoJogo().verificarOpcoesJogador(jogador, this->pote));
 }
 
-void Dealer::mostrarMaoAtualJogador(Jogador jogador){
-	Util util;
-  
-	std::map<std::string, int> mapMao = jogador.analisarMao();
+void Dealer::mostrarMaoAtualJogador(Jogador* jogador){
+	Util util; 
+	std::map<std::string, int> mapMao = jogador->analisarMao();
   
 	if (mapMao.find("Carta") != mapMao.end()) {
 		Simbolo maiorCarta = (Simbolo)(mapMao.find("Carta")->second);
@@ -149,7 +146,7 @@ void Dealer::mostrarMaoAtualJogador(Jogador jogador){
 
 void Dealer::iniciarEstadoJogo (PreFlop* estadoJogo){
 	setEstadoJogo((EstadoJogo*)(estadoJogo));
-	estadoJogo->distribuirCartasJogadores(this->jogadores);
+	estadoJogo->distribuirCartasJogadores(this->jogadores,this->jogadorHumano);
 	this->iniciarJogadas();
 }
 
@@ -159,12 +156,12 @@ void Dealer::iniciarEstadoJogo (EstadoJogo* estadoJogo){
 	this->iniciarJogadas();
 }
 
-bool verificarMaiorMao(Jogador primeiroJogador, Jogador segundoJogador){
-	return primeiroJogador.analisarMao().at("Sequencia") > segundoJogador.analisarMao().at("Sequencia");
+bool verificarMaiorMao(Jogador* primeiroJogador, Jogador* segundoJogador){
+	return primeiroJogador->analisarMao().at("Sequencia") > segundoJogador->analisarMao().at("Sequencia");
 }
 
-bool verificarMaoIgual(Jogador primeiroJogador, Jogador segundoJogador){
-	return primeiroJogador.analisarMao().at("Sequencia") == segundoJogador.analisarMao().at("Sequencia");
+bool verificarMaoIgual(Jogador* primeiroJogador, Jogador* segundoJogador){
+	return primeiroJogador->analisarMao().at("Sequencia") == segundoJogador->analisarMao().at("Sequencia");
 }
 
 
@@ -176,7 +173,7 @@ bool verificarCartasIguais(Carta cartaUm, Carta cartaDois){
 	return cartaUm.getSimbolo() == cartaDois.getSimbolo();
 }
 
-Carta recuperarCarta(Jogador jogador, int posicao){
+Carta* recuperarCarta(Jogador jogador, int posicao){
 	return jogador.getMao()->getCartas().at(posicao);
 }
 
@@ -200,8 +197,9 @@ Jogador* verificarJogadorMaiorCarta(Jogador* primeiroJogador, Jogador* segundoJo
 
 void Dealer::iniciarJogo(unsigned int numeroJogadores){
 	setNumeroJogadores(numeroJogadores);
+	
 	inserirJogadores();
-
+		
 	distribuirFichas(FICHAS_POR_JOGADOR);
 
 	bool podeContinuarJogo = true;
@@ -219,8 +217,8 @@ void Dealer::iniciarJogo(unsigned int numeroJogadores){
 }
 
 void Dealer::iniciarRodada(){
+	try { 
 
-	try {
 		this->baralho->embaralhar();
 
 		PreFlop* preFlop = new PreFlop(this->baralho);
@@ -236,8 +234,8 @@ void Dealer::iniciarRodada(){
 		Jogador* jogadorVencedor = verificarResultadoRodada();
 		entregarPremio(jogadorVencedor);
 
-		for (Jogador jogador : this->jogadores){
-			if (jogador.getNumeroFichas() == 0)
+		for (Jogador* jogador : this->jogadores){
+			if (jogador->getNumeroFichas() == 0)
 				throw FimJogo();
 		}
 
@@ -255,17 +253,17 @@ void Dealer::entregarPremio(Jogador* jogadorVencedor){
 }
 
 void Dealer::verificarResultadoJogo(){
-	std::vector<Jogador> jogadores = this->jogadores;
-	std::vector<Jogador> vencedoresPotencias;
+	std::vector<Jogador*> jogadores = this->jogadores;
+	std::vector<Jogador*> vencedoresPotencias;
 	
-	for (Jogador jogador : this->jogadores){
-		if (jogador.getNumeroFichas() > 0 ){
+	for (Jogador* jogador : this->jogadores){
+		if (jogador->getNumeroFichas() > 0 ){
 			vencedoresPotencias.push_back(jogador);
 		}
 	}
 
-	if (vencedoresPotencias.size() == 1 && vencedoresPotencias.at(0).getNumeroFichas() > 0){
-		std::cout << "O vencedor foi o jogador : " << vencedoresPotencias.at(0).getNome() << " com " << vencedoresPotencias.at(0).getNumeroFichas() << "fichas";
+	if (vencedoresPotencias.size() == 1 && vencedoresPotencias.at(0)->getNumeroFichas() > 0){
+		std::cout << "O vencedor foi o jogador : " << vencedoresPotencias.at(0)->getNome() << " com " << vencedoresPotencias.at(0)->getNumeroFichas() << "fichas";
 	} 
 	else {
 		throw (PokerError("Método chamado no momento errado, mais de um jogador vencedor ou número de fichas do vencedore igual a zero."));
@@ -274,15 +272,15 @@ void Dealer::verificarResultadoJogo(){
 
 Jogador* Dealer::verificarResultadoRodada(){
 	Jogador* vencedor = nullptr;
+	for (Jogador* primeiroCandidatoVencer : this->jogadores){
 	
-	for (Jogador primeiroCandidatoVencer : this->jogadores){
-	
-		for (Jogador comparacaoVencedor : this->jogadores){
+		for (Jogador* comparacaoVencedor : this->jogadores){
+			
 			if (verificarMaiorMao(primeiroCandidatoVencer,comparacaoVencedor)){
-				vencedor = &primeiroCandidatoVencer;
+				vencedor = primeiroCandidatoVencer;
 			}
 			else if (verificarMaoIgual(primeiroCandidatoVencer,comparacaoVencedor)){
-				vencedor = verificarJogadorMaiorCarta(&primeiroCandidatoVencer, &comparacaoVencedor);
+				vencedor = verificarJogadorMaiorCarta(primeiroCandidatoVencer, comparacaoVencedor);
 			}
 		}
 	}

@@ -9,15 +9,15 @@ namespace poker{
 
 	class Mesa{
 		private:
-			std::vector<Carta> cartasMesa;
+			std::vector<Carta*> cartasMesa;
 			Pote pote;
 
 		public:
 			Mesa();
 			Mesa(Pote pote);
 
-			void addCartas(std::vector<Carta> cartasMesa);
-			std::vector<Carta> getCartasMesa();
+			void addCartas(std::vector<Carta*> cartasMesa);
+			std::vector<Carta*> getCartasMesa();
 
 			void setPoteApostaTotal(int valorTotal);
 			void setPoteApostaAtual(int valorAtual);

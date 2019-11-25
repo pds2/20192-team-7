@@ -16,6 +16,7 @@ namespace poker {
             unsigned int numeroJogadores;
             EstadoJogo *momentoJogo;
             std::vector<Jogador*> jogadores;
+            JogadorHumano* jogadorHumano;
             Pote* pote;
             Mesa* mesa;
             Baralho* baralho;

@@ -52,7 +52,7 @@ void Dealer::inserirJogadores(){
 	for (i = 0; i < numeroJogadores; i++)
     	(this->jogadores).push_back(bots[i]);
 	
-	this->jogadores.push_back(new JogadorHumano("Player", pote, mesa));
+	this->jogadorHumano = new JogadorHumano("Player", pote, mesa);
 	
 }
 
@@ -101,7 +101,7 @@ bool verificarTodosPagam(std::vector<Jogador*> jogadores){
 void Dealer::iniciarJogadas(){
 	std::vector<Jogador*>::iterator it;
 	bool podeSeguirProximaJogada = false;
-
+	jogada(this->jogadorHumano);
 	do {
 		for (it = this->jogadores.begin(); it != this->jogadores.end(); ++it){
 			jogada(*it);
@@ -148,7 +148,7 @@ void Dealer::mostrarMaoAtualJogador(Jogador* jogador){
 
 void Dealer::iniciarEstadoJogo (PreFlop* estadoJogo){
 	setEstadoJogo((EstadoJogo*)(estadoJogo));
-	estadoJogo->distribuirCartasJogadores(this->jogadores);
+	estadoJogo->distribuirCartasJogadores(this->jogadores,this->jogadorHumano);
 	this->iniciarJogadas();
 }
 
@@ -221,7 +221,6 @@ void Dealer::iniciarJogo(unsigned int numeroJogadores){
 void Dealer::iniciarRodada(){
 	try { 
 		this->baralho->embaralhar();
-		
 
 		PreFlop* preFlop = new PreFlop(this->baralho);
 		Flop* flop = new Flop(this->baralho);
@@ -232,7 +231,6 @@ void Dealer::iniciarRodada(){
 		iniciarEstadoJogo(flop);
 		iniciarEstadoJogo(turn);
 		iniciarEstadoJogo(river);
-
 		Jogador* jogadorVencedor = verificarResultadoRodada();
 		entregarPremio(jogadorVencedor);
 

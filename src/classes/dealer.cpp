@@ -121,7 +121,7 @@ void Dealer::iniciarJogadas(){
 			jogada(*it);
 		}
 
-		bool todosCheck = ;
+		//bool todosCheck = ;
 		if (verificarTodosCheck(this->jogadores)){
 			podeSeguirProximaJogada = true;
 		}

@@ -2,6 +2,9 @@
 #include "classes/jogador.hpp"
 #include "classes/dealer.hpp"
 #include "classes/pokerExceptions.hpp"
+#include "classes/util.hpp"
+#include "enums/simbolo.hpp"
+#include "enums/naipe.hpp"
 
 #include <vector>
 #include <iostream>
@@ -31,10 +34,45 @@ void JogadorHumano::desistirDaPartida(){
     throw (FimRodada());
 }
 
+void imprimirCarta(Carta* carta){
+    Util util;
+    std::cout << '\t' << util.ObterStringSimbolo((Simbolo)carta->getSimbolo()) << " de " << util.ObterStringNaipe((Naipe)carta->getNaipe()) << std::endl;
+}
+
+void imprimirCartasMesa(Mesa* mesa){
+    std::cout << "Cartas na mesa: " << std::endl;
+    for (Carta* carta : mesa->getCartasMesa()){
+        imprimirCarta(carta);
+    }
+}
+
+void imprimirCartasJogador(Jogador* jogador){
+    std::cout << "Cartas na sua mão: " << std::endl;
+    for (Carta* carta : jogador->getMao()->getCartas()){
+        imprimirCarta(carta);
+    }
+}
+
+void imprimirDadosPote(Pote* pote){
+    std::cout << "Valor aposta atual: " << pote->getValorApostaAtual() << std::endl;
+    std::cout << "Pote: " << pote->getValorTotal() << std::endl;
+}
+
+
+void imprimirSituacaoAtualJogo(Pote* pote, Jogador* jogador, Mesa* mesa){
+    imprimirCartasMesa(mesa);
+    std::cout << std::endl;
+    imprimirCartasJogador(jogador);
+    std::cout << std::endl;
+    imprimirDadosPote(pote);
+    std::cout << std::endl;
+    std::cout << std::endl;
+}
+
 void JogadorHumano::jogar(std::map<std::string, bool> opcoesJogador){
     std::string opcoes = "";
-    int contadorOpcoes = 0;
 
+    int contadorOpcoes = 0;
     int opcaoEscolhida = 0;
 
     std::map<int, std::string> menu;
@@ -48,12 +86,16 @@ void JogadorHumano::jogar(std::map<std::string, bool> opcoesJogador){
         }
     }
 
+    imprimirSituacaoAtualJogo(this->pote, this, this->mesa);
+
+
     do {
         std::cout << "Escolha sua jogada:" << std::endl << opcoes;
 
         std::cin >> opcaoEscolhida;
 
     } while (opcaoEscolhida < 1 || opcaoEscolhida > (contadorOpcoes+1) );
+    
     realizarJogada(menu.find(opcaoEscolhida)->second);
 
 }

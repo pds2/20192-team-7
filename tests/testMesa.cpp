@@ -3,12 +3,12 @@
 using namespace poker;
 
 TEST_CASE("Testando o construtor vazio da classe Mesa"){
-    CHECK_NOTHROW(Mesa());
+    CHECK_NOTHROW(new Mesa());
 }
 
 TEST_CASE("Testando o construtor parametrizado da classe Mesa"){
     Pote poteTest;
-    CHECK_NOTHROW(Mesa(poteTest));
+    CHECK_NOTHROW(new Mesa(poteTest));
 }
 
 TEST_CASE("Testando Adição de Cartas"){

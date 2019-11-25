@@ -4,7 +4,7 @@
 using namespace poker;
 
 TEST_CASE("Testando a construção do Baralho"){
-    CHECK_NOTHROW_MESSAGE(Baralho(),"Construção de Baralho OK!");
+    CHECK_NOTHROW_MESSAGE(new Baralho(),"Construção de Baralho OK!");
 }
 
 TEST_CASE("Testando o método Embaralhar"){

@@ -4,7 +4,7 @@
 using namespace poker;
 
 TEST_CASE("Testando o construtor de Util"){
-    CHECK_NOTHROW_MESSAGE(Util(), "Construtor da classe Util OK!");
+    CHECK_NOTHROW_MESSAGE(new Util(), "Construtor da classe Util OK!");
 }
 
 TEST_CASE("Testando o método OrdenaCartas"){

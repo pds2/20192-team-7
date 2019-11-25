@@ -6,8 +6,8 @@ using namespace poker;
 TEST_CASE("Testando o Construtor de Dealer"){
     Baralho baralho;
     Baralho* baralhoPointer = &baralho;
-    CHECK_NOTHROW_MESSAGE(Dealer(), "Construtor nº1 de Dealer OK!");
-    CHECK_NOTHROW_MESSAGE(Dealer(EstadoJogo(baralhoPointer), 4), "Construtor nº2 de Dealer OK!");
+    CHECK_NOTHROW_MESSAGE(new Dealer(), "Construtor nº1 de Dealer OK!");
+    CHECK_NOTHROW_MESSAGE(new Dealer(EstadoJogo(baralhoPointer), 4), "Construtor nº2 de Dealer OK!");
 }
 
 TEST_CASE("Testando setters e getters"){

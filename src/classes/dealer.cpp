@@ -115,11 +115,16 @@ bool verificarTodosPagam(std::vector<Jogador*> jogadores){
 void Dealer::iniciarJogadas(){
 	std::vector<Jogador*>::iterator it;
 	bool podeSeguirProximaJogada = false;
-	jogada(this->jogadorHumano);
+
 	do {
+	
+		jogada(this->jogadorHumano);
 	
 		for (it = this->jogadores.begin(); it != this->jogadores.end(); ++it){
 			jogada(*it);
+
+            std::cout << "Jogador " << (*it)->getNome() << " fez: " << (*it)->getUltimaAcao() << std::endl;
+			std::cout << std::endl;
 		}
 
 		if (verificarTodosCheck(this->jogadores)){

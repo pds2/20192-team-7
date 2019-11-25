@@ -2,6 +2,9 @@
 #include "classes/pote.hpp"
 #include "classes/jogador.hpp"
 
+#include <iostream>
+#include <typeinfo>
+
 using namespace poker;
 
 EstadoJogo::EstadoJogo(){}
@@ -13,31 +16,44 @@ EstadoJogo::EstadoJogo(Baralho* baralho){
 void EstadoJogo::distribuirCartas(Mesa* mesa){}
 
 bool EstadoJogo::validarApostas(unsigned int valorAposta, Jogador* jogador){
-    return(jogador->getNumeroFichas()>=valorAposta);
+    bool valido = (jogador->getNumeroFichas() >= valorAposta);
+    return valido;
 }
 
 bool verificarCheck(Jogador* jogador, Pote* pote){
-    return (pote->getValorApostaAnterior() == pote->getValorApostaAtual() && jogador->getNumeroFichas() >= pote->getValorApostaAtual());
+    bool valido = (pote->getValorApostaAnterior() == pote->getValorApostaAtual() && jogador->getNumeroFichas() >= pote->getValorApostaAtual());
+    return valido;
 }
 
 bool verificarBet(Jogador* jogador, Pote* pote){
-    return (pote->getValorTotal() != 0 && pote->getValorApostaAnterior() == pote->getValorApostaAtual() && jogador->getNumeroFichas() > pote->getValorApostaAtual());
+    bool valido = (pote->getValorApostaAnterior() == pote->getValorApostaAtual() && jogador->getNumeroFichas() > pote->getValorApostaAtual());
+    return valido;
 }
 
 bool verificarFold(Jogador* jogador, Pote* pote){
-    return false;
+    bool valido = false;
+
+    try {
+        JogadorHumano* player = (JogadorHumano*)jogador;
+        valido = true;
+    }
+    catch (std::exception e){
+        valido = false;
+    }
+
+    return valido;
 }
 
-bool verificarFold(JogadorHumano* jogador, Pote* pote){
-    return true;
-}
 
 bool verificarCall(Jogador* jogador, Pote* pote){
-    return (pote->getValorApostaAtual() > pote->getValorApostaAnterior() && jogador->getNumeroFichas() >= pote->getValorApostaAtual());
+    bool valido =  (pote->getValorApostaAtual() > pote->getValorApostaAnterior() && jogador->getNumeroFichas() >= pote->getValorApostaAtual());
+    return valido;
 }
 
 bool verificarRaise(Jogador* jogador, Pote* pote){
-    return (pote->getValorApostaAtual() > pote->getValorApostaAnterior() && jogador->getNumeroFichas() > pote->getValorApostaAtual());
+    bool valido = (pote->getValorApostaAtual() > pote->getValorApostaAnterior() && jogador->getNumeroFichas() > pote->getValorApostaAtual());
+
+    return valido;
 }
 
 std::map<std::string, bool> EstadoJogo::verificarOpcoesJogador(Jogador* jogador, Pote* pote) {

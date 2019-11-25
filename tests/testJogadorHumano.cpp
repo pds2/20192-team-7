@@ -43,7 +43,3 @@ TEST_CASE("Testando o método Finalizar Jogo"){
     JogadorHumano jogadorTest("NOME", 2000, pote, mesa);   
     CHECK_THROWS_MESSAGE(jogadorTest.finalizarJogo(), "Finalizar jogo OK!");
 }
-
-TEST_CASE("Testando o método jogar"){
-    //Testar o método jogar
-}

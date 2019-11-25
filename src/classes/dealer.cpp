@@ -122,6 +122,9 @@ void Dealer::iniciarJogadas(){
 	
 		for (it = this->jogadores.begin(); it != this->jogadores.end(); ++it){
 			jogada(*it);
+
+            std::cout << "Jogador " << (*it)->getNome() << " fez: " << (*it)->getUltimaAcao() << std::endl;
+			std::cout << std::endl;
 		}
 
 		if (verificarTodosCheck(this->jogadores)){

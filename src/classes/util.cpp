@@ -78,6 +78,32 @@ std::string Util::ObterStringSimbolo(Simbolo simbolo){
 	return simboloString;
 }
 
+std::string Util::ObterStringNaipe(Naipe naipe){
+	std::string naipeString = "";
+	switch (naipe)
+	{
+		case Ouros :
+			naipeString = "Ouros";
+			break;
+		case Paus :
+			naipeString = "Paus";
+			break;
+		case Copas :
+			naipeString = "Copas";
+			break;
+		case Espadas :
+			naipeString = "Espadas";
+			break;
+		
+		default:
+			break;
+		
+	}
+
+	return naipeString;
+}
+
+
 std::string Util::ObterStringSequencia(OrdemSequencia sequencia){
 	std::string sequenciaString = "";
 
@@ -120,3 +146,5 @@ std::string Util::ObterStringSequencia(OrdemSequencia sequencia){
 	}
 		return sequenciaString;
 }
+
+

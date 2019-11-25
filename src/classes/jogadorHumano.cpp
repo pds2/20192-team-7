@@ -46,11 +46,13 @@ void imprimirCartasMesa(Mesa* mesa){
     }
 }
 
-void imprimirCartasJogador(Jogador* jogador){
+void imprimirSituacaoJogador(Jogador* jogador){
     std::cout << "Cartas na sua mão: " << std::endl;
     for (Carta* carta : jogador->getMao()->getCartas()){
         imprimirCarta(carta);
     }
+    std::cout << "Suas fichas: " << jogador->getNumeroFichas() << std::endl;
+
 }
 
 void imprimirDadosPote(Pote* pote){
@@ -62,7 +64,7 @@ void imprimirDadosPote(Pote* pote){
 void imprimirSituacaoAtualJogo(Pote* pote, Jogador* jogador, Mesa* mesa){
     imprimirCartasMesa(mesa);
     std::cout << std::endl;
-    imprimirCartasJogador(jogador);
+    imprimirSituacaoJogador(jogador);
     std::cout << std::endl;
     imprimirDadosPote(pote);
     std::cout << std::endl;
@@ -103,10 +105,11 @@ void JogadorHumano::jogar(std::map<std::string, bool> opcoesJogador){
 void JogadorHumano::realizarJogada(std::string opcaoSelecionada){
     unsigned int valorAposta;
     bool apostou = false;
+
     if (opcaoSelecionada == "check"){
         this->passarVez();
-
-    }else if (opcaoSelecionada == "apostar"){
+    }
+    else if (opcaoSelecionada == "apostar"){
         do {
             try {
                 std::cout << "Valor da aposta: " ;

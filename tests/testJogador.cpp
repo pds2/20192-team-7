@@ -5,8 +5,9 @@ using namespace poker;
 TEST_CASE("Testando o construtor da classe Jogador"){
     Pote* pote;
     Mesa* mesa;
-    CHECK_NOTHROW_MESSAGE(Jogador("NOME", 2000, pote, mesa), "Construtor nº1 de Jogador OK!"); 
-    CHECK_NOTHROW_MESSAGE(Jogador("NOME", pote, mesa), "Construtor nº2 de Jogador OK!");    
+    CHECK_NOTHROW_MESSAGE(new Jogador("NOME", 2000, pote, mesa), "Construtor nº1 de Jogador OK!"); 
+    CHECK_NOTHROW_MESSAGE(new Jogador("NOME", pote, mesa), "Construtor nº2 de Jogador OK!");
+    CHECK_NOTHROW_MESSAGE(new Jogador(), "Construtor nº3 de Jogador OK!"); 
 }
 
 TEST_CASE("Testando setMao"){
@@ -26,6 +27,21 @@ TEST_CASE("Testando getMao"){
     Mao* pointerMao = &mao;
     jogadorTeste.setMao(pointerMao);
     CHECK_EQ(jogadorTeste.getMao(), mao);
+}
+
+TEST_CASE("Testando setUltimaAcao"){
+    Pote* pote;
+    Mesa* mesa;
+    Jogador jogadorTeste("NOME", 2000, pote, mesa);
+    CHECK_NOTHROW_MESSAGE(jogadorTeste.setUltimaAcao("TESTE"), "Mão setada OK!");    
+}
+
+TEST_CASE("Testando getUltimaAcao"){
+    Pote* pote;
+    Mesa* mesa;
+    Jogador jogadorTeste("NOME", 2000, pote, mesa);
+    jogadorTeste.setUltimaAcao("TESTE");
+    CHECK_EQ(jogadorTeste.getMao(), "TESTE");   
 }
 
 TEST_CASE("Testando apostar"){
@@ -270,4 +286,28 @@ TEST_CASE("Testando analisar mão: High Card"){
     jogadorTeste.setMao(pointerMao);
     CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "High Card Analisar mão sem exceções OK!");
     CHECK_EQ(mapTeste, highCardMap);
+}
+
+TEST_CASE("Testando realizarJogada: Apostar"){
+    Pote poteTeste1(20, 20, 0);
+    Pote poteTeste2(40, 20, 20);
+    Pote* pote1 = &poteTeste1;
+    Pote* pote2 = &poteTeste2;
+    Mesa* mesa;
+    Jogador jogadorTeste1("NOME", 2000, pote1, mesa);
+    Jogador jogadorTeste2("NOME", 2000, pote2, mesa);
+    CHECK_NOTHROW_MESSAGE(jogadorTeste2.realizarJogada("apostar"), "Apostar OK!");
+    CHECK_THROWS_MESSAGE(jogadorTeste1.realizarJogada("apostar"), "Impossível apostar nessa etapa OK!");
+}
+
+TEST_CASE("Testando realizarJogada: check"){
+    Pote poteTeste1(20, 20, 0);
+    Pote poteTeste2(40, 20, 20);
+    Pote* pote1 = &poteTeste1;
+    Pote* pote2 = &poteTeste2;
+    Mesa* mesa;
+    Jogador jogadorTeste1("NOME", 2000, pote1, mesa);
+    Jogador jogadorTeste2("NOME", 2000, pote2, mesa);
+    CHECK_NOTHROW_MESSAGE(jogadorTeste2.realizarJogada("check"), "Desistir OK!");
+    CHECK_THROWS_MESSAGE(jogadorTeste1.realizarJogada("check"), "Impossível desistir nessa etapa OK!");
 }

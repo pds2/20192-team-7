@@ -102,6 +102,7 @@ void Dealer::iniciarJogadas(){
 	std::vector<Jogador*>::iterator it;
 	bool podeSeguirProximaJogada = false;
 	jogada(this->jogadorHumano);
+	
 	do {
 		for (it = this->jogadores.begin(); it != this->jogadores.end(); ++it){
 			jogada(*it);
@@ -117,7 +118,6 @@ void Dealer::iniciarJogadas(){
 				podeSeguirProximaJogada = true;
 		}
 	} while (!podeSeguirProximaJogada);
-
 }
 
 void Dealer::jogada(Jogador* jogador){
@@ -126,13 +126,11 @@ void Dealer::jogada(Jogador* jogador){
 
 void Dealer::jogada(JogadorHumano* jogador){
 	mostrarMaoAtualJogador(jogador);
-
 	jogador->jogar(this->getMomentoJogo().verificarOpcoesJogador(jogador, this->pote));
 }
 
 void Dealer::mostrarMaoAtualJogador(Jogador* jogador){
-	Util util;
-  
+	Util util; 
 	std::map<std::string, int> mapMao = jogador->analisarMao();
   
 	if (mapMao.find("Carta") != mapMao.end()) {
@@ -220,17 +218,19 @@ void Dealer::iniciarJogo(unsigned int numeroJogadores){
 
 void Dealer::iniciarRodada(){
 	try { 
+
 		this->baralho->embaralhar();
 
 		PreFlop* preFlop = new PreFlop(this->baralho);
 		Flop* flop = new Flop(this->baralho);
 		Turn* turn = new Turn(this->baralho);
 		River* river = new River(this->baralho);
-		
+
 		iniciarEstadoJogo(preFlop);
 		iniciarEstadoJogo(flop);
 		iniciarEstadoJogo(turn);
 		iniciarEstadoJogo(river);
+
 		Jogador* jogadorVencedor = verificarResultadoRodada();
 		entregarPremio(jogadorVencedor);
 

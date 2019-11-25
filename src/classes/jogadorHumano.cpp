@@ -54,7 +54,6 @@ void JogadorHumano::jogar(std::map<std::string, bool> opcoesJogador){
         std::cin >> opcaoEscolhida;
 
     } while (opcaoEscolhida < 1 || opcaoEscolhida > (contadorOpcoes+1) );
-
     realizarJogada(menu.find(opcaoEscolhida)->second);
 
 }
@@ -62,11 +61,10 @@ void JogadorHumano::jogar(std::map<std::string, bool> opcoesJogador){
 void JogadorHumano::realizarJogada(std::string opcaoSelecionada){
     unsigned int valorAposta;
     bool apostou = false;
-
-    if (opcaoSelecionada == "check")
+    if (opcaoSelecionada == "check"){
         this->passarVez();
 
-    else if (opcaoSelecionada == "apostar"){
+    }else if (opcaoSelecionada == "apostar"){
         do {
             try {
                 std::cout << "Valor da aposta: " ;

@@ -145,7 +145,6 @@ std::map<std::string, int> Jogador::analisarMao(){
         if (cartas[i]->getSimbolo() != (cartas[i+1]->getSimbolo()-1))
             straightFlag = false;
     }
-
     for (unsigned int i = cartas.size()-5; i < cartas.size(); i++){
         if (cartas[i]->getSimbolo()!= royalFlushSequence[i-3] || !flushFlag)
             royalFlushFlag = false;            

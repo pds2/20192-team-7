@@ -15,6 +15,7 @@ namespace poker {
 
             void embaralhar();
             std::vector<Carta*> distribuirCartas(unsigned int numeroCartas);
+            std::vector<Carta*> getCartas();
     };
 }
 

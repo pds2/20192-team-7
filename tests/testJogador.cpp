@@ -311,3 +311,49 @@ TEST_CASE("Testando realizarJogada: check"){
     CHECK_NOTHROW_MESSAGE(jogadorTeste2.realizarJogada("check"), "Desistir OK!");
     CHECK_THROWS_MESSAGE(jogadorTeste1.realizarJogada("check"), "Impossível desistir nessa etapa OK!");
 }
+
+TEST_CASE("Testando realizarJogada: pagar"){
+    Pote poteTeste1(20, 20, 0);
+    Pote poteTeste2(40, 20, 20);
+    Pote* pote1 = &poteTeste1;
+    Pote* pote2 = &poteTeste2;
+    Mesa* mesa;
+    Jogador jogadorTeste1("NOME", 2000, pote1, mesa);
+    Jogador jogadorTeste2("NOME", 2000, pote2, mesa);
+    CHECK_THROWS_MESSAGE(jogadorTeste2.realizarJogada("pagar"), "Impossível pagar nessa etapa OK!");
+    CHECK_NOTHROW_MESSAGE(jogadorTeste1.realizarJogada("pagar"), "Pagar OK!");
+}
+
+TEST_CASE("Testando realizarJogada: aumentar"){
+    Pote poteTeste1(20, 20, 0);
+    Pote poteTeste2(40, 20, 20);
+    Pote* pote1 = &poteTeste1;
+    Pote* pote2 = &poteTeste2;
+    Mesa* mesa;
+    Jogador jogadorTeste1("NOME", 2000, pote1, mesa);
+    Jogador jogadorTeste2("NOME", 2000, pote2, mesa);
+    CHECK_THROWS_MESSAGE(jogadorTeste2.realizarJogada("aumentar"), "Impossível aumentar nessa etapa OK!");
+    CHECK_NOTHROW_MESSAGE(jogadorTeste1.realizarJogada("aumentar"), "Aumentar OK!");
+}
+
+TEST_CASE("Testando jogar"){
+    std::map<std::string, bool> opcoesJogador;
+    opcoesJogador.insert(std::pair<std::string, int>("aumentar", true));
+    opcoesJogador.insert(std::pair<std::string, int>("pagar", true));
+    opcoesJogador.insert(std::pair<std::string, int>("check", false));
+    opcoesJogador.insert(std::pair<std::string, int>("apostar", false));
+    std::map<std::string, bool> opcoesJogador2;
+    opcoesJogador2.insert(std::pair<std::string, int>("aumentar", false));
+    opcoesJogador2.insert(std::pair<std::string, int>("pagar", false));
+    opcoesJogador2.insert(std::pair<std::string, int>("check", true));
+    opcoesJogador2.insert(std::pair<std::string, int>("apostar", true));
+    Pote poteTeste2(20, 20, 0);
+    Pote poteTeste1(40, 20, 20);
+    Pote* pote1 = &poteTeste1;
+    Pote* pote2 = &poteTeste2;
+    Mesa* mesa;
+    Jogador jogadorTeste1("NOME", 2000, pote1, mesa);
+    Jogador jogadorTeste2("NOME", 2000, pote2, mesa);
+    CHECK_NOTHROW_MESSAGE(jogadorTeste2.jogar(opcoesJogador2), "Jogar 1 OK!");
+    CHECK_NOTHROW_MESSAGE(jogadorTeste1.jogar(opcoesJogador), "Jogar 2 OK!");
+}

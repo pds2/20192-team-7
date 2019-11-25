@@ -9,7 +9,7 @@ Flop::Flop(Baralho* baralho) : EstadoJogo(baralho){
 }
 
 void Flop::distribuirCartas(Mesa* mesa) {
-    std::vector<Carta> cartasMesa = this->baralho->distribuirCartas(3);
+    std::vector<Carta*> cartasMesa = this->baralho->distribuirCartas(3);
     mesa->addCartas(cartasMesa);
 }
 

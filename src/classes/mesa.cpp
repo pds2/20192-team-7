@@ -11,7 +11,7 @@ Mesa::Mesa(Pote pote){
     this->pote = pote;
 }
 
-void Mesa::addCartas(std::vector<Carta> cartasMesa){
+void Mesa::addCartas(std::vector<Carta*> cartasMesa){
     if (cartasMesa.size() <= 5)
         this->cartasMesa = cartasMesa;
     else
@@ -19,7 +19,7 @@ void Mesa::addCartas(std::vector<Carta> cartasMesa){
     
 }
 
-std::vector<Carta> Mesa::getCartasMesa(){
+std::vector<Carta*> Mesa::getCartasMesa(){
     return (this->cartasMesa);
 }
 

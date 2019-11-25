@@ -11,7 +11,7 @@ namespace poker {
             PreFlop(Baralho* baralho);
 
             void distribuirCartas(Mesa* mesa) override;
-            void distribuirCartasJogadores(std::vector<Jogador> jogadores);
+            void distribuirCartasJogadores(std::vector<Jogador*> jogadores);
             bool validarApostas(unsigned int valorAposta, Jogador* jogador) override;
     };
 }

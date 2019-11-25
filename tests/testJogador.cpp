@@ -83,7 +83,7 @@ TEST_CASE("Testando passar vez"){
 }
 
 TEST_CASE("Testando analisar mão: Royal Flush"){
-    std::vector<Carta> royalFlushVector;
+    std::vector<Carta*> royalFlushVector;
     std::map<std::string, int> mapTeste;
     std::map<std::string, int> royalFlushMap;
     royalFlushMap.insert(std::pair<std::string, int>("Carta", A));
@@ -94,7 +94,7 @@ TEST_CASE("Testando analisar mão: Royal Flush"){
     Mesa* mesa = &mesaTeste;
     mesaTeste.addCartas(royalFlushVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
-    Mao mao(Carta(Copas, DEZ), Carta(Copas, J));
+    Mao mao(new Carta(Copas, DEZ), new Carta(Copas, J));
     Mao* pointerMao = &mao;
     jogadorTeste.setMao(pointerMao);
     CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "Royal Flush Analisar mão sem exceções OK!");
@@ -102,7 +102,7 @@ TEST_CASE("Testando analisar mão: Royal Flush"){
 }
 
 TEST_CASE("Testando analisar mão: Flush"){
-    std::vector<Carta> FlushVector;
+    std::vector<Carta*> FlushVector;
     std::map<std::string, int> mapTeste;
     std::map<std::string, int> FlushMap;
     FlushMap.insert(std::pair<std::string, int>("Carta", DEZ));
@@ -113,7 +113,7 @@ TEST_CASE("Testando analisar mão: Flush"){
     Mesa* mesa = &mesaTeste;
     mesaTeste.addCartas(FlushVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
-    Mao mao(Carta(Copas, SEIS), Carta(Copas, SETE));
+    Mao mao(new Carta(Copas, SEIS),new Carta(Copas, SETE));
     Mao* pointerMao = &mao;
     jogadorTeste.setMao(pointerMao);
     CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "Flush Analisar mão sem exceções OK!");
@@ -121,7 +121,7 @@ TEST_CASE("Testando analisar mão: Flush"){
 }
 
 TEST_CASE("Testando analisar mão: Straight"){
-    std::vector<Carta> straightVector;
+    std::vector<Carta*> straightVector;
     std::map<std::string, int> mapTeste;
     std::map<std::string, int> straightMap;
     straightMap.insert(std::pair<std::string, int>("Carta", SETE));
@@ -132,7 +132,7 @@ TEST_CASE("Testando analisar mão: Straight"){
     Mesa* mesa = &mesaTeste;
     mesaTeste.addCartas(straightVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
-    Mao mao(Carta(Espadas, SEIS), Carta(Copas, SETE));
+    Mao mao(new Carta(Espadas, SEIS), new Carta(Copas, SETE));
     Mao* pointerMao = &mao;
     jogadorTeste.setMao(pointerMao);
     CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "Straight Analisar mão sem exceções OK!");
@@ -140,7 +140,7 @@ TEST_CASE("Testando analisar mão: Straight"){
 }
 
 TEST_CASE("Testando analisar mão: Straight Flush"){
-    std::vector<Carta> straightFlushVector;
+    std::vector<Carta*> straightFlushVector;
     std::map<std::string, int> mapTeste;
     std::map<std::string, int> straightFlushMap;
     straightFlushMap.insert(std::pair<std::string, int>("Carta", SETE));
@@ -151,7 +151,7 @@ TEST_CASE("Testando analisar mão: Straight Flush"){
     Mesa* mesa = &mesaTeste;
     mesaTeste.addCartas(straightFlushVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
-    Mao mao(Carta(Copas, SEIS), Carta(Copas, SETE));
+    Mao mao(new Carta(Copas, SEIS),new  Carta(Copas, SETE));
     Mao* pointerMao = &mao;
     jogadorTeste.setMao(pointerMao);
     CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "Flush Analisar mão sem exceções OK!");
@@ -159,7 +159,7 @@ TEST_CASE("Testando analisar mão: Straight Flush"){
 }
 
 TEST_CASE("Testando analisar mão: Four of a Kind"){
-    std::vector<Carta> fourOfAKindVector;
+    std::vector<Carta*> fourOfAKindVector;
     std::map<std::string, int> mapTeste;
     std::map<std::string, int> fourOfAKindMap;
     fourOfAKindMap.insert(std::pair<std::string, int>("Carta", CINCO));
@@ -170,7 +170,7 @@ TEST_CASE("Testando analisar mão: Four of a Kind"){
     Mesa* mesa = &mesaTeste;
     mesaTeste.addCartas(fourOfAKindVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
-    Mao mao(Carta(Copas, SEIS), Carta(Espadas, CINCO));
+    Mao mao(new Carta(Copas, SEIS),new  Carta(Espadas, CINCO));
     Mao* pointerMao = &mao;
     jogadorTeste.setMao(pointerMao);
     CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "Four of a Kind Analisar mão sem exceções OK!");
@@ -178,7 +178,7 @@ TEST_CASE("Testando analisar mão: Four of a Kind"){
 }
 
 TEST_CASE("Testando analisar mão: FullHouse"){
-    std::vector<Carta> fullHouseVector;
+    std::vector<Carta*> fullHouseVector;
     std::map<std::string, int> mapTeste;
     std::map<std::string, int> fullHouseMap;
     fullHouseMap.insert(std::pair<std::string, int>("Carta", CINCO));
@@ -189,7 +189,7 @@ TEST_CASE("Testando analisar mão: FullHouse"){
     Mesa* mesa = &mesaTeste;
     mesaTeste.addCartas(fullHouseVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
-    Mao mao(Carta(Copas, TRES), Carta(Espadas, TRES));
+    Mao mao(new Carta(Copas, TRES),new Carta(Espadas, TRES));
     Mao* pointerMao = &mao;
     jogadorTeste.setMao(pointerMao);
     CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "FullHouse Analisar mão sem exceções OK!");
@@ -197,7 +197,7 @@ TEST_CASE("Testando analisar mão: FullHouse"){
 }
 
 TEST_CASE("Testando analisar mão: Three of a Kind"){
-    std::vector<Carta> threeOfAKindVector;
+    std::vector<Carta*> threeOfAKindVector;
     std::map<std::string, int> mapTeste;
     std::map<std::string, int> threeOfAKindMap;
     threeOfAKindMap.insert(std::pair<std::string, int>("Carta", CINCO));
@@ -208,7 +208,7 @@ TEST_CASE("Testando analisar mão: Three of a Kind"){
     Mesa* mesa = &mesaTeste;
     mesaTeste.addCartas(threeOfAKindVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
-    Mao mao(Carta(Copas, NOVE), Carta(Espadas, TRES));
+    Mao mao(new Carta(Copas, NOVE),new Carta(Espadas, TRES));
     Mao* pointerMao = &mao;
     jogadorTeste.setMao(pointerMao);
     CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "Three of a Kind Analisar mão sem exceções OK!");
@@ -216,7 +216,7 @@ TEST_CASE("Testando analisar mão: Three of a Kind"){
 }
 
 TEST_CASE("Testando analisar mão: Two Pairs"){
-    std::vector<Carta> twoPairsVector;
+    std::vector<Carta*> twoPairsVector;
     std::map<std::string, int> mapTeste;
     std::map<std::string, int> twoPairsMap;
     twoPairsMap.insert(std::pair<std::string, int>("Carta", SETE));
@@ -227,7 +227,7 @@ TEST_CASE("Testando analisar mão: Two Pairs"){
     Mesa* mesa = &mesaTeste;
     mesaTeste.addCartas(twoPairsVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
-    Mao mao(Carta(Copas, SETE), Carta(Espadas, TRES));
+    Mao mao(new Carta(Copas, SETE),new Carta(Espadas, TRES));
     Mao* pointerMao = &mao;
     jogadorTeste.setMao(pointerMao);
     CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "Two Pairs Analisar mão sem exceções OK!");
@@ -235,7 +235,7 @@ TEST_CASE("Testando analisar mão: Two Pairs"){
 }
 
 TEST_CASE("Testando analisar mão: Pair"){
-    std::vector<Carta> pairVector;
+    std::vector<Carta*> pairVector;
     std::map<std::string, int> mapTeste;
     std::map<std::string, int> pairMap;
     pairMap.insert(std::pair<std::string, int>("Carta", CINCO));
@@ -246,7 +246,7 @@ TEST_CASE("Testando analisar mão: Pair"){
     Mesa* mesa = &mesaTeste;
     mesaTeste.addCartas(pairVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
-    Mao mao(Carta(Copas, NOVE), Carta(Espadas, TRES));
+    Mao mao(new Carta(Copas, NOVE),new Carta(Espadas, TRES));
     Mao* pointerMao = &mao;
     jogadorTeste.setMao(pointerMao);
     CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "Pair Analisar mão sem exceções OK!");
@@ -254,7 +254,7 @@ TEST_CASE("Testando analisar mão: Pair"){
 }
 
 TEST_CASE("Testando analisar mão: High Card"){
-    std::vector<Carta> highCardVector;
+    std::vector<Carta*> highCardVector;
     std::map<std::string, int> mapTeste;
     std::map<std::string, int>highCardMap;
     highCardMap.insert(std::pair<std::string, int>("Carta", Q));
@@ -265,7 +265,7 @@ TEST_CASE("Testando analisar mão: High Card"){
     Mesa* mesa = &mesaTeste;
     mesaTeste.addCartas(highCardVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
-    Mao mao(Carta(Copas, NOVE), Carta(Espadas, Q));
+    Mao mao(new Carta(Copas, NOVE),new Carta(Espadas, Q));
     Mao* pointerMao = &mao;
     jogadorTeste.setMao(pointerMao);
     CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "High Card Analisar mão sem exceções OK!");

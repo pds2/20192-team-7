@@ -12,7 +12,7 @@ namespace poker {
     class Util {
     
         public:
-            std::vector<Carta> OrdenaCartas(std::vector<Carta> cartas);
+            std::vector<Carta*> OrdenaCartas(std::vector<Carta*> cartas);
             std::string ObterStringSimbolo(Simbolo simbolo);
             std::string ObterStringSequencia(OrdemSequencia sequencia);
     };

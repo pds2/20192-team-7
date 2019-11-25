@@ -9,7 +9,7 @@ River::River(Baralho* baralho) : EstadoJogo(baralho){
 }
 
 void River::distribuirCartas(Mesa* mesa) {
-    std::vector<Carta> cartasMesa = this->baralho->distribuirCartas(1);
+    std::vector<Carta*> cartasMesa = this->baralho->distribuirCartas(1);
     mesa->addCartas(cartasMesa);
 }
 

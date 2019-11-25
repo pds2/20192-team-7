@@ -12,10 +12,11 @@ namespace poker {
 			std::vector<Carta*> cartas;
 			
 		public:
-			Mao(Carta* primeira, Carta* segunda);
 			Mao();
-			std::vector<Carta*> getCartas();
+			Mao(Carta* primeira, Carta* segunda);
+
 			void setCartas(std::vector<Carta*> cartas);
+			std::vector<Carta*> getCartas();
 	};
 }
 

@@ -39,6 +39,7 @@ int Dealer::getNumeroJogadores(){
 
 
 void Dealer::inserirJogadores(){
+    
     Jogador* bots[7] = {
 		new Jogador("Clinky", pote, mesa),
 		new Jogador("Adilson", pote, mesa),
@@ -48,6 +49,7 @@ void Dealer::inserirJogadores(){
 		new Jogador("Ricky", pote, mesa),
 		new Jogador("Morty", pote, mesa),
 	}; 
+
 	unsigned int i; 
 	for (i = 0; i < numeroJogadores; i++)
     	(this->jogadores).push_back(bots[i]);
@@ -66,12 +68,14 @@ void Dealer::distribuirFichas(unsigned int numeroFichas){
 
 bool verificarTodosCheck(std::vector<Jogador*> jogadores){
 	bool todosCheck = false;
+
 	for (Jogador* jogador : jogadores){
 		if (jogador->getUltimaAcao() == "check"){
 			todosCheck = true;
 		} 
 		else {
 			todosCheck = false;
+			break;
 		}
 	}
 
@@ -82,13 +86,21 @@ bool verificarTodosPagam(std::vector<Jogador*> jogadores){
 	bool todosPagam = false;
 
 	for (Jogador* jogador : jogadores){
+
 		if (jogador->getUltimaAcao() == "aumentar" || jogador->getUltimaAcao() == "apostar"){
+
 			for (Jogador* j : jogadores){
+
 				if (jogador->getNome() != j->getNome()){
-					if (j->getUltimaAcao() == "pagar")
+
+					if (j->getUltimaAcao() == "pagar"){
 						todosPagam = true;
-					else
-						todosPagam = false;									
+					}
+					else {
+						todosPagam = false;
+						break;								
+					}
+				
 				}
 			}
 		}
@@ -101,22 +113,25 @@ bool verificarTodosPagam(std::vector<Jogador*> jogadores){
 void Dealer::iniciarJogadas(){
 	std::vector<Jogador*>::iterator it;
 	bool podeSeguirProximaJogada = false;
-	jogada(this->jogadorHumano);
-	
+
 	do {
+		jogada(this->jogadorHumano);
+	
 		for (it = this->jogadores.begin(); it != this->jogadores.end(); ++it){
 			jogada(*it);
 		}
 
-		bool todosCheck = verificarTodosCheck(this->jogadores);
-		if (todosCheck){
+		bool todosCheck = ;
+		if (verificarTodosCheck(this->jogadores)){
+			podeSeguirProximaJogada = true;
+		}
+		else if (verificarTodosPagam(this->jogadores)) {
 			podeSeguirProximaJogada = true;
 		}
 		else {
-			bool todosPagam = verificarTodosPagam(this->jogadores);
-			if (todosPagam)
-				podeSeguirProximaJogada = true;
+			podeSeguirProximaJogada = false;
 		}
+
 	} while (!podeSeguirProximaJogada);
 }
 
@@ -126,6 +141,7 @@ void Dealer::jogada(Jogador* jogador){
 
 void Dealer::jogada(JogadorHumano* jogador){
 	mostrarMaoAtualJogador(jogador);
+
 	jogador->jogar(this->getMomentoJogo().verificarOpcoesJogador(jogador, this->pote));
 }
 
@@ -134,6 +150,7 @@ void Dealer::mostrarMaoAtualJogador(Jogador* jogador){
 	std::map<std::string, int> mapMao = jogador->analisarMao();
   
 	if (mapMao.find("Carta") != mapMao.end()) {
+
 		Simbolo maiorCarta = (Simbolo)(mapMao.find("Carta")->second);
 		OrdemSequencia sequencia = (OrdemSequencia)(mapMao.find("Sequencia")->second);
 
@@ -147,12 +164,14 @@ void Dealer::mostrarMaoAtualJogador(Jogador* jogador){
 void Dealer::iniciarEstadoJogo (PreFlop* estadoJogo){
 	setEstadoJogo((EstadoJogo*)(estadoJogo));
 	estadoJogo->distribuirCartasJogadores(this->jogadores,this->jogadorHumano);
+
 	this->iniciarJogadas();
 }
 
 void Dealer::iniciarEstadoJogo (EstadoJogo* estadoJogo){
 	setEstadoJogo((EstadoJogo*)(estadoJogo));
 	estadoJogo->distribuirCartas(this->mesa);
+
 	this->iniciarJogadas();
 }
 
@@ -206,7 +225,9 @@ void Dealer::iniciarJogo(unsigned int numeroJogadores){
 
 	while (podeContinuarJogo){
 		try {
+
 			iniciarRodada();
+
 		} catch (FimJogo e){
 			std::cout << e.what() << std::endl;
 			podeContinuarJogo = false;
@@ -235,6 +256,7 @@ void Dealer::iniciarRodada(){
 		entregarPremio(jogadorVencedor);
 
 		for (Jogador* jogador : this->jogadores){
+
 			if (jogador->getNumeroFichas() == 0)
 				throw FimJogo();
 		}
@@ -257,6 +279,7 @@ void Dealer::verificarResultadoJogo(){
 	std::vector<Jogador*> vencedoresPotencias;
 	
 	for (Jogador* jogador : this->jogadores){
+		
 		if (jogador->getNumeroFichas() > 0 ){
 			vencedoresPotencias.push_back(jogador);
 		}

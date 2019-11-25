@@ -12,7 +12,8 @@ namespace poker {
 
         public:
             Pote();
-            Pote(unsigned int valorTotal,unsigned int valorApostaAtual, unsigned int valorApostaAnterior);
+            Pote(unsigned int valorTotal, unsigned int valorApostaAtual, unsigned int valorApostaAnterior);
+            
             void setValorTotal(unsigned int valorTotal);
             void setValorApostaAtual(unsigned int valorApostaAtual);
             void setValorApostaAnterior(unsigned int valorApostaAnterior);

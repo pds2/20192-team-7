@@ -1,13 +1,14 @@
-#include <vector>
 #include "classes/carta.hpp"
 #include "classes/pote.hpp"
+
+#include <vector>
 
 #ifndef MESA_H
 #define MESA_H
 
-namespace poker{
+namespace poker {
 
-	class Mesa{
+	class Mesa {
 		private:
 			std::vector<Carta*> cartasMesa;
 			Pote pote;

@@ -1,5 +1,5 @@
-#include <vector>
 #include "classes/carta.hpp"
+#include <vector>
 
 #ifndef POKER_BARALHO
 #define POKER_BARALHO
@@ -13,9 +13,10 @@ namespace poker {
             
         public:
 
+            std::vector<Carta*> getCartas();
+
             void embaralhar();
             std::vector<Carta*> distribuirCartas(unsigned int numeroCartas);
-            std::vector<Carta*> getCartas();
     };
 }
 

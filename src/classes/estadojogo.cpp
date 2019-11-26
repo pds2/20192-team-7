@@ -26,7 +26,7 @@ bool verificarCheck(Jogador* jogador, Pote* pote){
 }
 
 bool verificarBet(Jogador* jogador, Pote* pote){
-    bool valido = (pote->getValorApostaAnterior() == pote->getValorApostaAtual() && jogador->getNumeroFichas() > pote->getValorApostaAtual());
+    bool valido = (jogador->getNumeroFichas() > pote->getValorApostaAtual());
     return valido;
 }
 
@@ -71,6 +71,7 @@ std::map<std::string, bool> EstadoJogo::verificarOpcoesJogador(JogadorHumano* jo
     mapaOpcoesJogador.insert(std::pair<std::string, bool>("desistir", verificarFold(jogador, pote)));
     mapaOpcoesJogador.insert(std::pair<std::string, bool>("pagar", verificarCall(jogador, pote)));
     mapaOpcoesJogador.insert(std::pair<std::string, bool>("aumentar", verificarRaise(jogador, pote)));
+    mapaOpcoesJogador.insert(std::pair<std::string, bool>("sair do jogo", true));
 
     return mapaOpcoesJogador;
 }

@@ -223,7 +223,7 @@ void Dealer::iniciarEstadoJogo (PreFlop* estadoJogo){
 
 	this->iniciarJogadas();
 	this->pote->setValorApostaAnterior(0);
-	this->pote->setValorApostaAnterior(0);
+	this->pote->setValorApostaAtual(0);
 }
 
 void Dealer::iniciarEstadoJogo (Flop* estadoJogo){
@@ -232,7 +232,7 @@ void Dealer::iniciarEstadoJogo (Flop* estadoJogo){
 
 	this->iniciarJogadas();
 	this->pote->setValorApostaAnterior(0);
-	this->pote->setValorApostaAnterior(0);
+	this->pote->setValorApostaAtual(0);
 }
 
 
@@ -242,7 +242,7 @@ void Dealer::iniciarEstadoJogo (Turn* estadoJogo){
 
 	this->iniciarJogadas();
 	this->pote->setValorApostaAnterior(0);
-	this->pote->setValorApostaAnterior(0);
+	this->pote->setValorApostaAtual(0);
 }
 
 
@@ -252,7 +252,7 @@ void Dealer::iniciarEstadoJogo (River* estadoJogo){
 
 	this->iniciarJogadas();
 	this->pote->setValorApostaAnterior(0);
-	this->pote->setValorApostaAnterior(0);
+	this->pote->setValorApostaAtual(0);
 }
 
 bool verificarMaiorMao(Jogador* primeiroJogador, Jogador* segundoJogador){

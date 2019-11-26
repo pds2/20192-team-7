@@ -8,6 +8,7 @@
 
 #include <vector>
 #include <iostream>
+#define DESISTIR "desistir"
 
 using namespace poker;
 
@@ -31,6 +32,7 @@ void JogadorHumano::finalizarJogo(){
 }
 
 void JogadorHumano::desistirDaPartida(){
+    setUltimaAcao(DESISTIR);
     throw (FimRodada());
 }
 

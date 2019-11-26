@@ -69,13 +69,13 @@ void Jogador::apostar(unsigned int valorAposta){
         } 
         else {
             if (this->getNumeroFichas() >= valorApostaAtual+valorAposta) {
-                this->numeroFichas -= valorAposta;
+                this->setNumeroFichas(this->getNumeroFichas()-valorAposta);
                 this->pote->setValorTotal(valorTotal + valorAposta);
                 this->pote->setValorApostaAnterior(valorApostaAtual);
                 this->pote->setValorApostaAtual(valorAposta);
             } 
             else {
-                throw (PokerError("Fichas insuficientes! Valor máximo: " + numeroFichas-valorApostaAtual));
+                throw (PokerError("Fichas insuficientes! Valor máximo: " + this->getNumeroFichas()-valorApostaAtual));
             }
         }
     } 
@@ -113,7 +113,7 @@ void Jogador::aumentarAposta(unsigned int valorNovaAposta){
         }
     }
     else {
-        throw (PokerError("Fichas insuficientes! Valor máximo: " + numeroFichas-valorApostaAtual));
+        throw (PokerError("Fichas insuficientes! Valor máximo: " + this->getNumeroFichas()-valorApostaAtual));
     }
 }
 
@@ -159,7 +159,6 @@ std::map<std::string, int> Jogador::analisarMao(){
         }
     }
     else royalFlushFlag = false;
-
     for (unsigned int i=0; i < cartas.size() - 1; i++){
         if (cartas[i]->getSimbolo() == cartas[i+1]->getSimbolo() && counter!=4)
             counter++;

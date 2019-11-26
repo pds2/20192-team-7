@@ -115,9 +115,16 @@ bool verificarTodosPagam(std::vector<Jogador*> jogadores){
 void Dealer::iniciarJogadas(){
 	std::vector<Jogador*>::iterator it;
 	bool podeSeguirProximaJogada = false;
-
+	bool jogadorNaoDesistiu = false;
 	do {
-		jogada(this->jogadorHumano);
+		try{
+			if(jogadorNaoDesistiu || (this->jogadorHumano->getUltimaAcao().compare("desistir") != 0)){
+				std::cout << this->jogadorHumano->getUltimaAcao() << std::endl;
+				jogada(this->jogadorHumano);
+			}
+		}catch(poker::FimRodada& e){
+			jogadorNaoDesistiu = false;
+		}
 
 		for (it = this->jogadores.begin(); it != this->jogadores.end(); ++it){
 			jogada(*it);
@@ -174,7 +181,7 @@ void Dealer::iniciarEstadoJogo (PreFlop* estadoJogo){
 void Dealer::iniciarEstadoJogo (EstadoJogo* estadoJogo){
 	setEstadoJogo((EstadoJogo*)(estadoJogo));
 	estadoJogo->distribuirCartas(this->mesa);
-	
+
 	this->iniciarJogadas();
 }
 

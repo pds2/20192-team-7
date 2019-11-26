@@ -210,27 +210,17 @@ void Dealer::iniciarEstadoJogo (PreFlop* estadoJogo){
 	estadoJogo->distribuirCartasJogadores(this->jogadores,this->jogadorHumano);
 
 	this->iniciarJogadas();
+	this->pote->setValorApostaAnterior(0);
+	this->pote->setValorApostaAnterior(0);
 }
 
-void Dealer::iniciarEstadoJogo (Flop* estadoJogo){
+void Dealer::iniciarEstadoJogo (EstadoJogo* estadoJogo){
 	setEstadoJogo((EstadoJogo*)(estadoJogo));
 	estadoJogo->distribuirCartas(this->mesa);
 
 	this->iniciarJogadas();
-}
-
-void Dealer::iniciarEstadoJogo (Turn* estadoJogo){
-	setEstadoJogo((EstadoJogo*)(estadoJogo));
-	estadoJogo->distribuirCartas(this->mesa);
-
-	this->iniciarJogadas();
-}
-
-void Dealer::iniciarEstadoJogo (River* estadoJogo){
-	setEstadoJogo((EstadoJogo*)(estadoJogo));
-	estadoJogo->distribuirCartas(this->mesa);
-
-	this->iniciarJogadas();
+	this->pote->setValorApostaAnterior(0);
+	this->pote->setValorApostaAnterior(0);
 }
 
 bool verificarMaiorMao(Jogador* primeiroJogador, Jogador* segundoJogador){

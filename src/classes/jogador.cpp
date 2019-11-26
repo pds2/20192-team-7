@@ -368,26 +368,12 @@ void Jogador::jogar(std::map<std::string, bool> opcoesJogador){
 
     std::map<int, std::string> menu;
 
-    //
-    //
-    std::string opcoes = "";
-    //
-    //
-
-
     for (std::map<std::string, bool>::iterator it = opcoesJogador.begin(); it != opcoesJogador.end(); ++it){
         if (it->second){
             menu.insert(std::make_pair(contadorOpcoes, it->first));
             contadorOpcoes++;
-            //
-            //
-            opcoes += ('\t' + std::to_string(contadorOpcoes) + " - " + it->first + '\n');
-            //
-            //
         }
     }
-
-    std:: cout << "Opções do " << this->getNome() << " :" << opcoes << std::endl;
 
     bool botJogou = false;
     do {

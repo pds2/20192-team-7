@@ -4,6 +4,7 @@
 #include <iterator>
 #include <iostream>
 #include <algorithm>
+#include <cstdlib>
 
 using namespace poker;
 
@@ -303,8 +304,7 @@ void Dealer::iniciarRodada(){
 		std::vector<Carta*> mesaVazia;
 		this->mesa->setCartasMesa(mesaVazia);
 
-		Jogador* jogadorVencedor = verificarResultadoRodada();
-		entregarPremio(jogadorVencedor);
+		verificarResultadoRodada();
 
 		for (Jogador* jogador : this->jogadores){
 
@@ -318,7 +318,8 @@ void Dealer::iniciarRodada(){
 }
 
 void Dealer::entregarPremio(Jogador* jogadorVencedor){
-	jogadorVencedor->setNumeroFichas(this->pote->getValorTotal());
+	unsigned int fichas = jogadorVencedor->getNumeroFichas();
+	jogadorVencedor->setNumeroFichas(fichas + this->pote->getValorTotal());
 	
 	this->pote->setValorTotal(0);
 	this->pote->setValorApostaAtual(0);
@@ -337,14 +338,14 @@ void Dealer::verificarResultadoJogo(){
 	}
 
 	if (vencedoresPotencias.size() == 1 && vencedoresPotencias.at(0)->getNumeroFichas() > 0){
-		std::cout << "O vencedor foi o jogador : " << vencedoresPotencias.at(0)->getNome() << " com " << vencedoresPotencias.at(0)->getNumeroFichas() << "fichas" << std::endl;
+		std::cout << "O vencedor do jogo foi o jogador : " << vencedoresPotencias.at(0)->getNome() << " com " << vencedoresPotencias.at(0)->getNumeroFichas() << " fichas" << std::endl;
 	} 
 	else {
 		throw (PokerError("Método chamado no momento errado, mais de um jogador vencedor ou número de fichas do vencedore igual a zero."));
 	}
 }
 
-Jogador* Dealer::verificarResultadoRodada(){
+void Dealer::verificarResultadoRodada(){
 	Jogador* vencedor = nullptr;
 	for (Jogador* primeiroCandidatoVencer : this->jogadores){
 	
@@ -359,5 +360,11 @@ Jogador* Dealer::verificarResultadoRodada(){
 		}
 	}
 
-	return vencedor;
+
+	entregarPremio(vencedor);
+	
+
+	std::system("clear");
+	
+	std::cout << "O vencedor da rodada foi o jogador : " << vencedor->getNome() << " com " << vencedor->getNumeroFichas() << " fichas" << std::endl;
 }

@@ -147,7 +147,7 @@ std::map<std::string, int> Jogador::analisarMao(){
 
     std::map<std::string, int> resultadoDaAnalise;
     short int counter;
-    unsigned short int position = 0;
+    unsigned int position = 0;
     bool flushFlag, royalFlushFlag, straightFlag, fourOfAKindFlag, threeOfAKindFlag, pairFlag, secondPairFlag, firsTimeflag;
     int maiorCarta;
     Util util;
@@ -191,6 +191,7 @@ std::map<std::string, int> Jogador::analisarMao(){
         }
     }
     else royalFlushFlag = false;
+
     for (unsigned int i=0; i < cartas.size() - 1; i++){
         if (cartas[i]->getSimbolo() == cartas[i+1]->getSimbolo() && counter!=4)
             counter++;
@@ -264,7 +265,7 @@ std::map<std::string, int> Jogador::analisarMao(){
     for (unsigned int i = 0; i<cartas.size()-1; i++){
         if (cartas[i]->getSimbolo() == cartas[i+1]->getSimbolo() && !fourOfAKindFlag && counter!=2 && position != i && position != i+1)
             counter++;
-        else if ((counter!=2 || i == position) && !threeOfAKindFlag) counter = 1;
+        else if ((counter!=2 || i == position || i == position+1 || i == position -1) && !threeOfAKindFlag) counter = 1;
 
         if (counter == 2 && !threeOfAKindFlag && firsTimeflag){
             firsTimeflag = false;

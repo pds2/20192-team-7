@@ -164,8 +164,8 @@ void JogadorHumano::realizarJogada(std::string opcaoSelecionada){
     else if (opcaoSelecionada == "desistir")
         this->desistirDaPartida();
 
-    else if(opcaoSelecionada == "sair do jogo")
-        throw(FimJogo());
+    else if (opcaoSelecionada == "sair do jogo")
+        throw (FimJogo());
         
     setUltimaAcao(opcaoSelecionada);
 }

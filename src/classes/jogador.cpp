@@ -1,5 +1,6 @@
 #include "classes/jogador.hpp"
 #include <iostream>
+#include <ctime>
 using namespace poker;
 
 #define CHANCE_APOSTA_BOT 95
@@ -294,21 +295,21 @@ std::map<std::string, int> Jogador::analisarMao(){
 int gerarValorChanceAposta(){
     int valorMaximo = 100;
     int valorMinimo = 1;
-
+    srand((unsigned)time(0));
     return rand() % (valorMaximo-valorMinimo) + valorMinimo;
 }
 
 float gerarPorcentagemAumentoAposta(){
     int valorMaximo = 20;
     int valorMinimo = 5;
-
-    return (rand() % (valorMaximo-valorMinimo) + valorMinimo)/10;
+    srand((unsigned)time(0));
+    return (rand() % (valorMaximo-valorMinimo) + valorMinimo)/100;
 }
 
 int gerarValorAposta(Jogador jogador){
     int valorMinimo = 1;
     int valorMaximo = jogador.getNumeroFichas();
-
+    srand((unsigned)time(0));
     return rand() % (valorMaximo-valorMinimo) + valorMinimo; 
 }
 

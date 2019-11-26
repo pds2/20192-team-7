@@ -306,6 +306,13 @@ float gerarPorcentagemAumentoAposta(){
     return (rand() % (valorMaximo-valorMinimo) + valorMinimo)/100;
 }
 
+float gerarPorcentagemAposta(){
+    int valorMaximo = 10;
+    int valorMinimo = 5;
+    srand((unsigned)time(0));
+    return (rand() % (valorMaximo-valorMinimo) + valorMinimo)/100;
+}
+
 int gerarValorAposta(Jogador jogador){
     int valorMinimo = 1;
     int valorMaximo = jogador.getNumeroFichas();
@@ -327,7 +334,7 @@ void Jogador::realizarJogada(std::string opcaoSelecionada){
         this->passarVez();
 
     else if (opcaoSelecionada == "apostar")
-        this->apostar(gerarValorAposta(*this));
+        this->apostar(gerarValorAposta(*this)*gerarPorcentagemAposta());
 
     else if (opcaoSelecionada == "pagar")
         this->pagarAposta();

@@ -337,7 +337,6 @@ void Dealer::iniciarRodada(){
 		std::cout << std::endl << "5" << std::endl << std::endl;
 
 		this->baralho->embaralhar();
-
 		PreFlop* preFlop = new PreFlop(this->baralho);
 		Flop* flop = new Flop(this->baralho);
 		Turn* turn = new Turn(this->baralho);
@@ -347,6 +346,9 @@ void Dealer::iniciarRodada(){
 		iniciarEstadoJogo(flop);
 		iniciarEstadoJogo(turn);
 		iniciarEstadoJogo(river);
+
+		std::vector<Carta*> mesaVazia;
+		this->mesa->setCartasMesa(mesaVazia);
 
 		Jogador* jogadorVencedor = verificarResultadoRodada();
 		entregarPremio(jogadorVencedor);

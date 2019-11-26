@@ -18,6 +18,11 @@ void Mesa::addCartas(std::vector<Carta*> cartasMesa){
         throw(PokerError("Mesa cheia!"));
 }
 
+void Mesa::setCartasMesa(std::vector<Carta*> cartasMesa){
+    this->cartasMesa = cartasMesa;
+}
+
+
 std::vector<Carta*> Mesa::getCartasMesa(){
     return (this->cartasMesa);
 }

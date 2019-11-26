@@ -19,6 +19,7 @@ namespace poker {
 
 			void addCartas(std::vector<Carta*> cartasMesa);
 			std::vector<Carta*> getCartasMesa();
+			void setCartasMesa(std::vector<Carta*> cartas);
 
 			void setPoteApostaTotal(int valorTotal);
 			void setPoteApostaAtual(int valorAtual);

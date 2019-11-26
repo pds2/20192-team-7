@@ -10,7 +10,7 @@ Pote::Pote(unsigned int valorTotal,unsigned int valorApostaAtual,unsigned int va
 }
 
 void Pote::setValorTotal(unsigned int valorTotal){
-    if(valorTotal < 2000*4)
+    if (valorTotal < 2000 * 8)
         this -> valorTotal = valorTotal;
     else
         throw(PokerError("Total de fichas ultrapassado!"));

@@ -26,7 +26,7 @@ bool verificarCheck(Jogador* jogador, Pote* pote){
 }
 
 bool verificarBet(Jogador* jogador, Pote* pote){
-    bool valido = (pote->getValorApostaAnterior() == pote->getValorApostaAtual());
+    bool valido = (pote->getValorApostaAnterior() == pote->getValorApostaAtual() && jogador->getNumeroFichas() > 0);
     return valido;
 }
 

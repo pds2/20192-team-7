@@ -92,7 +92,6 @@ void Jogador::pagarAposta(){
         this->numeroFichas -= valorApostaAtual;
         this->pote->setValorTotal(valorTotal + valorApostaAtual);
 
-        std::cout << "Aposta atual: " << valorApostaAtual << "; Valor aposta anterior: " << this->pote->getValorApostaAnterior() << std::endl;
     }
     else {
         throw (PokerError("Fichas insuficientes"));
@@ -378,6 +377,8 @@ void Jogador::jogar(std::map<std::string, bool> opcoesJogador){
     bool botJogou = false;
     do {
         try {
+            srand((unsigned)time(0));
+
             int opcaoEscolhidaAleatoriamente = rand() % contadorOpcoes;
             realizarJogada(menu.find(opcaoEscolhidaAleatoriamente)->second);
 

@@ -365,6 +365,6 @@ void Dealer::verificarResultadoRodada(){
 	
 
 	std::system("clear");
-	
+
 	std::cout << "O vencedor da rodada foi o jogador : " << vencedor->getNome() << " com " << vencedor->getNumeroFichas() << " fichas" << std::endl;
 }

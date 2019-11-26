@@ -26,6 +26,9 @@ namespace poker {
             void iniciarJogadas();
 
             void iniciarEstadoJogo (PreFlop* estadoJogo);
+            void iniciarEstadoJogo (Flop* estadoJogo);
+            void iniciarEstadoJogo (Turn* estadoJogo);
+            void iniciarEstadoJogo (River* estadoJogo);
             void iniciarEstadoJogo (EstadoJogo* estadoJogo);
 
             void mostrarMaoAtualJogador(Jogador* jogador);

@@ -214,7 +214,27 @@ void Dealer::iniciarEstadoJogo (PreFlop* estadoJogo){
 	this->pote->setValorApostaAnterior(0);
 }
 
-void Dealer::iniciarEstadoJogo (EstadoJogo* estadoJogo){
+void Dealer::iniciarEstadoJogo (Flop* estadoJogo){
+	setEstadoJogo((EstadoJogo*)(estadoJogo));
+	estadoJogo->distribuirCartas(this->mesa);
+
+	this->iniciarJogadas();
+	this->pote->setValorApostaAnterior(0);
+	this->pote->setValorApostaAnterior(0);
+}
+
+
+void Dealer::iniciarEstadoJogo (Turn* estadoJogo){
+	setEstadoJogo((EstadoJogo*)(estadoJogo));
+	estadoJogo->distribuirCartas(this->mesa);
+
+	this->iniciarJogadas();
+	this->pote->setValorApostaAnterior(0);
+	this->pote->setValorApostaAnterior(0);
+}
+
+
+void Dealer::iniciarEstadoJogo (River* estadoJogo){
 	setEstadoJogo((EstadoJogo*)(estadoJogo));
 	estadoJogo->distribuirCartas(this->mesa);
 

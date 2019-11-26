@@ -278,7 +278,7 @@ void Dealer::iniciarJogo(unsigned int numeroJogadores){
 
 			iniciarRodada();
 
-		} catch (FimJogo e){
+		} catch (FimJogo& e){
 			std::cout << e.what() << std::endl;
 			podeContinuarJogo = false;
 		}

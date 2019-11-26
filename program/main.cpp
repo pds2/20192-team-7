@@ -21,6 +21,11 @@ int main() {
 
     } while (numeroJogadores > 7 || numeroJogadores < 1);
     
-    dealer->iniciarJogo(numeroJogadores);
+    try {
+        dealer->iniciarJogo(numeroJogadores);
+    }
+    catch (std::exception& e){
+        return 0;
+    }
     return 0;
 }

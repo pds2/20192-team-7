@@ -365,7 +365,7 @@ void Jogador::jogar(std::map<std::string, bool> opcoesJogador){
             botJogou = true;
         }
 
-        catch (PokerError e) {
+        catch (PokerError& e) {
             botJogou = false;
         }
 

@@ -120,7 +120,7 @@ void JogadorHumano::realizarJogada(std::string opcaoSelecionada){
                 this->apostar(valorAposta);
 
                 apostou = true;
-            } catch (PokerError pokerErrorException){
+            } catch (PokerError& pokerErrorException){
                 std::cout << pokerErrorException.what() << std::endl;
                 apostou = false;
             }
@@ -138,7 +138,7 @@ void JogadorHumano::realizarJogada(std::string opcaoSelecionada){
                 this->aumentarAposta(valorAposta);
 
                 apostou = true;
-            } catch (PokerError pokerErrorException){
+            } catch (PokerError& pokerErrorException){
                 std::cout << pokerErrorException.what() << std::endl;
                 apostou = false;
             }
@@ -148,6 +148,9 @@ void JogadorHumano::realizarJogada(std::string opcaoSelecionada){
     else if (opcaoSelecionada == "desistir")
         this->desistirDaPartida();
 
+    else if(opcaoSelecionada == "sair do jogo")
+        throw(FimJogo());
+        
     setUltimaAcao(opcaoSelecionada);
 }
 

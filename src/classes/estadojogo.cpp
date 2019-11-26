@@ -76,6 +76,7 @@ std::map<std::string, bool> EstadoJogo::verificarOpcoesJogador(JogadorHumano* jo
     mapaOpcoesJogador.insert(std::pair<std::string, bool>("desistir", verificarFold(jogador, pote)));
     mapaOpcoesJogador.insert(std::pair<std::string, bool>("pagar", verificarCall(jogador, pote)));
     mapaOpcoesJogador.insert(std::pair<std::string, bool>("aumentar", verificarRaise(jogador, pote)));
+    mapaOpcoesJogador.insert(std::pair<std::string, bool>("sair do jogo", true));
 
     return mapaOpcoesJogador;
 }

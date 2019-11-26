@@ -117,6 +117,30 @@ void Jogador::aumentarAposta(unsigned int valorNovaAposta){
     }
 }
 
+bool avaliarRoyalFlushSequence(Carta* carta){
+    switch(carta->getSimbolo()){
+
+        case DEZ:
+            return true;
+            break;
+        case J:
+            return true;
+            break;
+        case Q:
+            return true;
+            break;
+        case K:
+            return true;
+            break;
+        case A:
+            return true;
+            break;
+        default:
+            return false;
+            break;
+    }
+}
+
 std::map<std::string, int> Jogador::analisarMao(){
 
     std::cout << std::endl << "7.1.3" << std::endl << std::endl;
@@ -125,7 +149,6 @@ std::map<std::string, int> Jogador::analisarMao(){
     short int counter;
     unsigned short int position = 0;
     bool flushFlag, royalFlushFlag, straightFlag, fourOfAKindFlag, threeOfAKindFlag, pairFlag, secondPairFlag, firsTimeflag;
-    int royalFlushSequence[] = {DEZ, J, Q, K, A};
     int maiorCarta;
     Util util;
     std::vector<Carta*> cartas = this->mesa->getCartasMesa();
@@ -163,7 +186,7 @@ std::map<std::string, int> Jogador::analisarMao(){
     
     if (cartas.size()>5){
         for (unsigned int i = cartas.size()-5; i < cartas.size(); i++){
-            if ((cartas[i]->getSimbolo()!= royalFlushSequence[i-3]) || !flushFlag)
+            if (!(avaliarRoyalFlushSequence(cartas[i])) || !flushFlag)
                 royalFlushFlag = false;            
         }
     }

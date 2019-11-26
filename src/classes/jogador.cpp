@@ -291,38 +291,6 @@ std::map<std::string, int> Jogador::analisarMao(){
     return(resultadoDaAnalise); 
 }
 
-
-std::string converterOpcaoJogador(int numeroOpcao){
-
-    switch (numeroOpcao){
-        case 1:
-            return "check";
-            break;
-        case 2:
-            return "apostar";
-            break;
-        case 3:
-            return "desistir";
-            break;
-        case 4:
-            return "pagar";
-            break;
-        case 5:
-            return "aumentar";
-            break;
-        default: 
-            return "check";
-            break;
-    }
-}
-
-int geradorInteiroAleatorio(){
-    int numeroOpcoesMaxima = 5;
-    int numeroOpcoesMinima = 1;
-
-    return rand() % (numeroOpcoesMaxima-numeroOpcoesMinima) + numeroOpcoesMinima; 
-}
-
 int gerarValorChanceAposta(){
     int valorMaximo = 100;
     int valorMinimo = 1;
@@ -370,11 +338,29 @@ void Jogador::realizarJogada(std::string opcaoSelecionada){
 }
 
 void Jogador::jogar(std::map<std::string, bool> opcoesJogador){
-    std::string opcaoSelecionada;
+    int contadorOpcoes = 0;
 
+    std::map<int, std::string> menu;
+
+    for (std::map<std::string, bool>::iterator it = opcoesJogador.begin(); it != opcoesJogador.end(); ++it){
+        if (it->second){
+            menu.insert(std::make_pair(contadorOpcoes, it->first));
+            contadorOpcoes++;
+        }
+    }
+
+    bool botJogou = false;
     do {
-        opcaoSelecionada = converterOpcaoJogador(geradorInteiroAleatorio());
-    } while (opcoesJogador.at(opcaoSelecionada) == true);
-    
-    realizarJogada(opcaoSelecionada);
+        try {
+            int opcaoEscolhidaAleatoriamente = rand() % contadorOpcoes;
+            realizarJogada(menu.find(opcaoEscolhidaAleatoriamente)->second);
+
+            botJogou = true;
+        }
+
+        catch (PokerError e) {
+            botJogou = false;
+        }
+
+    } while (!botJogou);
 }

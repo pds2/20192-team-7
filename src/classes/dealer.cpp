@@ -117,26 +117,22 @@ void Dealer::iniciarJogadas(){
 	bool podeSeguirProximaJogada = false;
 
 	do {
-		try{
-			jogada(this->jogadorHumano);
-	
-			for (it = this->jogadores.begin(); it != this->jogadores.end(); ++it){
-				jogada(*it);
+		jogada(this->jogadorHumano);
 
-        	    std::cout << "Jogador " << (*it)->getNome() << " fez: " << (*it)->getUltimaAcao() << std::endl;
-				std::cout << std::endl;
-			}
+		for (it = this->jogadores.begin(); it != this->jogadores.end(); ++it){
+			jogada(*it);
 
-			if (verificarTodosCheck(this->jogadores)){
-				podeSeguirProximaJogada = true;
-			}
-			else if (verificarTodosPagam(this->jogadores)) {
-				podeSeguirProximaJogada = true;
-			}
-			else {
-				podeSeguirProximaJogada = false;
-			}
-		}catch(poker::PokerError& pokerError){
+    	    std::cout << "Jogador " << (*it)->getNome() << " fez: " << (*it)->getUltimaAcao() << std::endl;
+			std::cout << std::endl;
+		}
+
+		if (verificarTodosCheck(this->jogadores)){
+			podeSeguirProximaJogada = true;
+		}
+		else if (verificarTodosPagam(this->jogadores)) {
+			podeSeguirProximaJogada = true;
+		}
+		else {
 			podeSeguirProximaJogada = false;
 		}
 

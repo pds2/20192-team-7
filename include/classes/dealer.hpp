@@ -49,7 +49,7 @@ namespace poker {
             void iniciarRodada();
             void entregarPremio(Jogador* jogadorVencedor);
             void verificarResultadoJogo();
-            Jogador* verificarResultadoRodada();
+            void verificarResultadoRodada();
             
     };
 }

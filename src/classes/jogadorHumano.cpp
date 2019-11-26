@@ -96,7 +96,11 @@ void JogadorHumano::jogar(std::map<std::string, bool> opcoesJogador){
     do {
         std::cout << "Escolha sua jogada:" << std::endl << opcoes;
 
-        std::cin >> opcaoEscolhida;
+        if(!(std::cin >> opcaoEscolhida)){
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
+            std::cout<<"Digite um valor válido!"<<std::endl;
+        }
 
     } while (opcaoEscolhida < 1 || opcaoEscolhida > (contadorOpcoes+1) );
     
@@ -115,7 +119,13 @@ void JogadorHumano::realizarJogada(std::string opcaoSelecionada){
         do {
             try {
                 std::cout << "Valor da aposta: " ;
-                std::cin >> valorAposta;
+
+                if(!(std::cin >> valorAposta)){
+
+                    std::cin.clear();
+                    std::cin.ignore(1000, '\n');
+                    throw PokerError("Tipo de valor não permitido.");
+                }
                 
                 this->apostar(valorAposta);
 
@@ -133,7 +143,13 @@ void JogadorHumano::realizarJogada(std::string opcaoSelecionada){
         do {
             try {
                 std::cout << "Valor da nova aposta: " ;
-                std::cin >> valorAposta;
+
+                if(!(std::cin >> valorAposta)){
+
+                    std::cin.clear();
+                    std::cin.ignore(1000, '\n');
+                    std::cout<<"Digite um valor válido!"<<std::endl;
+                }
                 
                 this->aumentarAposta(valorAposta);
 

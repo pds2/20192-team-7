@@ -103,6 +103,7 @@ bool verificarTodosCheck(std::vector<Jogador*> jogadores){
 
 bool verificarTodosPagam(std::vector<Jogador*> jogadores){
 	bool todosPagam = false;
+	std::vector<bool> todosPagaram;
 
 	std::cout << std::endl << "9" << std::endl << std::endl;
 
@@ -117,16 +118,21 @@ bool verificarTodosPagam(std::vector<Jogador*> jogadores){
 				if (jogador->getNome() != j->getNome()){
 
 					if (j->getUltimaAcao() == "pagar"){
-						todosPagam = true;
+						todosPagaram.push_back(true);
 					}
 					else {
-						todosPagam = false;
-						break;								
+						todosPagaram.push_back(false);						
 					}
 				
 				}
 			}
 		}
+	}
+
+	if(std::find(todosPagaram.begin(), todosPagaram.end(), false) != todosPagaram.end()){
+		todosPagam = false;
+	}else{
+		todosPagam = true;
 	}
 
 	return todosPagam;

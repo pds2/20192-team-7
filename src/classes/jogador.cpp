@@ -299,8 +299,8 @@ int gerarValorChanceAposta(){
 }
 
 float gerarPorcentagemAumentoAposta(){
-    int valorMaximo = 80;
-    int valorMinimo = 10;
+    int valorMaximo = 20;
+    int valorMinimo = 5;
 
     return (rand() % (valorMaximo-valorMinimo) + valorMinimo)/10;
 }

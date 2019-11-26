@@ -22,11 +22,15 @@ bool EstadoJogo::validarApostas(unsigned int valorAposta, Jogador* jogador){
 
 bool verificarCheck(Jogador* jogador, Pote* pote){
     bool valido = (pote->getValorApostaAnterior() == pote->getValorApostaAtual() && jogador->getNumeroFichas() >= pote->getValorApostaAtual());
+    std::cout << std::endl << std::endl << jogador->getNome() << " - Check: " << valido << std::endl << std::endl;
+
     return valido;
 }
 
 bool verificarBet(Jogador* jogador, Pote* pote){
     bool valido = (pote->getValorApostaAnterior() == pote->getValorApostaAtual() && jogador->getNumeroFichas() > pote->getValorApostaAtual());
+    std::cout << std::endl << std::endl << jogador->getNome() << " - Bet: " << valido << std::endl << std::endl;
+
     return valido;
 }
 
@@ -42,12 +46,13 @@ bool verificarFold(JogadorHumano* jogador, Pote* pote){
 
 bool verificarCall(Jogador* jogador, Pote* pote){
     bool valido =  (pote->getValorApostaAtual() > pote->getValorApostaAnterior() && jogador->getNumeroFichas() >= pote->getValorApostaAtual());
+    std::cout << std::endl << std::endl << jogador->getNome() << " - Call: " << valido << std::endl << std::endl;
     return valido;
 }
 
 bool verificarRaise(Jogador* jogador, Pote* pote){
     bool valido = (pote->getValorApostaAtual() > pote->getValorApostaAnterior() && jogador->getNumeroFichas() > pote->getValorApostaAtual());
-
+    std::cout << std::endl << std::endl << jogador->getNome() << " - Raise: " << valido << std::endl << std::endl;
     return valido;
 }
 

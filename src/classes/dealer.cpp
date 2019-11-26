@@ -28,7 +28,7 @@ void Dealer::setEstadoJogo(EstadoJogo* momentoJogo){
 
 void Dealer::setNumeroJogadores(unsigned int numeroJogadores){
 
-	std::cout << std::endl << "2" << std::endl << std::endl;
+	//std::cout << std::endl << "2" << std::endl << std::endl;
 
 	this->numeroJogadores = numeroJogadores;
 }
@@ -44,7 +44,7 @@ int Dealer::getNumeroJogadores(){
 
 void Dealer::inserirJogadores(){
 
-	std::cout << std::endl << "3" << std::endl << std::endl;
+	//std::cout << std::endl << "3" << std::endl << std::endl;
     
     Jogador* bots[7] = {
 		new Jogador("Clinky", pote, mesa),
@@ -66,7 +66,7 @@ void Dealer::inserirJogadores(){
 
 void Dealer::distribuirFichas(unsigned int numeroFichas){
 
-	std::cout << std::endl << "4" << std::endl << std::endl;
+	//std::cout << std::endl << "4" << std::endl << std::endl;
 
 	std::vector<Jogador*>::iterator it;
 
@@ -80,10 +80,10 @@ void Dealer::distribuirFichas(unsigned int numeroFichas){
 bool verificarTodosCheck(std::vector<Jogador*> jogadores){
 	bool todosCheck = false;
 	std::vector<bool> todosCheckaram;
-	std::cout << std::endl << "8" << std::endl << std::endl;
+	//std::cout << std::endl << "8" << std::endl << std::endl;
 
 	for (Jogador* jogador : jogadores){
-		std::cout << std::endl << "8 * 3" << std::endl << std::endl;
+		//std::cout << std::endl << "8 * 3" << std::endl << std::endl;
 		if (jogador->getUltimaAcao() == "check"){
 			todosCheckaram.push_back(true);
 		} 
@@ -105,15 +105,17 @@ bool verificarTodosPagam(std::vector<Jogador*> jogadores){
 	bool todosPagam = false;
 	std::vector<bool> todosPagaram;
 
-	std::cout << std::endl << "9" << std::endl << std::endl;
+	//std::cout << std::endl << "9" << std::endl << std::endl;
 
 	for (Jogador* jogador : jogadores){
+
+		//std::cout << std::endl << "9 * 3" << std::endl << std::endl;
 
 		if (jogador->getUltimaAcao() == "aumentar" || jogador->getUltimaAcao() == "apostar"){
 
 			for (Jogador* j : jogadores){
 
-				std::cout << std::endl << "9 * 3 * 3" << std::endl << std::endl;
+				//std::cout << std::endl << "9 * 3 * 3" << std::endl << std::endl;
 
 				if (jogador->getNome() != j->getNome()){
 
@@ -141,7 +143,7 @@ bool verificarTodosPagam(std::vector<Jogador*> jogadores){
 
 void Dealer::iniciarJogadas(){
 
-	std::cout << std::endl << "7" << std::endl << std::endl;
+	//std::cout << std::endl << "7" << std::endl << std::endl;
 
 	std::vector<Jogador*>::iterator it;
 	bool podeSeguirProximaJogada = false;
@@ -149,13 +151,13 @@ void Dealer::iniciarJogadas(){
 	do {
 		try{
 			if(jogadorNaoDesistiu || (this->jogadorHumano->getUltimaAcao().compare("desistir") != 0)){
-				std::cout << std::endl << "7.1" << std::endl << std::endl;
+				//std::cout << std::endl << "7.1" << std::endl << std::endl;
 
 				std::cout << this->jogadorHumano->getUltimaAcao() << std::endl;
 				jogada(this->jogadorHumano);
 			}
 		}catch(poker::FimRodada& e){
-			std::cout << std::endl << "7.2" << std::endl << std::endl;
+			//std::cout << std::endl << "7.2" << std::endl << std::endl;
 
 			jogadorNaoDesistiu = false;
 		}
@@ -163,7 +165,7 @@ void Dealer::iniciarJogadas(){
 		for (it = this->jogadores.begin(); it != this->jogadores.end(); ++it){
 			jogada(*it);
 
-			std::cout << std::endl << "7.3 * 3" << std::endl << std::endl;
+			//std::cout << std::endl << "7.3 * 3" << std::endl << std::endl;
 
 
     	    std::cout << "Jogador " << (*it)->getNome() << " fez: " << (*it)->getUltimaAcao() << std::endl;
@@ -171,19 +173,19 @@ void Dealer::iniciarJogadas(){
 		}
 
 		if (verificarTodosCheck(this->jogadores)){
-			std::cout << std::endl << "7.4" << std::endl << std::endl;
+			//std::cout << std::endl << "7.4" << std::endl << std::endl;
 
 			podeSeguirProximaJogada = true;
 		}
 		else if (verificarTodosPagam(this->jogadores)) {
 
-			std::cout << std::endl << "7.5" << std::endl << std::endl;
+			//std::cout << std::endl << "7.5" << std::endl << std::endl;
 
 			podeSeguirProximaJogada = true;
 		}
 		else {
 
-			std::cout << std::endl << "7.6" << std::endl << std::endl;
+			//std::cout << std::endl << "7.6" << std::endl << std::endl;
 
 			podeSeguirProximaJogada = false;
 		}
@@ -217,7 +219,7 @@ void Dealer::mostrarMaoAtualJogador(Jogador* jogador){
 }
 
 void Dealer::iniciarEstadoJogo (PreFlop* estadoJogo){
-	std::cout << std::endl << "6" << std::endl << std::endl;
+	//std::cout << std::endl << "6" << std::endl << std::endl;
 	setEstadoJogo((EstadoJogo*)(estadoJogo));
 	estadoJogo->distribuirCartasJogadores(this->jogadores,this->jogadorHumano);
 
@@ -296,7 +298,7 @@ Jogador* verificarJogadorMaiorCarta(Jogador* primeiroJogador, Jogador* segundoJo
 
 void Dealer::iniciarJogo(unsigned int numeroJogadores){
 
-	std::cout << std::endl << "1" << std::endl << std::endl;
+	//std::cout << std::endl << "1" << std::endl << std::endl;
 
 	setNumeroJogadores(numeroJogadores);
 	
@@ -323,7 +325,7 @@ void Dealer::iniciarJogo(unsigned int numeroJogadores){
 void Dealer::iniciarRodada(){
 	try { 
 		
-		std::cout << std::endl << "5" << std::endl << std::endl;
+		//std::cout << std::endl << "5" << std::endl << std::endl;
 
 		this->baralho->embaralhar();
 

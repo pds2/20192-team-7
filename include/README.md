@@ -1,6 +1,6 @@
 # 20192-team-7
 
-Projeto da disciplina de Programação e Desenvolvimento de Software 2 do curso de Sistemas de Informação da UFMG.
+Projeto da disciplina deProgramação e Desenvolvimento de Software 2 do curso de Sistemas de Informação da UFMG.
 
 ## Descrição
 
@@ -89,7 +89,7 @@ Mostrar mão atual do jogador
 Verificar resultado da partida
 Entregar prêmio
 
-Classe | EstadoJogo
+Classe | EtapaJogo
 -------|--------
 Responsabilidades | Colaborações
 Atributos:| Baralho

@@ -314,7 +314,7 @@ int gerarValorAposta(Jogador jogador){
 }
 
 int gerarValorAumentarAposta(Jogador jogador, Pote* pote){
-    if (gerarValorChanceAposta() <= CHANCE_APOSTA_BOT){
+    if (gerarValorChanceAposta() >= CHANCE_APOSTA_BOT){
         return (float)pote->getValorApostaAnterior() * gerarPorcentagemAumentoAposta();
     }
     else {

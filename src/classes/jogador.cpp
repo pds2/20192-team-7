@@ -91,7 +91,8 @@ void Jogador::pagarAposta(){
     if ((this->numeroFichas - valorApostaAtual) >= 0){
         this->numeroFichas -= valorApostaAtual;
         this->pote->setValorTotal(valorTotal + valorApostaAtual);
-        this->pote->setValorApostaAnterior(valorApostaAtual);
+
+        std::cout << "Aposta atual: " << valorApostaAtual << "; Valor aposta anterior: " << this->pote->getValorApostaAnterior() << std::endl;
     }
     else {
         throw (PokerError("Fichas insuficientes"));
@@ -102,7 +103,7 @@ void Jogador::aumentarAposta(unsigned int valorNovaAposta){
     unsigned int valorTotal = this->pote->getValorTotal();
     unsigned int valorApostaAtual = this->pote->getValorApostaAtual();
 
-    if ((numeroFichas - valorNovaAposta >=0)){
+    if ((numeroFichas - valorNovaAposta >= 0)){
         if (valorNovaAposta > this->pote->getValorApostaAnterior()){
             this->pote->setValorTotal(valorNovaAposta + valorTotal);
             this->pote->setValorApostaAnterior(valorApostaAtual);
@@ -142,9 +143,6 @@ bool avaliarRoyalFlushSequence(Carta* carta){
 }
 
 std::map<std::string, int> Jogador::analisarMao(){
-
-    std::cout << std::endl << "7.1.3" << std::endl << std::endl;
-
     std::map<std::string, int> resultadoDaAnalise;
     short int counter;
     unsigned int position = 0;
@@ -155,8 +153,6 @@ std::map<std::string, int> Jogador::analisarMao(){
     std::vector<Carta*> aux = this->mao->getCartas();
     cartas.insert(std::end(cartas), std::begin(aux), std::end(aux));
     cartas = util.OrdenaCartas(cartas);
-
-//    std::cout << std::endl << "7.1.4" << std::endl << std::endl;
     
     flushFlag = true;
     straightFlag = true;
@@ -167,8 +163,6 @@ std::map<std::string, int> Jogador::analisarMao(){
     secondPairFlag = true;
     firsTimeflag = true;
     counter = 1;
-
-//    std::cout << std::endl << "7.1.5" << std::endl << std::endl;
 
     for (unsigned int i = 0; i < cartas.size()-1; i++){
         if (cartas[i]->getNaipe() != cartas[i+1]->getNaipe())
@@ -181,9 +175,6 @@ std::map<std::string, int> Jogador::analisarMao(){
         straightFlag = false;
         flushFlag = false;
     }
-
-//    std::cout << std::endl << "7.1.6" << std::endl << std::endl;
-    
     if (cartas.size()>5){
         for (unsigned int i = cartas.size()-5; i < cartas.size(); i++){
             if (!(avaliarRoyalFlushSequence(cartas[i])) || !flushFlag)
@@ -203,17 +194,12 @@ std::map<std::string, int> Jogador::analisarMao(){
         }
 
     }
-
-//    std::cout << std::endl << "7.1.7" << std::endl << std::endl;
-
     if (counter != 4){
         counter = 1;
         fourOfAKindFlag = false;
     }
 
     firsTimeflag = true;
-
-//    std::cout << std::endl << "7.1.8" << std::endl << std::endl;
 
     for (unsigned int i=0; i < cartas.size() - 1; i++){
         if (cartas[i]->getSimbolo() == cartas[i+1]->getSimbolo() && !fourOfAKindFlag && counter!=3)
@@ -229,16 +215,12 @@ std::map<std::string, int> Jogador::analisarMao(){
         }
     }
 
-//    std::cout << std::endl << "7.1.9" << std::endl << std::endl;
-
     if (counter != 3){
         counter = 1;
         threeOfAKindFlag = false;
     }
 
     firsTimeflag = true;
-
-//    std::cout << std::endl << "7.1.10" << std::endl << std::endl;
 
     for (unsigned int i=0; i < cartas.size() - 1; i++){
         if (cartas[i]->getSimbolo() == cartas[i+1]->getSimbolo() && !fourOfAKindFlag && !threeOfAKindFlag && counter!=2)
@@ -251,8 +233,6 @@ std::map<std::string, int> Jogador::analisarMao(){
             maiorCarta = cartas[i]->getSimbolo();
         }
     }
-
-//    std::cout << std::endl << "7.1.11" << std::endl << std::endl;
 
     if (counter != 2) {
         counter = 1;
@@ -272,16 +252,10 @@ std::map<std::string, int> Jogador::analisarMao(){
             maiorCarta = (maiorCarta > cartas[i]->getSimbolo()) ? maiorCarta : cartas[i]->getSimbolo();
         }
     }
-
-//    std::cout << std::endl << "7.1.12" << std::endl << std::endl;
-
     if (counter != 2){
         counter = 1;
         secondPairFlag = false;
     }
-
-//    std::cout << std::endl << "7.1.13" << std::endl << std::endl;
-
     if (royalFlushFlag){
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back()->getSimbolo()));
         resultadoDaAnalise.insert(std::pair<std::string, int>("Sequencia", RoyalFlush));
@@ -394,12 +368,26 @@ void Jogador::jogar(std::map<std::string, bool> opcoesJogador){
 
     std::map<int, std::string> menu;
 
+    //
+    //
+    std::string opcoes = "";
+    //
+    //
+
+
     for (std::map<std::string, bool>::iterator it = opcoesJogador.begin(); it != opcoesJogador.end(); ++it){
         if (it->second){
             menu.insert(std::make_pair(contadorOpcoes, it->first));
             contadorOpcoes++;
+            //
+            //
+            opcoes += ('\t' + std::to_string(contadorOpcoes) + " - " + it->first + '\n');
+            //
+            //
         }
     }
+
+    std:: cout << "Opções do " << this->getNome() << " :" << opcoes << std::endl;
 
     bool botJogou = false;
     do {

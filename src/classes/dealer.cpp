@@ -3,6 +3,7 @@
 #include <map>
 #include <iterator>
 #include <iostream>
+#include <algorithm>
 
 using namespace poker;
 
@@ -78,18 +79,23 @@ void Dealer::distribuirFichas(unsigned int numeroFichas){
 
 bool verificarTodosCheck(std::vector<Jogador*> jogadores){
 	bool todosCheck = false;
-
+	std::vector<bool> todosCheckaram;
 	std::cout << std::endl << "8" << std::endl << std::endl;
 
 	for (Jogador* jogador : jogadores){
 		std::cout << std::endl << "8 * 3" << std::endl << std::endl;
 		if (jogador->getUltimaAcao() == "check"){
-			todosCheck = true;
+			todosCheckaram.push_back(true);
 		} 
 		else {
-			todosCheck = false;
-			break;
+			todosCheckaram.push_back(false);
 		}
+	}
+
+	if(std::find(todosCheckaram.begin(), todosCheckaram.end(), false) != todosCheckaram.end()){
+		todosCheck = false;
+	}else{
+		todosCheck = true;
 	}
 
 	return todosCheck;

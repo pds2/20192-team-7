@@ -214,8 +214,6 @@ void Dealer::mostrarMaoAtualJogador(Jogador* jogador){
 
 
 	std::map<std::string, int> mapMao = jogador->analisarMao();
-  
-	std::cout << std::endl << "7.1.3" << std::endl << std::endl;
 
 	if (mapMao.find("Carta") != mapMao.end()) {
 

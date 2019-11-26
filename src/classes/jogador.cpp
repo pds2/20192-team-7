@@ -156,7 +156,7 @@ std::map<std::string, int> Jogador::analisarMao(){
     cartas.insert(std::end(cartas), std::begin(aux), std::end(aux));
     cartas = util.OrdenaCartas(cartas);
 
-    std::cout << std::endl << "7.1.4" << std::endl << std::endl;
+//    std::cout << std::endl << "7.1.4" << std::endl << std::endl;
     
     flushFlag = true;
     straightFlag = true;
@@ -168,7 +168,7 @@ std::map<std::string, int> Jogador::analisarMao(){
     firsTimeflag = true;
     counter = 1;
 
-    std::cout << std::endl << "7.1.5" << std::endl << std::endl;
+//    std::cout << std::endl << "7.1.5" << std::endl << std::endl;
 
     for (unsigned int i = 0; i < cartas.size()-1; i++){
         if (cartas[i]->getNaipe() != cartas[i+1]->getNaipe())
@@ -182,7 +182,7 @@ std::map<std::string, int> Jogador::analisarMao(){
         flushFlag = false;
     }
 
-    std::cout << std::endl << "7.1.6" << std::endl << std::endl;
+//    std::cout << std::endl << "7.1.6" << std::endl << std::endl;
     
     if (cartas.size()>5){
         for (unsigned int i = cartas.size()-5; i < cartas.size(); i++){
@@ -204,7 +204,7 @@ std::map<std::string, int> Jogador::analisarMao(){
 
     }
 
-    std::cout << std::endl << "7.1.7" << std::endl << std::endl;
+//    std::cout << std::endl << "7.1.7" << std::endl << std::endl;
 
     if (counter != 4){
         counter = 1;
@@ -213,7 +213,7 @@ std::map<std::string, int> Jogador::analisarMao(){
 
     firsTimeflag = true;
 
-    std::cout << std::endl << "7.1.8" << std::endl << std::endl;
+//    std::cout << std::endl << "7.1.8" << std::endl << std::endl;
 
     for (unsigned int i=0; i < cartas.size() - 1; i++){
         if (cartas[i]->getSimbolo() == cartas[i+1]->getSimbolo() && !fourOfAKindFlag && counter!=3)
@@ -229,7 +229,7 @@ std::map<std::string, int> Jogador::analisarMao(){
         }
     }
 
-    std::cout << std::endl << "7.1.9" << std::endl << std::endl;
+//    std::cout << std::endl << "7.1.9" << std::endl << std::endl;
 
     if (counter != 3){
         counter = 1;
@@ -238,7 +238,7 @@ std::map<std::string, int> Jogador::analisarMao(){
 
     firsTimeflag = true;
 
-    std::cout << std::endl << "7.1.10" << std::endl << std::endl;
+//    std::cout << std::endl << "7.1.10" << std::endl << std::endl;
 
     for (unsigned int i=0; i < cartas.size() - 1; i++){
         if (cartas[i]->getSimbolo() == cartas[i+1]->getSimbolo() && !fourOfAKindFlag && !threeOfAKindFlag && counter!=2)
@@ -252,7 +252,7 @@ std::map<std::string, int> Jogador::analisarMao(){
         }
     }
 
-    std::cout << std::endl << "7.1.11" << std::endl << std::endl;
+//    std::cout << std::endl << "7.1.11" << std::endl << std::endl;
 
     if (counter != 2) {
         counter = 1;
@@ -273,14 +273,14 @@ std::map<std::string, int> Jogador::analisarMao(){
         }
     }
 
-    std::cout << std::endl << "7.1.12" << std::endl << std::endl;
+//    std::cout << std::endl << "7.1.12" << std::endl << std::endl;
 
     if (counter != 2){
         counter = 1;
         secondPairFlag = false;
     }
 
-    std::cout << std::endl << "7.1.13" << std::endl << std::endl;
+//    std::cout << std::endl << "7.1.13" << std::endl << std::endl;
 
     if (royalFlushFlag){
         resultadoDaAnalise.insert(std::pair<std::string, int>("Carta", cartas.back()->getSimbolo()));

@@ -1,0 +1,226 @@
+\documentclass[twoside]{book}
+
+% Packages required by doxygen
+\usepackage{fixltx2e}
+\usepackage{calc}
+\usepackage{doxygen}
+\usepackage[export]{adjustbox} % also loads graphicx
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{makeidx}
+\usepackage{multicol}
+\usepackage{multirow}
+\PassOptionsToPackage{warn}{textcomp}
+\usepackage{textcomp}
+\usepackage[nointegrals]{wasysym}
+\usepackage[table]{xcolor}
+
+% NLS support packages
+\usepackage[brazil]{babel}
+% Font selection
+\usepackage[T1]{fontenc}
+\usepackage[scaled=.90]{helvet}
+\usepackage{courier}
+\usepackage{amssymb}
+\usepackage{sectsty}
+\renewcommand{\familydefault}{\sfdefault}
+\allsectionsfont{%
+  \fontseries{bc}\selectfont%
+  \color{darkgray}%
+}
+\renewcommand{\DoxyLabelFont}{%
+  \fontseries{bc}\selectfont%
+  \color{darkgray}%
+}
+\newcommand{\+}{\discretionary{\mbox{\scriptsize$\hookleftarrow$}}{}{}}
+
+% Page & text layout
+\usepackage{geometry}
+\geometry{%
+  a4paper,%
+  top=2.5cm,%
+  bottom=2.5cm,%
+  left=2.5cm,%
+  right=2.5cm%
+}
+\tolerance=750
+\hfuzz=15pt
+\hbadness=750
+\setlength{\emergencystretch}{15pt}
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{3ex plus 2ex minus 2ex}
+\makeatletter
+\renewcommand{\paragraph}{%
+  \@startsection{paragraph}{4}{0ex}{-1.0ex}{1.0ex}{%
+    \normalfont\normalsize\bfseries\SS@parafont%
+  }%
+}
+\renewcommand{\subparagraph}{%
+  \@startsection{subparagraph}{5}{0ex}{-1.0ex}{1.0ex}{%
+    \normalfont\normalsize\bfseries\SS@subparafont%
+  }%
+}
+\makeatother
+
+% Headers & footers
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\fancyhead[LE]{\fancyplain{}{\bfseries\thepage}}
+\fancyhead[CE]{\fancyplain{}{}}
+\fancyhead[RE]{\fancyplain{}{\bfseries\leftmark}}
+\fancyhead[LO]{\fancyplain{}{\bfseries\rightmark}}
+\fancyhead[CO]{\fancyplain{}{}}
+\fancyhead[RO]{\fancyplain{}{\bfseries\thepage}}
+\fancyfoot[LE]{\fancyplain{}{}}
+\fancyfoot[CE]{\fancyplain{}{}}
+\fancyfoot[RE]{\fancyplain{}{\bfseries\scriptsize Gerado por Doxygen }}
+\fancyfoot[LO]{\fancyplain{}{\bfseries\scriptsize Gerado por Doxygen }}
+\fancyfoot[CO]{\fancyplain{}{}}
+\fancyfoot[RO]{\fancyplain{}{}}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\chaptermark}[1]{%
+  \markboth{#1}{}%
+}
+\renewcommand{\sectionmark}[1]{%
+  \markright{\thesection\ #1}%
+}
+
+% Indices & bibliography
+\usepackage{natbib}
+\usepackage[titles]{tocloft}
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{5}
+\makeindex
+
+% Hyperlinks (required, but should be loaded last)
+\usepackage{ifpdf}
+\ifpdf
+  \usepackage[pdftex,pagebackref=true]{hyperref}
+\else
+  \usepackage[ps2pdf,pagebackref=true]{hyperref}
+\fi
+\hypersetup{%
+  colorlinks=true,%
+  linkcolor=blue,%
+  citecolor=blue,%
+  unicode%
+}
+
+% Custom commands
+\newcommand{\clearemptydoublepage}{%
+  \newpage{\pagestyle{empty}\cleardoublepage}%
+}
+
+\usepackage{caption}
+\captionsetup{labelsep=space,justification=centering,font={bf},singlelinecheck=off,skip=4pt,position=top}
+
+%===== C O N T E N T S =====
+
+\begin{document}
+
+% Titlepage & ToC
+\hypersetup{pageanchor=false,
+             bookmarksnumbered=true,
+             pdfencoding=unicode
+            }
+\pagenumbering{alph}
+\begin{titlepage}
+\vspace*{7cm}
+\begin{center}%
+{\Large 201902-\/time-\/7 }\\
+\vspace*{1cm}
+{\large Gerado por Doxygen 1.8.13}\\
+\end{center}
+\end{titlepage}
+\clearemptydoublepage
+\pagenumbering{roman}
+\tableofcontents
+\clearemptydoublepage
+\pagenumbering{arabic}
+\hypersetup{pageanchor=true}
+
+%--- Begin generated contents ---
+\chapter{20192-\/team-\/7}
+\label{md_README}
+\Hypertarget{md_README}
+\input{md_README}
+\chapter{Índice Hierárquico}
+\input{hierarchy}
+\chapter{Índice dos Componentes}
+\input{annotated}
+\chapter{Classes}
+\input{structdoctest_1_1detail_1_1has__insertion__operator__impl_1_1any__t}
+\input{classdoctest_1_1Approx}
+\input{structdoctest_1_1AssertData}
+\input{classpoker_1_1Baralho}
+\input{classbasic__ostream}
+\input{classpoker_1_1Carta}
+\input{structchar__traits}
+\input{classdoctest_1_1Context}
+\input{structdoctest_1_1ContextOptions}
+\input{classdoctest_1_1detail_1_1ContextScope}
+\input{classdoctest_1_1detail_1_1ContextScopeBase}
+\input{structdoctest_1_1CurrentTestCaseStats}
+\input{classpoker_1_1Dealer}
+\input{structdoctest_1_1detail_1_1deferred__false}
+\input{classpoker_1_1EstadoJogo}
+\input{classdoctest_1_1detail_1_1ExceptionTranslator}
+\input{structdoctest_1_1detail_1_1ExpressionDecomposer}
+\input{classpoker_1_1FimJogo}
+\input{classpoker_1_1FimRodada}
+\input{classpoker_1_1Flop}
+\input{structdoctest_1_1detail_1_1has__insertion__operator__impl_1_1has__insertion__operator}
+\input{structdoctest_1_1detail_1_1has__insertion__operator}
+\input{structdoctest_1_1IContextScope}
+\input{structdoctest_1_1detail_1_1IExceptionTranslator}
+\input{structdoctest_1_1IReporter}
+\input{classpoker_1_1Jogador}
+\input{classpoker_1_1JogadorHumano}
+\input{classpoker_1_1Mao}
+\input{classpoker_1_1Mesa}
+\input{structdoctest_1_1detail_1_1MessageBuilder}
+\input{structdoctest_1_1MessageData}
+\input{classpoker_1_1PokerError}
+\input{classpoker_1_1Pote}
+\input{classpoker_1_1PreFlop}
+\input{structdoctest_1_1QueryData}
+\input{structdoctest_1_1detail_1_1RelationalComparator}
+\input{structdoctest_1_1detail_1_1remove__const}
+\input{structdoctest_1_1detail_1_1remove__const_3_01const_01T_01_4}
+\input{structdoctest_1_1detail_1_1remove__reference}
+\input{structdoctest_1_1detail_1_1remove__reference_3_01T_01_6_01_4}
+\input{structdoctest_1_1detail_1_1remove__reference_3_01T_01_6_6_01_4}
+\input{structdoctest_1_1detail_1_1Result}
+\input{structdoctest_1_1detail_1_1ResultBuilder}
+\input{classpoker_1_1River}
+\input{classdoctest_1_1String}
+\input{structdoctest_1_1StringMaker}
+\input{structdoctest_1_1StringMaker_3_01R_01C_1_1_5_01_4}
+\input{structdoctest_1_1StringMaker_3_01T_01_5_01_4}
+\input{structdoctest_1_1detail_1_1StringMakerBase}
+\input{structdoctest_1_1detail_1_1StringMakerBase_3_01true_01_4}
+\input{structdoctest_1_1detail_1_1StringStream}
+\input{structdoctest_1_1detail_1_1StringStreamBase}
+\input{structdoctest_1_1detail_1_1StringStreamBase_3_01true_01_4}
+\input{structdoctest_1_1detail_1_1Subcase}
+\input{structdoctest_1_1SubcaseSignature}
+\input{structdoctest_1_1detail_1_1TestCase}
+\input{structdoctest_1_1TestCaseData}
+\input{structdoctest_1_1TestCaseException}
+\input{structdoctest_1_1detail_1_1TestFailureException}
+\input{structdoctest_1_1TestRunStats}
+\input{structdoctest_1_1detail_1_1TestSuite}
+\input{classtuple}
+\input{classpoker_1_1Turn}
+\input{classpoker_1_1Util}
+%--- End generated contents ---
+
+% Index
+\backmatter
+\newpage
+\phantomsection
+\clearemptydoublepage
+\addcontentsline{toc}{chapter}{Índice}
+\printindex
+
+\end{document}

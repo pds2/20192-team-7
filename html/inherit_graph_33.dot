@@ -1,0 +1,7 @@
+digraph "Gráfico de Hierarquia de Classes"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="doctest::StringMaker\l\< R C::* \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdoctest_1_1StringMaker_3_01R_01C_1_1_5_01_4.html"];
+}

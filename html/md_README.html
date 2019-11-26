@@ -1,0 +1,330 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>201902-time-7: 20192-team-7</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">201902-time-7
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Busca');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Busca');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">20192-team-7 </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>Projeto da disciplina deProgramação e Desenvolvimento de Software 2 do curso de Sistemas de Informação da UFMG.</p>
+<h2>Descrição</h2>
+<p>Jogo de Poker Texas Hold'em desenvolvido em C++</p>
+<h2>User stories</h2>
+<ul>
+<li>Como jogador eu quero aumentar a aposta para aumentar o valor do pote e ganhar mais (raise)</li>
+<li>Critérios de aceitação:<ul>
+<li>O jogador deve estar participando da jogada</li>
+<li>O valor do pote deve ser acrescido</li>
+<li>O jogador deve ter o valor para aumentar a aposta</li>
+<li>O valor deve ser descontado do valor das fichas do jogador</li>
+</ul>
+</li>
+<li>Como jogador eu quero seguir o jogo para continuar na rodada e manter o valor do pote (check)</li>
+<li>Critérios de aceitação:<ul>
+<li>O jogador deve estar participando da jogada</li>
+<li>O valor da aposta não deve ter sido alterado na rodada</li>
+<li>O jogador deve se manter no jogo</li>
+<li>As fichas do jogador devem ser mantidas</li>
+</ul>
+</li>
+<li>Como jogador eu quero aceitar a aposta para continuar na rodada e aumentar o valor do pote (call)</li>
+<li>Critérios de aceitação:<ul>
+<li>O jogador deve estar participando da jogada</li>
+<li>O valor da aposta deve ter sido alterado na rodada</li>
+<li>O jogador deve se manter no jogo</li>
+<li>O valor deve ser descontado do valor das fichas do jogador</li>
+</ul>
+</li>
+<li>Como jogador eu quero desistir da jogada para sair da mesa (fold)</li>
+<li>Critérios de aceitação:<ul>
+<li>O jogador deve estar participando da jogada</li>
+<li>O jogador deve ser retirado da mesa</li>
+<li>Se for o pré-flop, as fichas não são descontadas</li>
+<li>O valor deve ser descontado do valor das fichas do jogador se tiver passado do flop</li>
+</ul>
+</li>
+<li>Como jogador eu quero iniciar o jogo para poder jogar</li>
+<li>Critérios de aceitação:<ul>
+<li>O jogador deve informar o número de bots a jogar contra</li>
+<li>O jogador deve ser inserido no jogo</li>
+<li>Os bots devem ser inseridos no jogo</li>
+<li>O jogador deve receber 2 cartas</li>
+<li>Os bots devem receber 2 cartas</li>
+<li>O jogador deve receber um valor inicial em fichas</li>
+<li>Os bots devem receber um valor inicial em fichas</li>
+</ul>
+</li>
+<li>Como jogador eu quero finalizar o jogo para poder sair do jogo</li>
+<li>Critérios de aceitação:<ul>
+<li>O jogador deve estar jogando anteriormente</li>
+<li>O jogador deve confirmar que deseja sair</li>
+<li>O jogo deve ser encerrado</li>
+</ul>
+</li>
+<li>Como jogador eu quero saber o que tenho na mão para poder tomar decisões na jogada</li>
+<li>Critérios de aceitação:<ul>
+<li>O jogador deve estar participando da jogada</li>
+<li>O sistema deve informar a sequência que o jogador tem na mão</li>
+<li>O sistema deve informar a hierarquia das sequências e onde a mão do jogador se encontra nessa hierarquia</li>
+</ul>
+</li>
+</ul>
+<h2>CRCs</h2>
+<table class="doxtable">
+<tr>
+<th>Classe </th><th>Dealer  </th></tr>
+<tr>
+<td>Responsabilidades </td><td>Colaborações </td></tr>
+<tr>
+<td>Atributos: </td><td>Baralho </td></tr>
+<tr>
+<td>Momento do jogo </td><td>Mesa </td></tr>
+<tr>
+<td>Número de jogadores </td><td>Pote </td></tr>
+<tr>
+<td>""</td><td>EtapaJogo </td></tr>
+</table>
+<p>Métodos: Iniciar partida Distribuir fichas Incluir jogadores Iniciar pré-flop Iniciar flop Iniciar turn Iniciar river Mostrar mão atual do jogador Verificar resultado da partida Entregar prêmio</p>
+<table class="doxtable">
+<tr>
+<th>Classe </th><th>EstadoJogo  </th></tr>
+<tr>
+<td>Responsabilidades </td><td>Colaborações </td></tr>
+<tr>
+<td>Atributos:</td><td>Baralho </td></tr>
+<tr>
+<td>Momento do jogo </td><td>Jogador </td></tr>
+<tr>
+<td>Número de jogadores </td><td>Mão </td></tr>
+</table>
+<p>| Mesa Métodos: | Pote Validar Apostas Distribuir Cartas Verificar Opções de Ação Do Jogador</p>
+<table class="doxtable">
+<tr>
+<th>Classe </th><th>PreFlop  </th></tr>
+<tr>
+<td>Responsabilidades </td><td>Colaborações </td></tr>
+<tr>
+<td>Atributos:</td><td>Baralho </td></tr>
+<tr>
+<td>Momento do jogo </td><td>Jogador </td></tr>
+<tr>
+<td>Número de jogadores </td><td>Mão </td></tr>
+</table>
+<p>| Mesa Métodos: | Pote Validar Apostas | Bot Distribuir Cartas | EtapaJogo (Herança por polimorfismo) Verificar Opções de Ação Do Jogador</p>
+<table class="doxtable">
+<tr>
+<th>Classe </th><th>Flop  </th></tr>
+<tr>
+<td>Responsabilidades </td><td>Colaborações </td></tr>
+<tr>
+<td>Atributos:</td><td>Baralho </td></tr>
+<tr>
+<td>Momento do jogo </td><td>Jogador </td></tr>
+<tr>
+<td>Número de jogadores </td><td>Mão </td></tr>
+</table>
+<p>| Mesa Métodos: | Pote Validar Apostas | Bot Distribuir Cartas | EtapaJogo (Herança por polimorfismo) Verificar Opções de Ação Do Jogador</p>
+<table class="doxtable">
+<tr>
+<th>Classe </th><th>Turn  </th></tr>
+<tr>
+<td>Responsabilidades </td><td>Colaborações </td></tr>
+<tr>
+<td>Atributos:</td><td>Baralho </td></tr>
+<tr>
+<td>Momento do jogo </td><td>Jogador </td></tr>
+<tr>
+<td>Número de jogadores </td><td>Mão </td></tr>
+</table>
+<p>| Mesa Métodos: | Pote Validar Apostas | Bot Distribuir Cartas | EtapaJogo (Herança por polimorfismo) Verificar Opções de Ação Do Jogador</p>
+<table class="doxtable">
+<tr>
+<th>Classe </th><th>River  </th></tr>
+<tr>
+<td>Responsabilidades </td><td>Colaborações </td></tr>
+<tr>
+<td>Atributos:</td><td>Baralho </td></tr>
+<tr>
+<td>Momento do jogo </td><td>Jogador </td></tr>
+<tr>
+<td>Número de jogadores </td><td>Mão </td></tr>
+</table>
+<p>| Mesa Métodos: | Pote Validar Apostas | Bot Distribuir Cartas | EtapaJogo (Herança por polimorfismo) Verificar Opções de Ação Do Jogador</p>
+<table class="doxtable">
+<tr>
+<th>Classe </th><th>Carta  </th></tr>
+<tr>
+<td>Responsabilidades </td><td>Colaborações </td></tr>
+<tr>
+<td>Atributos: </td><td>Naipe </td></tr>
+<tr>
+<td>Naipe </td><td>Símbolo </td></tr>
+</table>
+<p>Símbolo</p>
+<table class="doxtable">
+<tr>
+<th>Classe </th><th>Baralho  </th></tr>
+<tr>
+<td>Responsabilidades </td><td>Colaborações </td></tr>
+<tr>
+<td>Atributos: </td><td>Cartas </td></tr>
+</table>
+<p>Cartas Métodos: Embaralhar Distribuir cartas</p>
+<table class="doxtable">
+<tr>
+<th>Classe </th><th>Mesa  </th></tr>
+<tr>
+<td>Responsabilidades </td><td>Colaborações </td></tr>
+<tr>
+<td>Atributos: </td><td>Pote </td></tr>
+<tr>
+<td>Cartas </td><td>Carta </td></tr>
+<tr>
+<td>Pote </td><td>Baralho </td></tr>
+</table>
+<p>Métodos: Adicionar cartas à mesa</p>
+<table class="doxtable">
+<tr>
+<th>Classe </th><th>Pote  </th></tr>
+<tr>
+<td>Responsabilidades </td><td>Colaborações </td></tr>
+<tr>
+<td>Atributos: </td><td>Jogador </td></tr>
+<tr>
+<td>Valor total </td><td>Mesa </td></tr>
+</table>
+<p>Valor aposta atual Valor aposta anterior Métodos: Alterar valor aposta atual Substituir aposta anterior Alterar valor total</p>
+<table class="doxtable">
+<tr>
+<th>Classe </th><th>Jogador  </th></tr>
+<tr>
+<td>Responsabilidades </td><td>Colaborações </td></tr>
+<tr>
+<td>Atributos: </td><td>Mão </td></tr>
+<tr>
+<td>Mão </td><td>Pote </td></tr>
+<tr>
+<td>Fichas </td><td>Baralho </td></tr>
+<tr>
+<td>Métodos: </td><td>OrdemSequencia </td></tr>
+<tr>
+<td>Pagar a aposta </td><td>EstadoJogo </td></tr>
+</table>
+<p>Aumentar a aposta Desistir da partida Passar a vez Analisar mão</p>
+<table class="doxtable">
+<tr>
+<th>Classe </th><th>Jogador  </th></tr>
+<tr>
+<td>Responsabilidades </td><td>Colaborações </td></tr>
+<tr>
+<td>Atributos: </td><td>Mão </td></tr>
+<tr>
+<td>Mão </td><td>Pote </td></tr>
+<tr>
+<td>Fichas </td><td>Baralho </td></tr>
+<tr>
+<td>Métodos: </td><td>OrdemSequencia </td></tr>
+<tr>
+<td>Pagar a aposta </td><td>EtapaJogo </td></tr>
+<tr>
+<td>Aumentar a aposta </td><td>Jogador (Herança) </td></tr>
+</table>
+<p>Desistir da partida Passar a vez Analisar mão</p>
+<table class="doxtable">
+<tr>
+<th>Classe </th><th>JogadorHumano  </th></tr>
+<tr>
+<td>Responsabilidades </td><td>Colaborações </td></tr>
+<tr>
+<td>Atributos: </td><td>Jogador(Herança) </td></tr>
+<tr>
+<td>Mão </td><td>Mão </td></tr>
+<tr>
+<td>Fichas </td><td>Pote </td></tr>
+</table>
+<p>|Baralho Métodos: | OrdemSequencia Pagar a aposta | EtapaJogo Começar Partida Finalizar Jogo Pagar a aposta Aumentar a aposta</p>
+<table class="doxtable">
+<tr>
+<th>Classe </th><th>Mão  </th></tr>
+<tr>
+<td>Responsabilidades </td><td>Colaborações </td></tr>
+<tr>
+<td>Atributos: </td><td>Cartas </td></tr>
+<tr>
+<td>Cartas (Coleção de cartas) </td><td>Jogador </td></tr>
+<tr>
+<td>"" </td><td>Naipe </td></tr>
+<tr>
+<td>"" </td><td>Símbolo </td></tr>
+</table>
+<h2>Enum: Naipe </h2>
+<p>Ouros = 1; Paus = 2; Copas = 3; Espadas = 4;</p>
+<h2>Enum: Símbolo </h2>
+<p>A; 2; 3; 4; 5; 6; 7; 8; 9; 10; J; Q; K;</p>
+<h2>Enum: OrdemSequencia </h2>
+<p>HighCard = 1; Pair = 2; TwoPair = 3; ThreeOfAKind = 4; Straight = 5; Flush = 6; FullHouse = 7; FourOfAKind = 8; StraightFlush = 9; RoyalFlush = 10; </p>
+</div></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

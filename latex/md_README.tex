@@ -1,0 +1,323 @@
+Projeto da disciplina de\+Programação e Desenvolvimento de Software 2 do curso de Sistemas de Informação da U\+F\+MG.
+
+\subsection*{Descrição}
+
+Jogo de Poker Texas Hold\textquotesingle{}em desenvolvido em C++
+
+\subsection*{User stories}
+
+
+\begin{DoxyItemize}
+\item Como jogador eu quero aumentar a aposta para aumentar o valor do pote e ganhar mais (raise)
+\item Critérios de aceitação\+:
+\begin{DoxyItemize}
+\item O jogador deve estar participando da jogada
+\item O valor do pote deve ser acrescido
+\item O jogador deve ter o valor para aumentar a aposta
+\item O valor deve ser descontado do valor das fichas do jogador
+\end{DoxyItemize}
+\item Como jogador eu quero seguir o jogo para continuar na rodada e manter o valor do pote (check)
+\item Critérios de aceitação\+:
+\begin{DoxyItemize}
+\item O jogador deve estar participando da jogada
+\item O valor da aposta não deve ter sido alterado na rodada
+\item O jogador deve se manter no jogo
+\item As fichas do jogador devem ser mantidas
+\end{DoxyItemize}
+\item Como jogador eu quero aceitar a aposta para continuar na rodada e aumentar o valor do pote (call)
+\item Critérios de aceitação\+:
+\begin{DoxyItemize}
+\item O jogador deve estar participando da jogada
+\item O valor da aposta deve ter sido alterado na rodada
+\item O jogador deve se manter no jogo
+\item O valor deve ser descontado do valor das fichas do jogador
+\end{DoxyItemize}
+\item Como jogador eu quero desistir da jogada para sair da mesa (fold)
+\item Critérios de aceitação\+:
+\begin{DoxyItemize}
+\item O jogador deve estar participando da jogada
+\item O jogador deve ser retirado da mesa
+\item Se for o pré-\/flop, as fichas não são descontadas
+\item O valor deve ser descontado do valor das fichas do jogador se tiver passado do flop
+\end{DoxyItemize}
+\item Como jogador eu quero iniciar o jogo para poder jogar
+\item Critérios de aceitação\+:
+\begin{DoxyItemize}
+\item O jogador deve informar o número de bots a jogar contra
+\item O jogador deve ser inserido no jogo
+\item Os bots devem ser inseridos no jogo
+\item O jogador deve receber 2 cartas
+\item Os bots devem receber 2 cartas
+\item O jogador deve receber um valor inicial em fichas
+\item Os bots devem receber um valor inicial em fichas
+\end{DoxyItemize}
+\item Como jogador eu quero finalizar o jogo para poder sair do jogo
+\item Critérios de aceitação\+:
+\begin{DoxyItemize}
+\item O jogador deve estar jogando anteriormente
+\item O jogador deve confirmar que deseja sair
+\item O jogo deve ser encerrado
+\end{DoxyItemize}
+\item Como jogador eu quero saber o que tenho na mão para poder tomar decisões na jogada
+\item Critérios de aceitação\+:
+\begin{DoxyItemize}
+\item O jogador deve estar participando da jogada
+\item O sistema deve informar a sequência que o jogador tem na mão
+\item O sistema deve informar a hierarquia das sequências e onde a mão do jogador se encontra nessa hierarquia
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{C\+R\+Cs}
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Dealer  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Dealer  }\\\cline{1-2}
+\endhead
+Responsabilidades &Colaborações \\\cline{1-2}
+Atributos\+: &Baralho \\\cline{1-2}
+Momento do jogo &Mesa \\\cline{1-2}
+Número de jogadores &Pote \\\cline{1-2}
+\char`\"{}\char`\"{}&Etapa\+Jogo \\\cline{1-2}
+\end{longtabu}
+Métodos\+: Iniciar partida Distribuir fichas Incluir jogadores Iniciar pré-\/flop Iniciar flop Iniciar turn Iniciar river Mostrar mão atual do jogador Verificar resultado da partida Entregar prêmio
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Estado\+Jogo  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Estado\+Jogo  }\\\cline{1-2}
+\endhead
+Responsabilidades &Colaborações \\\cline{1-2}
+Atributos\+:&Baralho \\\cline{1-2}
+Momento do jogo &Jogador \\\cline{1-2}
+Número de jogadores &Mão \\\cline{1-2}
+\end{longtabu}
+$\vert$ Mesa Métodos\+: $\vert$ Pote Validar Apostas Distribuir Cartas Verificar Opções de Ação Do Jogador
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Pre\+Flop  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Pre\+Flop  }\\\cline{1-2}
+\endhead
+Responsabilidades &Colaborações \\\cline{1-2}
+Atributos\+:&Baralho \\\cline{1-2}
+Momento do jogo &Jogador \\\cline{1-2}
+Número de jogadores &Mão \\\cline{1-2}
+\end{longtabu}
+$\vert$ Mesa Métodos\+: $\vert$ Pote Validar Apostas $\vert$ Bot Distribuir Cartas $\vert$ Etapa\+Jogo (Herança por polimorfismo) Verificar Opções de Ação Do Jogador
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Flop  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Flop  }\\\cline{1-2}
+\endhead
+Responsabilidades &Colaborações \\\cline{1-2}
+Atributos\+:&Baralho \\\cline{1-2}
+Momento do jogo &Jogador \\\cline{1-2}
+Número de jogadores &Mão \\\cline{1-2}
+\end{longtabu}
+$\vert$ Mesa Métodos\+: $\vert$ Pote Validar Apostas $\vert$ Bot Distribuir Cartas $\vert$ Etapa\+Jogo (Herança por polimorfismo) Verificar Opções de Ação Do Jogador
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Turn  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Turn  }\\\cline{1-2}
+\endhead
+Responsabilidades &Colaborações \\\cline{1-2}
+Atributos\+:&Baralho \\\cline{1-2}
+Momento do jogo &Jogador \\\cline{1-2}
+Número de jogadores &Mão \\\cline{1-2}
+\end{longtabu}
+$\vert$ Mesa Métodos\+: $\vert$ Pote Validar Apostas $\vert$ Bot Distribuir Cartas $\vert$ Etapa\+Jogo (Herança por polimorfismo) Verificar Opções de Ação Do Jogador
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ River  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ River  }\\\cline{1-2}
+\endhead
+Responsabilidades &Colaborações \\\cline{1-2}
+Atributos\+:&Baralho \\\cline{1-2}
+Momento do jogo &Jogador \\\cline{1-2}
+Número de jogadores &Mão \\\cline{1-2}
+\end{longtabu}
+$\vert$ Mesa Métodos\+: $\vert$ Pote Validar Apostas $\vert$ Bot Distribuir Cartas $\vert$ Etapa\+Jogo (Herança por polimorfismo) Verificar Opções de Ação Do Jogador
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Carta  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Carta  }\\\cline{1-2}
+\endhead
+Responsabilidades &Colaborações \\\cline{1-2}
+Atributos\+: &Naipe \\\cline{1-2}
+Naipe &Símbolo \\\cline{1-2}
+\end{longtabu}
+Símbolo
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Baralho  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Baralho  }\\\cline{1-2}
+\endhead
+Responsabilidades &Colaborações \\\cline{1-2}
+Atributos\+: &Cartas \\\cline{1-2}
+\end{longtabu}
+Cartas Métodos\+: Embaralhar Distribuir cartas
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Mesa  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Mesa  }\\\cline{1-2}
+\endhead
+Responsabilidades &Colaborações \\\cline{1-2}
+Atributos\+: &Pote \\\cline{1-2}
+Cartas &Carta \\\cline{1-2}
+Pote &Baralho \\\cline{1-2}
+\end{longtabu}
+Métodos\+: Adicionar cartas à mesa
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Pote  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Pote  }\\\cline{1-2}
+\endhead
+Responsabilidades &Colaborações \\\cline{1-2}
+Atributos\+: &Jogador \\\cline{1-2}
+Valor total &Mesa \\\cline{1-2}
+\end{longtabu}
+Valor aposta atual Valor aposta anterior Métodos\+: Alterar valor aposta atual Substituir aposta anterior Alterar valor total
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Jogador  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Jogador  }\\\cline{1-2}
+\endhead
+Responsabilidades &Colaborações \\\cline{1-2}
+Atributos\+: &Mão \\\cline{1-2}
+Mão &Pote \\\cline{1-2}
+Fichas &Baralho \\\cline{1-2}
+Métodos\+: &Ordem\+Sequencia \\\cline{1-2}
+Pagar a aposta &Estado\+Jogo \\\cline{1-2}
+\end{longtabu}
+Aumentar a aposta Desistir da partida Passar a vez Analisar mão
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Jogador  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Jogador  }\\\cline{1-2}
+\endhead
+Responsabilidades &Colaborações \\\cline{1-2}
+Atributos\+: &Mão \\\cline{1-2}
+Mão &Pote \\\cline{1-2}
+Fichas &Baralho \\\cline{1-2}
+Métodos\+: &Ordem\+Sequencia \\\cline{1-2}
+Pagar a aposta &Etapa\+Jogo \\\cline{1-2}
+Aumentar a aposta &Jogador (Herança) \\\cline{1-2}
+\end{longtabu}
+Desistir da partida Passar a vez Analisar mão
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Jogador\+Humano  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Jogador\+Humano  }\\\cline{1-2}
+\endhead
+Responsabilidades &Colaborações \\\cline{1-2}
+Atributos\+: &Jogador(Herança) \\\cline{1-2}
+Mão &Mão \\\cline{1-2}
+Fichas &Pote \\\cline{1-2}
+\end{longtabu}
+$\vert$\+Baralho Métodos\+: $\vert$ Ordem\+Sequencia Pagar a aposta $\vert$ Etapa\+Jogo Começar Partida Finalizar Jogo Pagar a aposta Aumentar a aposta
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Mão  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Classe }&\textbf{ Mão  }\\\cline{1-2}
+\endhead
+Responsabilidades &Colaborações \\\cline{1-2}
+Atributos\+: &Cartas \\\cline{1-2}
+Cartas (Coleção de cartas) &Jogador \\\cline{1-2}
+\char`\"{}\char`\"{} &Naipe \\\cline{1-2}
+\char`\"{}\char`\"{} &Símbolo \\\cline{1-2}
+\end{longtabu}
+
+
+\subsection*{Enum\+: Naipe }
+
+Ouros = 1; Paus = 2; Copas = 3; Espadas = 4;
+
+\subsection*{Enum\+: Símbolo }
+
+A; 2; 3; 4; 5; 6; 7; 8; 9; 10; J; Q; K;
+
+\subsection*{Enum\+: Ordem\+Sequencia }
+
+High\+Card = 1; Pair = 2; Two\+Pair = 3; Three\+Of\+A\+Kind = 4; Straight = 5; Flush = 6; Full\+House = 7; Four\+Of\+A\+Kind = 8; Straight\+Flush = 9; Royal\+Flush = 10; 

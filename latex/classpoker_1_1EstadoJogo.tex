@@ -1,0 +1,40 @@
+\hypertarget{classpoker_1_1EstadoJogo}{}\section{Referência da Classe poker\+:\+:Estado\+Jogo}
+\label{classpoker_1_1EstadoJogo}\index{poker\+::\+Estado\+Jogo@{poker\+::\+Estado\+Jogo}}
+
+
+Diagrama de Hierarquia para poker\+:\+:Estado\+Jogo\+:
+% FIG 0
+
+
+Diagrama de colaboração para poker\+:\+:Estado\+Jogo\+:
+% FIG 1
+\subsection*{Métodos Públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classpoker_1_1EstadoJogo_a7fda82edd398a1dc51a68aa8148a094b}\label{classpoker_1_1EstadoJogo_a7fda82edd398a1dc51a68aa8148a094b}} 
+{\bfseries Estado\+Jogo} (\hyperlink{classpoker_1_1Baralho}{Baralho} $\ast$baralho)
+\item 
+\mbox{\Hypertarget{classpoker_1_1EstadoJogo_a1322e81a9dbf072a3fa552a04923c8ac}\label{classpoker_1_1EstadoJogo_a1322e81a9dbf072a3fa552a04923c8ac}} 
+virtual void {\bfseries distribuir\+Cartas} (\hyperlink{classpoker_1_1Mesa}{Mesa} $\ast$mesa)
+\item 
+\mbox{\Hypertarget{classpoker_1_1EstadoJogo_a68c22b8817b072058e7c8df9d5b6ab40}\label{classpoker_1_1EstadoJogo_a68c22b8817b072058e7c8df9d5b6ab40}} 
+virtual bool {\bfseries validar\+Apostas} (unsigned int valor\+Aposta, \hyperlink{classpoker_1_1Jogador}{Jogador} $\ast$jogador)
+\item 
+\mbox{\Hypertarget{classpoker_1_1EstadoJogo_a36f215e4a99057fb19b34c37706d228c}\label{classpoker_1_1EstadoJogo_a36f215e4a99057fb19b34c37706d228c}} 
+std\+::map$<$ std\+::string, bool $>$ {\bfseries verificar\+Opcoes\+Jogador} (\hyperlink{classpoker_1_1Jogador}{Jogador} $\ast$jogador, \hyperlink{classpoker_1_1Pote}{Pote} $\ast$pote)
+\item 
+\mbox{\Hypertarget{classpoker_1_1EstadoJogo_a1f68586dea29cf90d82f1f5f96747b80}\label{classpoker_1_1EstadoJogo_a1f68586dea29cf90d82f1f5f96747b80}} 
+std\+::map$<$ std\+::string, bool $>$ {\bfseries verificar\+Opcoes\+Jogador} (\hyperlink{classpoker_1_1JogadorHumano}{Jogador\+Humano} $\ast$jogador, \hyperlink{classpoker_1_1Pote}{Pote} $\ast$pote)
+\end{DoxyCompactItemize}
+\subsection*{Atributos Protegidos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classpoker_1_1EstadoJogo_a10a4cdd75bccb4f16186175077587a31}\label{classpoker_1_1EstadoJogo_a10a4cdd75bccb4f16186175077587a31}} 
+\hyperlink{classpoker_1_1Baralho}{Baralho} $\ast$ {\bfseries baralho}
+\end{DoxyCompactItemize}
+
+
+A documentação para esta classe foi gerada a partir dos seguintes arquivos\+:\begin{DoxyCompactItemize}
+\item 
+include/classes/estadojogo.\+hpp\item 
+src/classes/estadojogo.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,88 @@
+\hypertarget{classpoker_1_1Jogador}{}\section{Referência da Classe poker\+:\+:Jogador}
+\label{classpoker_1_1Jogador}\index{poker\+::\+Jogador@{poker\+::\+Jogador}}
+
+
+Diagrama de Hierarquia para poker\+:\+:Jogador\+:
+% FIG 0
+
+
+Diagrama de colaboração para poker\+:\+:Jogador\+:
+% FIG 1
+\subsection*{Métodos Públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classpoker_1_1Jogador_a634fc5eb88649561b158f3c2aba5722c}\label{classpoker_1_1Jogador_a634fc5eb88649561b158f3c2aba5722c}} 
+{\bfseries Jogador} (std\+::string nome, \hyperlink{classpoker_1_1Pote}{Pote} $\ast$pote, \hyperlink{classpoker_1_1Mesa}{Mesa} $\ast$mesa)
+\item 
+\mbox{\Hypertarget{classpoker_1_1Jogador_a3b2c80d9a24e1b120a427815bff645be}\label{classpoker_1_1Jogador_a3b2c80d9a24e1b120a427815bff645be}} 
+{\bfseries Jogador} (std\+::string nome, int numero\+Fichas, \hyperlink{classpoker_1_1Pote}{Pote} $\ast$pote, \hyperlink{classpoker_1_1Mesa}{Mesa} $\ast$mesa)
+\item 
+\mbox{\Hypertarget{classpoker_1_1Jogador_a6f6e7140314a3dc0a7d7323400654802}\label{classpoker_1_1Jogador_a6f6e7140314a3dc0a7d7323400654802}} 
+void {\bfseries set\+Mao} (\hyperlink{classpoker_1_1Mao}{Mao} $\ast$mao)
+\item 
+\mbox{\Hypertarget{classpoker_1_1Jogador_a58c8c2d24c24c66395f6afcb564fa100}\label{classpoker_1_1Jogador_a58c8c2d24c24c66395f6afcb564fa100}} 
+\hyperlink{classpoker_1_1Mao}{Mao} $\ast$ {\bfseries get\+Mao} ()
+\item 
+\mbox{\Hypertarget{classpoker_1_1Jogador_ac5b827ed06ec90b86db65481cb9413da}\label{classpoker_1_1Jogador_ac5b827ed06ec90b86db65481cb9413da}} 
+void {\bfseries set\+Numero\+Fichas} (int numero\+Fichas)
+\item 
+\mbox{\Hypertarget{classpoker_1_1Jogador_a5c7ca3f9d69a0b7e3b26d5df84003040}\label{classpoker_1_1Jogador_a5c7ca3f9d69a0b7e3b26d5df84003040}} 
+unsigned int {\bfseries get\+Numero\+Fichas} ()
+\item 
+\mbox{\Hypertarget{classpoker_1_1Jogador_aa5c6ea943399895fd9ae9da8453e108c}\label{classpoker_1_1Jogador_aa5c6ea943399895fd9ae9da8453e108c}} 
+std\+::string {\bfseries get\+Nome} ()
+\item 
+\mbox{\Hypertarget{classpoker_1_1Jogador_a946f9ba0075d58cf2c9cdfafecb844a1}\label{classpoker_1_1Jogador_a946f9ba0075d58cf2c9cdfafecb844a1}} 
+void {\bfseries set\+Ultima\+Acao} (std\+::string ultima\+Acao)
+\item 
+\mbox{\Hypertarget{classpoker_1_1Jogador_a1b0b360404e7881568782e9f80275234}\label{classpoker_1_1Jogador_a1b0b360404e7881568782e9f80275234}} 
+std\+::string {\bfseries get\+Ultima\+Acao} ()
+\item 
+\mbox{\Hypertarget{classpoker_1_1Jogador_ace116fab08c7e65b5ff3c3f70d09170f}\label{classpoker_1_1Jogador_ace116fab08c7e65b5ff3c3f70d09170f}} 
+void {\bfseries passar\+Vez} ()
+\item 
+\mbox{\Hypertarget{classpoker_1_1Jogador_a03f3f639857b5bdef07a9d1bfd371067}\label{classpoker_1_1Jogador_a03f3f639857b5bdef07a9d1bfd371067}} 
+void {\bfseries apostar} (unsigned int valor\+Aposta)
+\item 
+\mbox{\Hypertarget{classpoker_1_1Jogador_a5b6e11ee7f841c56816f46b1fff510ad}\label{classpoker_1_1Jogador_a5b6e11ee7f841c56816f46b1fff510ad}} 
+void {\bfseries pagar\+Aposta} ()
+\item 
+\mbox{\Hypertarget{classpoker_1_1Jogador_ade7a67c0d054694a74b3a38aeed7d6ba}\label{classpoker_1_1Jogador_ade7a67c0d054694a74b3a38aeed7d6ba}} 
+void {\bfseries aumentar\+Aposta} (unsigned int valor\+Nova\+Aposta)
+\item 
+\mbox{\Hypertarget{classpoker_1_1Jogador_a8ae81ac65fa66ddf3653b058949f925a}\label{classpoker_1_1Jogador_a8ae81ac65fa66ddf3653b058949f925a}} 
+void {\bfseries realizar\+Jogada} (std\+::string opcao\+Selecionada)
+\item 
+\mbox{\Hypertarget{classpoker_1_1Jogador_a1da564325a856e1a18269098f66758ef}\label{classpoker_1_1Jogador_a1da564325a856e1a18269098f66758ef}} 
+void {\bfseries jogar} (std\+::map$<$ std\+::string, bool $>$ opcoes\+Jogador)
+\item 
+\mbox{\Hypertarget{classpoker_1_1Jogador_ac9fde1f1e4bfc08753fc8e955d764d95}\label{classpoker_1_1Jogador_ac9fde1f1e4bfc08753fc8e955d764d95}} 
+std\+::map$<$ std\+::string, int $>$ {\bfseries analisar\+Mao} ()
+\end{DoxyCompactItemize}
+\subsection*{Atributos Protegidos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classpoker_1_1Jogador_a14bd1cd05ba13595c1afd08bd555319d}\label{classpoker_1_1Jogador_a14bd1cd05ba13595c1afd08bd555319d}} 
+\hyperlink{classpoker_1_1Mao}{Mao} $\ast$ {\bfseries mao}
+\item 
+\mbox{\Hypertarget{classpoker_1_1Jogador_a2d3cbbf2f73aed1ded9167225ac0f7ba}\label{classpoker_1_1Jogador_a2d3cbbf2f73aed1ded9167225ac0f7ba}} 
+\hyperlink{classpoker_1_1Pote}{Pote} $\ast$ {\bfseries pote}
+\item 
+\mbox{\Hypertarget{classpoker_1_1Jogador_a3d7b6d7159f4263bc69cb38954307fc1}\label{classpoker_1_1Jogador_a3d7b6d7159f4263bc69cb38954307fc1}} 
+\hyperlink{classpoker_1_1Mesa}{Mesa} $\ast$ {\bfseries mesa}
+\item 
+\mbox{\Hypertarget{classpoker_1_1Jogador_acdbdc0e234460fd9c2eaae24327a7bc4}\label{classpoker_1_1Jogador_acdbdc0e234460fd9c2eaae24327a7bc4}} 
+unsigned int {\bfseries numero\+Fichas}
+\item 
+\mbox{\Hypertarget{classpoker_1_1Jogador_a3554808a42a81df1d779f390800c363d}\label{classpoker_1_1Jogador_a3554808a42a81df1d779f390800c363d}} 
+std\+::string {\bfseries nome}
+\item 
+\mbox{\Hypertarget{classpoker_1_1Jogador_a0bb5fecfb53224e471f5c59ab69f23ad}\label{classpoker_1_1Jogador_a0bb5fecfb53224e471f5c59ab69f23ad}} 
+std\+::string {\bfseries ultima\+Acao}
+\end{DoxyCompactItemize}
+
+
+A documentação para esta classe foi gerada a partir dos seguintes arquivos\+:\begin{DoxyCompactItemize}
+\item 
+include/classes/jogador.\+hpp\item 
+src/classes/jogador.\+cpp\end{DoxyCompactItemize}

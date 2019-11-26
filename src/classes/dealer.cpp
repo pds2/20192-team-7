@@ -145,7 +145,7 @@ void Dealer::jogada(Jogador* jogador){
 
 void Dealer::jogada(JogadorHumano* jogador){
 	mostrarMaoAtualJogador(jogador);
-	jogador->jogar(this->getMomentoJogo().verificarOpcoesJogador(jogador, this->pote));
+	jogador->jogar(this->getMomentoJogo().verificarOpcoesJogador((JogadorHumano*)jogador, this->pote));
 }
 
 void Dealer::mostrarMaoAtualJogador(Jogador* jogador){

@@ -68,10 +68,10 @@ void Jogador::apostar(unsigned int valorAposta){
         } 
         else {
             if (this->getNumeroFichas() >= valorApostaAtual+valorAposta) {
-
-                this->numeroFichas -= valorApostaAtual;
-                this->pote->setValorTotal(valorTotal + valorApostaAtual);
+                this->numeroFichas -= valorAposta;
+                this->pote->setValorTotal(valorTotal + valorAposta);
                 this->pote->setValorApostaAnterior(valorApostaAtual);
+                this->pote->setValorApostaAtual(valorAposta);
             } 
             else {
                 throw (PokerError("Fichas insuficientes! Valor máximo: " + numeroFichas-valorApostaAtual));

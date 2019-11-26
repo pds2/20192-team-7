@@ -21,9 +21,7 @@ bool EstadoJogo::validarApostas(unsigned int valorAposta, Jogador* jogador){
 }
 
 bool verificarCheck(Jogador* jogador, Pote* pote){
-    bool valido = (pote->getValorApostaAnterior() == pote->getValorApostaAtual() && jogador->getNumeroFichas() >= pote->getValorApostaAtual());
-    std::cout << std::endl << std::endl << jogador->getNome() << " - Check: " << valido << std::endl << std::endl;
-
+    bool valido = (pote->getValorApostaAnterior() == pote->getValorApostaAtual());
     return valido;
 }
 

@@ -318,7 +318,7 @@ void Dealer::iniciarJogo(unsigned int numeroJogadores){
 			podeContinuarJogo = false;
 		}
 	}
-
+	
 	verificarResultadoJogo();
 }
 

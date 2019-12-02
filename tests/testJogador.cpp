@@ -14,18 +14,16 @@ TEST_CASE("Testando setMao"){
     Pote* pote;
     Mesa* mesa;
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
-    Mao mao(Carta(Paus, Q), Carta(Copas, J));
-    Mao* pointerMao = &mao;
-    CHECK_NOTHROW_MESSAGE(jogadorTeste.setMao(pointerMao), "Mão setada OK!");    
+    Mao* mao =  new Mao(new Carta(Paus, Q), new Carta(Copas, J));
+    CHECK_NOTHROW_MESSAGE(jogadorTeste.setMao(mao), "Mão setada OK!");    
 }
 
 TEST_CASE("Testando getMao"){
     Pote* pote;
     Mesa* mesa;
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
-    Mao mao(Carta(Paus, Q), Carta(Copas, J));
-    Mao* pointerMao = &mao;
-    jogadorTeste.setMao(pointerMao);
+    Mao* mao = new Mao(new Carta(Paus, Q),new  Carta(Copas, J));
+    jogadorTeste.setMao(mao);
     CHECK_EQ(jogadorTeste.getMao(), mao);
 }
 
@@ -104,7 +102,7 @@ TEST_CASE("Testando analisar mão: Royal Flush"){
     std::map<std::string, int> royalFlushMap;
     royalFlushMap.insert(std::pair<std::string, int>("Carta", A));
     royalFlushMap.insert(std::pair<std::string, int>("Sequencia", RoyalFlush));
-    royalFlushVector = {Carta(Copas, Q), Carta(Copas, K), Carta(Copas, A)};
+    royalFlushVector = {new Carta(Copas, Q), new Carta(Copas, K),new  Carta(Copas, A)};
     Mesa mesaTeste;
     Pote* pote;
     Mesa* mesa = &mesaTeste;
@@ -123,11 +121,10 @@ TEST_CASE("Testando analisar mão: Flush"){
     std::map<std::string, int> FlushMap;
     FlushMap.insert(std::pair<std::string, int>("Carta", DEZ));
     FlushMap.insert(std::pair<std::string, int>("Sequencia", Flush));
-    FlushVector = {Carta(Copas, TRES), Carta(Copas, NOVE), Carta(Copas, DEZ)};
-    Mesa mesaTeste;
+    FlushVector = {new Carta(Copas, TRES),new Carta(Copas, NOVE),new Carta(Copas, DEZ)};
     Pote* pote;
-    Mesa* mesa = &mesaTeste;
-    mesaTeste.addCartas(FlushVector);
+    Mesa* mesa = new Mesa();
+    mesa->addCartas(FlushVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
     Mao mao(new Carta(Copas, SEIS),new Carta(Copas, SETE));
     Mao* pointerMao = &mao;
@@ -142,11 +139,11 @@ TEST_CASE("Testando analisar mão: Straight"){
     std::map<std::string, int> straightMap;
     straightMap.insert(std::pair<std::string, int>("Carta", SETE));
     straightMap.insert(std::pair<std::string, int>("Sequencia", Straight));
-    straightVector = {Carta(Copas, TRES), Carta(Paus, QUATRO), Carta(Ouros, CINCO)};
+    straightVector = {new Carta(Copas, TRES),new Carta(Paus, QUATRO),new Carta(Ouros, CINCO)};
     Mesa mesaTeste;
     Pote* pote;
-    Mesa* mesa = &mesaTeste;
-    mesaTeste.addCartas(straightVector);
+    Mesa* mesa = new Mesa();
+    mesa->addCartas(straightVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
     Mao mao(new Carta(Espadas, SEIS), new Carta(Copas, SETE));
     Mao* pointerMao = &mao;
@@ -161,11 +158,10 @@ TEST_CASE("Testando analisar mão: Straight Flush"){
     std::map<std::string, int> straightFlushMap;
     straightFlushMap.insert(std::pair<std::string, int>("Carta", SETE));
     straightFlushMap.insert(std::pair<std::string, int>("Sequencia", StraightFlush));
-    straightFlushVector = {Carta(Copas, TRES), Carta(Copas, QUATRO), Carta(Copas, CINCO)};
-    Mesa mesaTeste;
+    straightFlushVector = {new Carta(Copas, TRES),new Carta(Copas, QUATRO),new Carta(Copas, CINCO)};
     Pote* pote;
-    Mesa* mesa = &mesaTeste;
-    mesaTeste.addCartas(straightFlushVector);
+    Mesa* mesa = new Mesa();
+    mesa->addCartas(straightFlushVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
     Mao mao(new Carta(Copas, SEIS),new  Carta(Copas, SETE));
     Mao* pointerMao = &mao;
@@ -180,11 +176,10 @@ TEST_CASE("Testando analisar mão: Four of a Kind"){
     std::map<std::string, int> fourOfAKindMap;
     fourOfAKindMap.insert(std::pair<std::string, int>("Carta", CINCO));
     fourOfAKindMap.insert(std::pair<std::string, int>("Sequencia", FourOfAKind));
-    fourOfAKindVector = {Carta(Copas, CINCO), Carta(Ouros, CINCO), Carta(Paus, CINCO)};
-    Mesa mesaTeste;
+    fourOfAKindVector = {new Carta(Copas, CINCO),new Carta(Ouros, CINCO),new Carta(Paus, CINCO)};
     Pote* pote;
-    Mesa* mesa = &mesaTeste;
-    mesaTeste.addCartas(fourOfAKindVector);
+    Mesa* mesa = new Mesa();
+    mesa->addCartas(fourOfAKindVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
     Mao mao(new Carta(Copas, SEIS),new  Carta(Espadas, CINCO));
     Mao* pointerMao = &mao;
@@ -199,11 +194,10 @@ TEST_CASE("Testando analisar mão: FullHouse"){
     std::map<std::string, int> fullHouseMap;
     fullHouseMap.insert(std::pair<std::string, int>("Carta", CINCO));
     fullHouseMap.insert(std::pair<std::string, int>("Sequencia", FullHouse));
-    fullHouseVector = {Carta(Copas, CINCO), Carta(Ouros, CINCO), Carta(Paus, CINCO)};
-    Mesa mesaTeste;
+    fullHouseVector = {new Carta(Copas, CINCO),new  Carta(Ouros, CINCO),new Carta(Paus, CINCO)};
     Pote* pote;
-    Mesa* mesa = &mesaTeste;
-    mesaTeste.addCartas(fullHouseVector);
+    Mesa* mesa = new Mesa();
+    mesa->addCartas(fullHouseVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
     Mao mao(new Carta(Copas, TRES),new Carta(Espadas, TRES));
     Mao* pointerMao = &mao;
@@ -218,15 +212,13 @@ TEST_CASE("Testando analisar mão: Three of a Kind"){
     std::map<std::string, int> threeOfAKindMap;
     threeOfAKindMap.insert(std::pair<std::string, int>("Carta", CINCO));
     threeOfAKindMap.insert(std::pair<std::string, int>("Sequencia", ThreeOfAKind));
-    threeOfAKindVector = {Carta(Copas, CINCO), Carta(Ouros, CINCO), Carta(Paus, CINCO)};
-    Mesa mesaTeste;
+    threeOfAKindVector = {new Carta(Copas, CINCO),new  Carta(Ouros, CINCO),new  Carta(Paus, CINCO)};
     Pote* pote;
-    Mesa* mesa = &mesaTeste;
-    mesaTeste.addCartas(threeOfAKindVector);
+    Mesa* mesa = new Mesa();
+    mesa->addCartas(threeOfAKindVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
-    Mao mao(new Carta(Copas, NOVE),new Carta(Espadas, TRES));
-    Mao* pointerMao = &mao;
-    jogadorTeste.setMao(pointerMao);
+    Mao* mao = new Mao(new Carta(Copas, NOVE),new Carta(Espadas, TRES));
+    jogadorTeste.setMao(mao);
     CHECK_NOTHROW_MESSAGE(mapTeste = jogadorTeste.analisarMao(), "Three of a Kind Analisar mão sem exceções OK!");
     CHECK_EQ(mapTeste, threeOfAKindMap);
 }
@@ -237,11 +229,10 @@ TEST_CASE("Testando analisar mão: Two Pairs"){
     std::map<std::string, int> twoPairsMap;
     twoPairsMap.insert(std::pair<std::string, int>("Carta", SETE));
     twoPairsMap.insert(std::pair<std::string, int>("Sequencia", TwoPair));
-    twoPairsVector = {Carta(Copas, CINCO), Carta(Ouros, CINCO), Carta(Paus, SETE)};
-    Mesa mesaTeste;
+    twoPairsVector = {new Carta(Copas, CINCO),new Carta(Ouros, CINCO),new Carta(Paus, SETE)};
     Pote* pote;
-    Mesa* mesa = &mesaTeste;
-    mesaTeste.addCartas(twoPairsVector);
+    Mesa* mesa = new Mesa();
+    mesa->addCartas(twoPairsVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
     Mao mao(new Carta(Copas, SETE),new Carta(Espadas, TRES));
     Mao* pointerMao = &mao;
@@ -256,11 +247,10 @@ TEST_CASE("Testando analisar mão: Pair"){
     std::map<std::string, int> pairMap;
     pairMap.insert(std::pair<std::string, int>("Carta", CINCO));
     pairMap.insert(std::pair<std::string, int>("Sequencia", Pair));
-    pairVector = {Carta(Copas, CINCO), Carta(Ouros, CINCO), Carta(Paus, SETE)};
-    Mesa mesaTeste;
+    pairVector = {new Carta(Copas, CINCO),new Carta(Ouros, CINCO),new Carta(Paus, SETE)};
     Pote* pote;
-    Mesa* mesa = &mesaTeste;
-    mesaTeste.addCartas(pairVector);
+    Mesa* mesa = new Mesa();
+    mesa->addCartas(pairVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
     Mao mao(new Carta(Copas, NOVE),new Carta(Espadas, TRES));
     Mao* pointerMao = &mao;
@@ -275,11 +265,10 @@ TEST_CASE("Testando analisar mão: High Card"){
     std::map<std::string, int>highCardMap;
     highCardMap.insert(std::pair<std::string, int>("Carta", Q));
     highCardMap.insert(std::pair<std::string, int>("Sequencia", HighCard));
-    highCardVector = {Carta(Copas, CINCO), Carta(Ouros, OITO), Carta(Paus, DOIS)};
-    Mesa mesaTeste;
+    highCardVector = {new Carta(Copas, CINCO),new Carta(Ouros, OITO),new Carta(Paus, DOIS)};
     Pote* pote;
-    Mesa* mesa = &mesaTeste;
-    mesaTeste.addCartas(highCardVector);
+    Mesa* mesa = new Mesa();
+    mesa->addCartas(highCardVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
     Mao mao(new Carta(Copas, NOVE),new Carta(Espadas, Q));
     Mao* pointerMao = &mao;

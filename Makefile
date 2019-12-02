@@ -1,8 +1,8 @@
-#CC := g++
-#SRCDIR := src
-#BUILDDIR := build
-#TARGET := main
-#CFLAGS := -g -Wall -O3 -std=c++14 -I include/
+CC := g++
+SRCDIR := src
+BUILDDIR := build
+TARGET := main
+CFLAGS := -g -Wall -O3 -std=c++14 -I include/
 
 
 CC := g++
@@ -12,12 +12,12 @@ OBJDIR := build
 BINDIR := bin
 
 MAIN := program/main.cpp
-#TESTER := program/tester.cpp
+TESTER := program/tester.cpp
 
 SRCEXT := cpp
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS := $(patsubst $(SRCDIR)/%,$(OBJDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
-#TSTSOURCES := $(shell find $(TSTDIR) -type f -name *.$(SRCEXT))
+TSTSOURCES := $(shell find $(TSTDIR) -type f -name *.$(SRCEXT))
 
 CFLAGS := -g -Wall -O3 -std=c++14
 INC := -I include/ -I third_party/
@@ -30,10 +30,10 @@ main: $(OBJECTS)
 	@mkdir -p $(BINDIR)
 	$(CC) $(CFLAGS) $(INC) $(MAIN) $^ -o $(BINDIR)/main
 
-#tests: $(OBJECTS)
-#	@mkdir -p $(BINDIR)
-#	$(CC) $(CFLAGS) $(INC) $(TESTER) $(TSTSOURCES) $^ -o $(BINDIR)/tester
-#	$(BINDIR)/tester
+tests: $(OBJECTS)
+	@mkdir -p $(BINDIR)
+	$(CC) $(CFLAGS) $(INC) $(TESTER) $(TSTSOURCES) $^ -o $(BINDIR)/tester
+	$(BINDIR)/tester
 
 all: main
 

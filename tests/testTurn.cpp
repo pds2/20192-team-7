@@ -3,22 +3,19 @@
 using namespace poker;
 
 TEST_CASE("Testando o construtor de Turn"){
-    Baralho baralho;
-    Baralho* baralhoPointer = &baralho;
+    Baralho* baralhoPointer = new Baralho();
     CHECK_NOTHROW_MESSAGE(new Turn(baralhoPointer), "Construtor de Turn ok!");
 }
 
 TEST_CASE("Testando o método distribuirCartas de turn"){
-    Baralho baralho;
-    Baralho* baralhoPointer = &baralho;
+    Baralho* baralhoPointer = new Baralho();
     Turn turnTeste1(baralhoPointer);
     Mesa* mesaPointer;
     CHECK_NOTHROW_MESSAGE( turnTeste1.distribuirCartas(mesaPointer), "Distribuição das cartas durante o Turn OK!" );
 }
 
 TEST_CASE("Testando o método validarApostas de turn"){
-    Baralho baralho;
-    Baralho* baralhoPointer = &baralho;
+    Baralho* baralhoPointer = new Baralho();
     Mesa* mesaPointer1;
     Pote* potePointer1;
     int valorApostaTeste1 = 50, valorApostaTeste2 = 500, valorApostaTeste3 = 2000, valorApostaTeste4 = -50;

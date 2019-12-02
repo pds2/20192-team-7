@@ -13,10 +13,10 @@ TEST_CASE("Testando o método Embaralhar"){
 }
 
 TEST_CASE("Testando o método distribuir cartas"){
-    std::vector<Carta> cartas;
+    std::vector<Carta*> cartas;
     Baralho baralho;
     baralho.embaralhar();
-    CHECK_NOTHROW_MESSAGE((cartas = baralho.distribuirCartas(5)), "Distribuição de cartas OK!");
-    CHECK_THROWS_MESSAGE((cartas = baralho.distribuirCartas(70)), "Impossível retirar mais cartas existem no baralho OK!");
+    CHECK_NOTHROW_MESSAGE((cartas == baralho.distribuirCartas(5)), "Distribuição de cartas OK!");
+    CHECK_THROWS_MESSAGE((cartas == baralho.distribuirCartas(70)), "Impossível retirar mais cartas existem no baralho OK!");
 }
 

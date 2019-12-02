@@ -7,14 +7,6 @@ TEST_CASE("Testando o construtor de Util"){
     CHECK_NOTHROW_MESSAGE(new Util(), "Construtor da classe Util OK!");
 }
 
-TEST_CASE("Testando o método OrdenaCartas"){
-    std::vector<Carta*> ordened = {new Carta(Paus,DOIS),new  Carta(Copas, TRES),new Carta(Ouros, SEIS),new Carta(Copas, Q)};
-    std::vector<Carta*> cartas = {new Carta(Copas, Q),new Carta(Paus,DOIS),new Carta(Ouros, SEIS),new Carta(Copas, TRES)};
-    Util util;
-    CHECK_NOTHROW_MESSAGE(cartas == util.OrdenaCartas(cartas), "Método de ordenação chamado OK!");
-    CHECK_EQ(cartas, ordened);
-}
-
 TEST_CASE("Testando o método obter string símbolo"){
     Util util;
     CHECK_EQ(util.ObterStringSimbolo(DOIS), "Dois");

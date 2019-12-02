@@ -1,5 +1,5 @@
-#include <include/classes/carta.hpp>
-#include <include/test/doctest.h>
+#include <classes/carta.hpp>
+#include <test/doctest.h>
 
 using namespace poker;
 

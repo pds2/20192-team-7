@@ -7,7 +7,7 @@ CFLAGS := -g -Wall -O3 -std=c++14 -I include/
 
 CC := g++
 SRCDIR := src
-TSTDIR := tests
+TSTDIR := test
 OBJDIR := build
 BINDIR := bin
 

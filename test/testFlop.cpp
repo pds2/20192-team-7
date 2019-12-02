@@ -8,10 +8,8 @@ TEST_CASE("Testando o construtor de Flop"){
 }
 
 TEST_CASE("Testando o método distribuirCartas de flop"){
-    Baralho* baralho = new Baralho();
-    Flop flopTeste1(baralho);
-    Mesa* mesaPointer =  new Mesa();
-    CHECK_NOTHROW_MESSAGE( flopTeste1.distribuirCartas(mesaPointer), "Distribuição das cartas durante o Flop OK!" );
+    Flop flopTeste1(new Baralho);
+    CHECK_THROWS_MESSAGE(flopTeste1.distribuirCartas(new Mesa), "Distribuição das cartas durante o Erro flop OK!" );
 }
 
 TEST_CASE("Testando o método validarApostas de flop"){

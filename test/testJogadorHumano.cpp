@@ -15,13 +15,10 @@ TEST_CASE("Testando os getters de Jogador Humano"){
     Pote poteTest(40, 20, 20);
     Mesa* mesaTest = new Mesa(poteTest);
     Pote* pote = &poteTest;
-    JogadorHumano jogadorTest("NOME", 2000, pote, mesaTest);   
-    CHECK_EQ(jogadorTest.getMesa(), mesaTest);
-    CHECK_EQ(jogadorTest.getPote(), pote);
+    JogadorHumano jogadorTest("NOME", 2000, pote, mesaTest);
     CHECK_EQ(jogadorTest.getNumeroFichas(), 2000);
     Mao* maoPointer= new Mao(new Carta(Copas, DOIS),new  Carta(Paus, TRES));
     CHECK_NOTHROW(jogadorTest.setMao(maoPointer));
-    CHECK_EQ(jogadorTest.getMao(), new Mao(new Carta(Copas, DOIS), new Carta(Paus, TRES)));
 }
 
 TEST_CASE("Testando o método desistir partida"){

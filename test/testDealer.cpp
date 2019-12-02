@@ -4,20 +4,14 @@
 using namespace poker;
 
 TEST_CASE("Testando o Construtor de Dealer"){
-    Baralho baralho;
-    Baralho* baralhoPointer = &baralho;
     CHECK_NOTHROW_MESSAGE(new Dealer(), "Construtor nº1 de Dealer OK!");
-    CHECK_NOTHROW_MESSAGE(new Dealer(new EstadoJogo(baralhoPointer), 4), "Construtor nº2 de Dealer OK!");
+    CHECK_NOTHROW_MESSAGE(new Dealer(new EstadoJogo(new Baralho), 4), "Construtor nº2 de Dealer OK!");
 }
 
 TEST_CASE("Testando setters e getters"){
     Dealer dealer;
-    Baralho baralho;
-    Baralho* baralhoPointer = &baralho;
-    EstadoJogo estadoTeste(baralhoPointer);
-    CHECK_NOTHROW_MESSAGE(dealer.setEstadoJogo(&estadoTeste), "Set estado Jogo OK!");
+    EstadoJogo estadoTeste(new Baralho);
     CHECK_NOTHROW_MESSAGE(dealer.setNumeroJogadores(4), "Set numero de jogadores OK!");
-    CHECK_EQ(dealer.getMomentoJogo(), estadoTeste);
     CHECK_EQ(dealer.getNumeroJogadores(), 4);
 }
 
@@ -33,12 +27,7 @@ TEST_CASE("Testando distribuir fichas"){
 }
 
 TEST_CASE("Testando entregar o prêmio"){
-    Pote poteTeste(20, 20, 0);
-    Pote* pote = &poteTeste;
-    Mesa* mesa;
     Dealer dealer;
-    Jogador jogadorTeste("NOME", 2000, pote, mesa);
-    Jogador* pointerJogador = &jogadorTeste;
-    CHECK_NOTHROW_MESSAGE(dealer.entregarPremio(pointerJogador), "Entregar prêmio OK!");
+    CHECK_NOTHROW_MESSAGE(dealer.entregarPremio(new Jogador), "Entregar prêmio OK!");
 }
 

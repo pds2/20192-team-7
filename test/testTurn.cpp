@@ -10,14 +10,14 @@ TEST_CASE("Testando o construtor de Turn"){
 TEST_CASE("Testando o método distribuirCartas de turn"){
     Baralho* baralhoPointer = new Baralho();
     Turn turnTeste1(baralhoPointer);
-    Mesa* mesaPointer;
+    Mesa* mesaPointer = new Mesa();
     CHECK_NOTHROW_MESSAGE( turnTeste1.distribuirCartas(mesaPointer), "Distribuição das cartas durante o Turn OK!" );
 }
 
 TEST_CASE("Testando o método validarApostas de turn"){
     Baralho* baralhoPointer = new Baralho();
-    Mesa* mesaPointer1;
-    Pote* potePointer1;
+    Mesa* mesaPointer1 = new Mesa();
+    Pote* potePointer1 =  new Pote();
     int valorApostaTeste1 = 50, valorApostaTeste2 = 500, valorApostaTeste3 = 2000, valorApostaTeste4 = -50;
     Jogador jogadorPointer( "NOME" , 200, potePointer1 , mesaPointer1);
     Turn turnTeste2(baralhoPointer);

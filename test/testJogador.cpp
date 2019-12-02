@@ -3,24 +3,24 @@
 using namespace poker;
 
 TEST_CASE("Testando o construtor da classe Jogador"){
-    Pote* pote;
-    Mesa* mesa;
+    Pote* pote = new Pote();
+    Mesa* mesa = new Mesa();
     CHECK_NOTHROW_MESSAGE(new Jogador("NOME", 2000, pote, mesa), "Construtor nº1 de Jogador OK!"); 
     CHECK_NOTHROW_MESSAGE(new Jogador("NOME", pote, mesa), "Construtor nº2 de Jogador OK!");
     CHECK_NOTHROW_MESSAGE(new Jogador(), "Construtor nº3 de Jogador OK!"); 
 }
 
 TEST_CASE("Testando setMao"){
-    Pote* pote;
-    Mesa* mesa;
+    Pote* pote = new Pote();
+    Mesa* mesa = new Mesa();
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
     Mao* mao =  new Mao(new Carta(Paus, Q), new Carta(Copas, J));
     CHECK_NOTHROW_MESSAGE(jogadorTeste.setMao(mao), "Mão setada OK!");    
 }
 
 TEST_CASE("Testando getMao"){
-    Pote* pote;
-    Mesa* mesa;
+    Pote* pote = new Pote();
+    Mesa* mesa = new Mesa();
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
     Mao* mao = new Mao(new Carta(Paus, Q),new  Carta(Copas, J));
     jogadorTeste.setMao(mao);
@@ -28,18 +28,18 @@ TEST_CASE("Testando getMao"){
 }
 
 TEST_CASE("Testando setUltimaAcao"){
-    Pote* pote;
-    Mesa* mesa;
+    Pote* pote = new Pote();
+    Mesa* mesa = new Mesa();
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
     CHECK_NOTHROW_MESSAGE(jogadorTeste.setUltimaAcao("TESTE"), "Mão setada OK!");    
 }
 
 TEST_CASE("Testando getUltimaAcao"){
-    Pote* pote;
-    Mesa* mesa;
+    Pote* pote = new Pote();
+    Mesa* mesa = new Mesa();
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
     jogadorTeste.setUltimaAcao("TESTE");
-    CHECK_EQ(jogadorTeste.getMao(), "TESTE");   
+    CHECK_EQ(jogadorTeste.getUltimaAcao(), "TESTE");   
 }
 
 TEST_CASE("Testando apostar"){
@@ -47,7 +47,7 @@ TEST_CASE("Testando apostar"){
     Pote poteTeste2(40, 20, 20);
     Pote* pote1 = &poteTeste1;
     Pote* pote2 = &poteTeste2;
-    Mesa* mesa;
+    Mesa* mesa = new Mesa();
     Jogador jogadorTeste1("NOME", 2000, pote1, mesa);
     Jogador jogadorTeste2("NOME", 2000, pote2, mesa);
     CHECK_THROWS_MESSAGE(jogadorTeste1.apostar(200), "Impossível apostar com apostas já feitas na rodada OK!");
@@ -60,7 +60,7 @@ TEST_CASE("Testando apostar"){
 TEST_CASE("Testando pagar aposta"){
     Pote poteTeste(20, 20, 0);
     Pote* pote = &poteTeste;
-    Mesa* mesa;
+    Mesa* mesa = new Mesa();
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
     Jogador jogadorTeste2("NOME", 19, pote, mesa);
     CHECK_NOTHROW(jogadorTeste.pagarAposta());
@@ -73,7 +73,7 @@ TEST_CASE("Testando pagar aposta"){
 TEST_CASE("Testando aumentar aposta"){
     Pote poteTeste(20, 20, 0);
     Pote* pote = &poteTeste;
-    Mesa* mesa;
+    Mesa* mesa =  new Mesa();
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
     Jogador jogadorTeste2("NOME", 19, pote, mesa);
     CHECK_NOTHROW(jogadorTeste.aumentarAposta(21));
@@ -88,7 +88,7 @@ TEST_CASE("Testando aumentar aposta"){
 TEST_CASE("Testando passar vez"){
     Pote poteTeste(40, 20, 20);
     Pote* pote = &poteTeste;
-    Mesa* mesa;
+    Mesa* mesa = new Mesa();
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
     Jogador jogadorTeste2("NOME", 19, pote, mesa);
     CHECK_NOTHROW_MESSAGE(jogadorTeste.passarVez(), "Passar a vez OK!");
@@ -103,11 +103,10 @@ TEST_CASE("Testando analisar mão: Royal Flush"){
     royalFlushMap.insert(std::pair<std::string, int>("Carta", A));
     royalFlushMap.insert(std::pair<std::string, int>("Sequencia", RoyalFlush));
     royalFlushVector = {new Carta(Copas, Q), new Carta(Copas, K),new  Carta(Copas, A)};
-    Mesa mesaTeste;
-    Pote* pote;
-    Mesa* mesa = &mesaTeste;
-    mesaTeste.addCartas(royalFlushVector);
-    Jogador jogadorTeste("NOME", 2000, pote, mesa);
+    Mesa* mesaTeste = new Mesa();
+    Pote* pote = new Pote();
+    mesaTeste->addCartas(royalFlushVector);
+    Jogador jogadorTeste("NOME", 2000, pote, mesaTeste);
     Mao mao(new Carta(Copas, DEZ), new Carta(Copas, J));
     Mao* pointerMao = &mao;
     jogadorTeste.setMao(pointerMao);
@@ -122,7 +121,7 @@ TEST_CASE("Testando analisar mão: Flush"){
     FlushMap.insert(std::pair<std::string, int>("Carta", DEZ));
     FlushMap.insert(std::pair<std::string, int>("Sequencia", Flush));
     FlushVector = {new Carta(Copas, TRES),new Carta(Copas, NOVE),new Carta(Copas, DEZ)};
-    Pote* pote;
+    Pote* pote = new Pote();
     Mesa* mesa = new Mesa();
     mesa->addCartas(FlushVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
@@ -141,7 +140,7 @@ TEST_CASE("Testando analisar mão: Straight"){
     straightMap.insert(std::pair<std::string, int>("Sequencia", Straight));
     straightVector = {new Carta(Copas, TRES),new Carta(Paus, QUATRO),new Carta(Ouros, CINCO)};
     Mesa mesaTeste;
-    Pote* pote;
+    Pote* pote = new Pote();
     Mesa* mesa = new Mesa();
     mesa->addCartas(straightVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
@@ -159,7 +158,7 @@ TEST_CASE("Testando analisar mão: Straight Flush"){
     straightFlushMap.insert(std::pair<std::string, int>("Carta", SETE));
     straightFlushMap.insert(std::pair<std::string, int>("Sequencia", StraightFlush));
     straightFlushVector = {new Carta(Copas, TRES),new Carta(Copas, QUATRO),new Carta(Copas, CINCO)};
-    Pote* pote;
+    Pote* pote = new Pote();
     Mesa* mesa = new Mesa();
     mesa->addCartas(straightFlushVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
@@ -177,7 +176,7 @@ TEST_CASE("Testando analisar mão: Four of a Kind"){
     fourOfAKindMap.insert(std::pair<std::string, int>("Carta", CINCO));
     fourOfAKindMap.insert(std::pair<std::string, int>("Sequencia", FourOfAKind));
     fourOfAKindVector = {new Carta(Copas, CINCO),new Carta(Ouros, CINCO),new Carta(Paus, CINCO)};
-    Pote* pote;
+    Pote* pote =  new Pote();
     Mesa* mesa = new Mesa();
     mesa->addCartas(fourOfAKindVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
@@ -195,7 +194,7 @@ TEST_CASE("Testando analisar mão: FullHouse"){
     fullHouseMap.insert(std::pair<std::string, int>("Carta", CINCO));
     fullHouseMap.insert(std::pair<std::string, int>("Sequencia", FullHouse));
     fullHouseVector = {new Carta(Copas, CINCO),new  Carta(Ouros, CINCO),new Carta(Paus, CINCO)};
-    Pote* pote;
+    Pote* pote =  new Pote();
     Mesa* mesa = new Mesa();
     mesa->addCartas(fullHouseVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
@@ -213,7 +212,7 @@ TEST_CASE("Testando analisar mão: Three of a Kind"){
     threeOfAKindMap.insert(std::pair<std::string, int>("Carta", CINCO));
     threeOfAKindMap.insert(std::pair<std::string, int>("Sequencia", ThreeOfAKind));
     threeOfAKindVector = {new Carta(Copas, CINCO),new  Carta(Ouros, CINCO),new  Carta(Paus, CINCO)};
-    Pote* pote;
+    Pote* pote = new Pote();
     Mesa* mesa = new Mesa();
     mesa->addCartas(threeOfAKindVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
@@ -230,7 +229,7 @@ TEST_CASE("Testando analisar mão: Two Pairs"){
     twoPairsMap.insert(std::pair<std::string, int>("Carta", SETE));
     twoPairsMap.insert(std::pair<std::string, int>("Sequencia", TwoPair));
     twoPairsVector = {new Carta(Copas, CINCO),new Carta(Ouros, CINCO),new Carta(Paus, SETE)};
-    Pote* pote;
+    Pote* pote = new Pote();
     Mesa* mesa = new Mesa();
     mesa->addCartas(twoPairsVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
@@ -248,7 +247,7 @@ TEST_CASE("Testando analisar mão: Pair"){
     pairMap.insert(std::pair<std::string, int>("Carta", CINCO));
     pairMap.insert(std::pair<std::string, int>("Sequencia", Pair));
     pairVector = {new Carta(Copas, CINCO),new Carta(Ouros, CINCO),new Carta(Paus, SETE)};
-    Pote* pote;
+    Pote* pote =  new Pote();
     Mesa* mesa = new Mesa();
     mesa->addCartas(pairVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
@@ -266,7 +265,7 @@ TEST_CASE("Testando analisar mão: High Card"){
     highCardMap.insert(std::pair<std::string, int>("Carta", Q));
     highCardMap.insert(std::pair<std::string, int>("Sequencia", HighCard));
     highCardVector = {new Carta(Copas, CINCO),new Carta(Ouros, OITO),new Carta(Paus, DOIS)};
-    Pote* pote;
+    Pote* pote = new Pote();
     Mesa* mesa = new Mesa();
     mesa->addCartas(highCardVector);
     Jogador jogadorTeste("NOME", 2000, pote, mesa);
@@ -282,7 +281,7 @@ TEST_CASE("Testando realizarJogada: Apostar"){
     Pote poteTeste2(40, 20, 20);
     Pote* pote1 = &poteTeste1;
     Pote* pote2 = &poteTeste2;
-    Mesa* mesa;
+    Mesa* mesa = new Mesa();
     Jogador jogadorTeste1("NOME", 2000, pote1, mesa);
     Jogador jogadorTeste2("NOME", 2000, pote2, mesa);
     CHECK_NOTHROW_MESSAGE(jogadorTeste2.realizarJogada("apostar"), "Apostar OK!");
@@ -294,7 +293,7 @@ TEST_CASE("Testando realizarJogada: check"){
     Pote poteTeste2(40, 20, 20);
     Pote* pote1 = &poteTeste1;
     Pote* pote2 = &poteTeste2;
-    Mesa* mesa;
+    Mesa* mesa = new Mesa();
     Jogador jogadorTeste1("NOME", 2000, pote1, mesa);
     Jogador jogadorTeste2("NOME", 2000, pote2, mesa);
     CHECK_NOTHROW_MESSAGE(jogadorTeste2.realizarJogada("check"), "Desistir OK!");
@@ -306,7 +305,7 @@ TEST_CASE("Testando realizarJogada: pagar"){
     Pote poteTeste2(40, 20, 20);
     Pote* pote1 = &poteTeste1;
     Pote* pote2 = &poteTeste2;
-    Mesa* mesa;
+    Mesa* mesa = new Mesa();
     Jogador jogadorTeste1("NOME", 2000, pote1, mesa);
     Jogador jogadorTeste2("NOME", 2000, pote2, mesa);
     CHECK_THROWS_MESSAGE(jogadorTeste2.realizarJogada("pagar"), "Impossível pagar nessa etapa OK!");
@@ -318,7 +317,7 @@ TEST_CASE("Testando realizarJogada: aumentar"){
     Pote poteTeste2(40, 20, 20);
     Pote* pote1 = &poteTeste1;
     Pote* pote2 = &poteTeste2;
-    Mesa* mesa;
+    Mesa* mesa = new Mesa();
     Jogador jogadorTeste1("NOME", 2000, pote1, mesa);
     Jogador jogadorTeste2("NOME", 2000, pote2, mesa);
     CHECK_THROWS_MESSAGE(jogadorTeste2.realizarJogada("aumentar"), "Impossível aumentar nessa etapa OK!");
@@ -340,7 +339,7 @@ TEST_CASE("Testando jogar"){
     Pote poteTeste1(40, 20, 20);
     Pote* pote1 = &poteTeste1;
     Pote* pote2 = &poteTeste2;
-    Mesa* mesa;
+    Mesa* mesa = new Mesa();
     Jogador jogadorTeste1("NOME", 2000, pote1, mesa);
     Jogador jogadorTeste2("NOME", 2000, pote2, mesa);
     CHECK_NOTHROW_MESSAGE(jogadorTeste2.jogar(opcoesJogador2), "Jogar 1 OK!");

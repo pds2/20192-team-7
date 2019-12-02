@@ -10,14 +10,14 @@ TEST_CASE("Testando o construtor de Preflop"){
 TEST_CASE("Testando o método distribuirCartas de PreFlop"){
     Baralho* baralhoPointer = new Baralho();
     PreFlop preflopTeste1(baralhoPointer);
-    Mesa* mesaPointer;
+    Mesa* mesaPointer = new Mesa();
     CHECK_NOTHROW_MESSAGE( preflopTeste1.distribuirCartas(mesaPointer), "Distribuição das cartas durante o PreFlop OK!" );
 }
 
 TEST_CASE("Testando o método de distribuirCartasJogadores de PreFlop"){
     Baralho* baralhoPointer = new Baralho();
-    Mesa* mesa;
-    Pote* pote;
+    Mesa* mesa = new Mesa();
+    Pote* pote = new Pote();
     PreFlop preflopTeste3(baralhoPointer);
 
     std::vector<Jogador*> jogadorTeste;
@@ -42,8 +42,8 @@ TEST_CASE("Testando o método de distribuirCartasJogadores de PreFlop"){
 
 TEST_CASE("Testando o método validarApostas de PreFlop"){
     Baralho* baralhoPointer = new Baralho();
-    Mesa* mesaPointer1;
-    Pote* potePointer1;
+    Mesa* mesaPointer1 = new Mesa();
+    Pote* potePointer1 = new Pote();
     int valorApostaTeste1 = 50, valorApostaTeste2 = 500, valorApostaTeste3 = 2000, valorApostaTeste4 = -50;
     Jogador jogadorPointer( "NOME" , 200, potePointer1 , mesaPointer1);
     PreFlop preflopTeste2(baralhoPointer);

@@ -129,16 +129,10 @@ bool verificarTodosPagam(std::vector<Jogador*> jogadores){
 void Dealer::iniciarJogadas(){
 	std::vector<Jogador*>::iterator it;
 	bool podeSeguirProximaJogada = false;
-	bool jogadorNaoDesistiu = false;
-	do {
-		try {
-			if (jogadorNaoDesistiu || (this->jogadorHumano->getUltimaAcao().compare("desistir") != 0)){
 
-				jogada(this->jogadorHumano);
-			}
-		}
-		catch (poker::FimRodada& e){
-			jogadorNaoDesistiu = false;
+	do {
+		if (this->jogadorHumano->getUltimaAcao().compare("desistir") != 0){
+			jogada(this->jogadorHumano);
 		}
 
 		for (it = this->jogadores.begin(); it != this->jogadores.end(); ++it){
@@ -291,6 +285,7 @@ void Dealer::iniciarRodada(){
 	try { 
 		
 		this->baralho->embaralhar();
+
 		PreFlop* preFlop = new PreFlop(this->baralho);
 		Flop* flop = new Flop(this->baralho);
 		Turn* turn = new Turn(this->baralho);
@@ -307,10 +302,12 @@ void Dealer::iniciarRodada(){
 		verificarResultadoRodada();
 
 		for (Jogador* jogador : this->jogadores){
+			jogador->setUltimaAcao("");
 
 			if (jogador->getNumeroFichas() == 0)
 				throw FimJogo();
 		}
+		this->jogadorHumano->setUltimaAcao("");
 
 	} catch (FimRodada e){
 		std::cout << e.what() << std::endl;
@@ -347,6 +344,7 @@ void Dealer::verificarResultadoJogo(){
 
 void Dealer::verificarResultadoRodada(){
 	Jogador* vencedor = nullptr;
+
 	for (Jogador* primeiroCandidatoVencer : this->jogadores){
 	
 		for (Jogador* comparacaoVencedor : this->jogadores){
@@ -367,4 +365,5 @@ void Dealer::verificarResultadoRodada(){
 	std::system("clear");
 
 	std::cout << "O vencedor da rodada foi o jogador : " << vencedor->getNome() << " com " << vencedor->getNumeroFichas() << " fichas" << std::endl;
+
 }

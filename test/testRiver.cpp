@@ -8,10 +8,8 @@ TEST_CASE("Testando o construtor de River"){
 }
 
 TEST_CASE("Testando o método distribuirCartas de river"){
-    Baralho* baralhoPointer = new Baralho();
-    River riverTeste1(baralhoPointer);
-    Mesa* mesaPointer= new Mesa();
-    CHECK_NOTHROW_MESSAGE( riverTeste1.distribuirCartas(mesaPointer), "Distribuição das cartas durante o River OK!" );
+    River riverTeste1(new Baralho);
+    CHECK_THROWS_MESSAGE(riverTeste1.distribuirCartas(new Mesa), "Distribuição das cartas durante o Erro river OK!" );
 }
 
 TEST_CASE("Testando o método validarApostas de river"){

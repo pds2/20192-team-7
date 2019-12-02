@@ -29,7 +29,7 @@ TEST_CASE("Testando o método obter string símbolo"){
     CHECK_EQ(util.ObterStringSimbolo(J), "Valete");
     CHECK_EQ(util.ObterStringSimbolo(Q), "Dama");
     CHECK_EQ(util.ObterStringSimbolo(K), "Rei");
-    CHECK_EQ(util.ObterStringSimbolo(TRES), "Ás");
+    CHECK_EQ(util.ObterStringSimbolo(A), "Ás");
 }
 
 TEST_CASE("Testando o método obter string sequencia"){

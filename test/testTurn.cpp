@@ -8,10 +8,8 @@ TEST_CASE("Testando o construtor de Turn"){
 }
 
 TEST_CASE("Testando o método distribuirCartas de turn"){
-    Baralho* baralhoPointer = new Baralho();
-    Turn turnTeste1(baralhoPointer);
-    Mesa* mesaPointer = new Mesa();
-    CHECK_NOTHROW_MESSAGE( turnTeste1.distribuirCartas(mesaPointer), "Distribuição das cartas durante o Turn OK!" );
+    Turn turnTeste1(new Baralho);
+    CHECK_THROWS_MESSAGE(turnTeste1.distribuirCartas(new Mesa), "Distribuição das cartas durante o Erro flop OK!" );
 }
 
 TEST_CASE("Testando o método validarApostas de turn"){
